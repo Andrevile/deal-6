@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const path = require('path');
+// const path = require('path');
 const app = express();
 
 app.use(cookieParser());
@@ -9,13 +9,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.status(200).json("Hello, Welcome to Moon & Nam's express world!");
+	res.status(200).json("Hello, Welcome to Moon & Nam's express world!");
 });
 
-// app.use('/api/user', ) 
+// app.use('/api/user', )
 
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Server Listening on ${port}`);
+	console.log(`Server Listening on ${port}`);
 });
