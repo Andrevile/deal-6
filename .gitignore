@@ -106,3 +106,7 @@ dist
 .DS_Store
 
 *.pem
+
+# config (databases) 
+# but, there is a sample config file
+config.js
