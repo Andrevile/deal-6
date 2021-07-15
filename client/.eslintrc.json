@@ -9,7 +9,8 @@
         "browser": true,
         "node": true,
         "es2021": true
-    },
+    }, 
+    "parser": "babel-eslint",
     "ignorePatterns": ["node_modules/", "dist/", "webpack.config.js"],
     "rules": {
         "prettier/prettier": "error"

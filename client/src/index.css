@@ -1,0 +1,56 @@
+
+:root {
+   
+    --color-white: #ffffff;
+    --color-light-white: #eeeeee;
+    --color-dark-white: #bdbdbd;
+    --color-main: #5c6bc0;
+    --color-dark-main: #26418f;
+    --color-dark-grey: #4d4d4d;
+    --color-grey: #616161;
+    --color-light-grey: #7c7979;
+    --color-blue: #73aace;
+    --color-yellow: #fff7d1;
+    --color-orange: #feb546;
+    --color-black: #000000;
+
+    
+    --font-large: 48px;
+    --font-medium: 28px;
+    --font-regular: 18px;
+    --font-small: 16px;
+    --font-micro: 14px;
+
+   
+    --weight-bold: 500;
+    --weight-semi-bold: 400;
+    --weight-regular: 300;
+
+  
+    --size-border-radius: 4px;
+
+   
+    --animation-duration: 300ms;
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app {
+    width: 320px;
+    height: 568px;
+    border: 1px solid #eee;
+}
+
+.main__nav {
+    width: 320px;
+    height: 56px;
+    background: #2AC1BC;
+    border-radius: 0px 0px 16px 16px;
+}
