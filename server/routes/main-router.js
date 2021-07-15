@@ -1,7 +1,7 @@
 const express = require('express');
 const decodeJWT = require('../middlewares/auth');
 const { getMyUserTown } = require('../services/user-town-service');
-const { getAllMyWish, wishProduct } = require('../services/wish-service');
+const { getAllMyWish, updateWishProduct } = require('../services/wish-service');
 const {
 	getAllProductByCategoryAndTown,
 	getAllMyProduct,
@@ -17,6 +17,6 @@ router.get('/product/me', decodeJWT, getAllMyProduct);
 
 router.get('/wish/me', decodeJWT, getAllMyWish);
 
-router.post('/wish/:ProductPk', decodeJWT, wishProduct);
+router.post('/wish/:ProductPk', decodeJWT, updateWishProduct);
 
 module.exports = router;
