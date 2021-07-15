@@ -1,5 +1,4 @@
-import Page1 from './pages/1page/1page.js';
-import Page2 from './pages/2page/2page.js';
+import Mainpage from './pages/main-page'
 
 const pathToRegex = (path) =>
 	new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -11,8 +10,8 @@ const navigateTo = (url) => {
 
 const router = () => {
 	const routes = [
-		{ path: '/', view: Page1 },
-		{ path: '/ano', view: Page2 },
+		{ path: '/', view: Mainpage},
+		// { path: '/another', view: Page2 },
 		// { path: '/posts/:id', view: PostView },
 		// { path: '/settings', view: Settings },
 	];
@@ -24,8 +23,10 @@ const router = () => {
 			result: location.pathname.match(pathToRegex(route.path)),
 		};
 	});
+	
 	// console.log('l',location.pathname)
 	// console.log('p',potentialMatches)
+
 	let match = potentialMatches.find(
 		(potentialMatch) => potentialMatch.result !== null
 	);
