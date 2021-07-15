@@ -1,12 +1,13 @@
 import "./product-lists.css"
-
+import {createDOMwithSelector } from '../../../util/createDOMwithSelector'
 export default class Productlists {
 	
 
 	constructor({$app}) {
-		this.$target = document.createElement('section');
+		
+		this.$target = createDOMwithSelector('section')
 		$app.appendChild(this.$target);
-		this.$target.className = 'article'
+		
 		this.$target.innerHTML = `
 			<div>
 				It is Productlist

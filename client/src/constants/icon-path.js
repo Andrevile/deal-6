@@ -1,0 +1,19 @@
+  
+export const ADD_ICON = '../../assets/imgs/add.svg';
+export const ACCOUNT_ICON = '../../assets/imgs/account.svg';
+export const ARROW_BACK_ICON = '../../assets/imgs/arrow_back.svg';//
+export const CANCEL_ICON = '../../assets/imgs/cancel.svg';//
+export const ARROW_FORWARD_ICON = '../../assets/imgs/arrow_forward.svg';
+export const CATEGORY_ICON = '../../assets/imgs/category.svg';
+export const CHAT_BUBBLE_MINI_ICON = '../../assets/imgs/chat_bubble_mini.svg';
+export const DONE_ICON = '../../assets/imgs/done.svg';
+export const EXIT_ICON = '../../assets/imgs/exit.svg';
+export const EXPAND_MORE_ICON = '../../assets/imgs/expand_more.svg';
+export const FAVORITE_BORDER_MINI_ICON = '../../assets/imgs/favorite_border_mini.svg';
+export const FAVORITE_BORDER_ICON = '../../assets/imgs/favorite_border.svg';
+export const FAVORITE_ICON = '../../assets/imgs/favorite.svg';
+export const IMAGE_ICON = '../../assets/imgs/iamge.svg';
+export const LOCATION_ICON = '../../assets/imgs/location.svg';
+export const MENU_ICON = '../../assets/imgs/menu.svg';
+export const MORE_VERT_ICON = '../../assets/imgs/more_vert.svg';
+export const SEND_ICON = '../../assets/imgs/send.svg';
