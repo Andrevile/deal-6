@@ -1,0 +1,1 @@
+자주 사용되는 함수 ex> localStorage
