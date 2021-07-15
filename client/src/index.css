@@ -1,0 +1,22 @@
+@import "./reset.css";
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app {
+    width: 320px;
+    height: 568px;
+    border: 1px solid #eee;
+}
+
+.main__nav {
+    width: 320px;
+    height: 56px;
+    background: #2AC1BC;
+    border-radius: 0px 0px 16px 16px;
+}
