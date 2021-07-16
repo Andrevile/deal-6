@@ -1,0 +1,13 @@
+.img-container {
+    height: 320px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: darksalmon;
+}
+
+.gradient {
+    width: 320px;
+    height: 320px;
+}

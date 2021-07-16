@@ -1,0 +1,19 @@
+.info-container {
+    margin-top : 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    /* align-items: center; */
+}
+
+.info {
+    width: calc(100%-32px);
+    min-height: 30px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.status {
+    /* background-color: darksalmon; */
+}

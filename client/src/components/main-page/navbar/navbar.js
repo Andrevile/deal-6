@@ -1,11 +1,11 @@
 import './navbar.css';
-import { createDOMwithSelector } from '../../../util/createDOMwithSelector';
+import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 // import CATEGORY_ICON from '/imgs/category.svg'; 경로문제 발생 (보류)
 
 export default class Mainnavbar {
 	locationName = '역삼동';
 	constructor({ $app }) {
-		this.$target = createDOMwithSelector('nav', '.nav');
+		this.$target = createDOMWithSelector('nav', '.nav');
 		$app.appendChild(this.$target);
 
 		this.$target.innerHTML = `
