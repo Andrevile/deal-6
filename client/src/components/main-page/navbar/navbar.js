@@ -2,7 +2,7 @@ import './navbar.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 // import CATEGORY_ICON from '/imgs/category.svg'; 경로문제 발생 (보류)
 
-export default class Mainnavbar {
+export default class MainNavbar {
 	state = '';
 	constructor({ $parent, initialState }) {
 		this.state = initialState;

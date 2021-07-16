@@ -1,6 +1,6 @@
 import './product-lists.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
-export default class Productlists {
+export default class ProductLists {
 	state = [];
 
 	constructor({ $parent, initialState }) {
@@ -17,15 +17,12 @@ export default class Productlists {
 	}
 
 	render() {
-		/*
-			Like 여부로 다른 태그 부여할것
-		*/
 		const result = this.state
 			.map((product) => {
 				return `
 				<article class='product'>
 					
-					<img class='product__img' src=${product.imgPath} data-link='/detail'>
+					<img class='product__img' src=${product.imgPath} data-link='/signup'>
 				
 					<div class='product__info'>
 						<span class='product__name' data-link='/detail'>${product.name}</span>
@@ -33,13 +30,13 @@ export default class Productlists {
 						<span class='product__price' data-link='/detail'>${product.time}</span>
 					</div>
 					
-					<img class="product__like" src="/icons/favorite_border_mini.svg" />
-	
-					<div class='product__chatOutline' >
-						<img class='product__chat' src='/icons/chat_bubble_mini.svg'>
-						<span>${product.chatCount}</span>
+					${this.updateLikeButton(product.like)}
+
+					<div class='rightBottom' >
+						${this.viewChatCount(product.chatCount)}
+						${this.viewLikeCount(product.likeCount)}
 					</div>
-					
+						
 				</article>
 			`;
 			})
@@ -48,15 +45,26 @@ export default class Productlists {
 		this.$target.innerHTML = result;
 	}
 
-	// updateLikeButton = (like) => {
-	// 	if (like === 'T') {
-	// 		<img class="product__like" src="/imgs/favorite_border_mini.svg" />;
-	// 	} else {
-	// 		<img
-	// 			class="product__like"
-	// 			src="/imgs/favorite_border_mini.svg"
-	// 		></img>;
-	// 	}
-	// 	//svg 색상을 바꾼걸 하나 만들던지 해야할듯?
-	// };
+	updateLikeButton = (like) => {
+		return like === 'T'
+			? `<img class="product__like" src="/icons/favorite.svg" />`
+			: `<img
+					class="product__like"
+					src="/icons/favorite_border_mini.svg"
+				/>`;
+	};
+
+	viewChatCount = (count) => {
+		return count > 0
+			? `<img class='rightBottom__chat' src='/icons/chat_bubble_mini.svg' />
+						<span>${count}</span>`
+			: ``;
+	};
+
+	viewLikeCount = (count) => {
+		return count > 0
+			? `<img class='rightBottom__like' src='/icons/favorite_border_mini.svg' />
+						<span>${count}</span>`
+			: ``;
+	};
 }

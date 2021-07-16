@@ -2,7 +2,7 @@ import Navbar from '../components/main-page/navbar/navbar.js';
 import ProductLists from '../components/base/product-lists/product-lists.js';
 import PostButton from '../components/main-page/write-post-button/write-post-button';
 
-export default class Mainpage {
+export default class MainPage {
 	state = {
 		products: sampleData,
 		locationName: '역삼동',
@@ -13,7 +13,7 @@ export default class Mainpage {
 			$parent,
 			initialState: this.state.locationName,
 		});
-		this.productlists = new ProductLists({
+		this.ProductLists = new ProductLists({
 			$parent,
 			initialState: this.state.products,
 		});
@@ -36,8 +36,9 @@ const sampleData = [
 		location: '인창동',
 		time: '2시간 전',
 		price: '10억',
-		like: 'F',
+		like: 'T',
 		chatCount: 5,
+		likeCount: 3,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -47,6 +48,7 @@ const sampleData = [
 		price: '10억',
 		like: 'F',
 		chatCount: 5,
+		likeCount: 0,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -56,6 +58,7 @@ const sampleData = [
 		price: '10억',
 		like: 'F',
 		chatCount: 5,
+		likeCount: 3,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -65,6 +68,7 @@ const sampleData = [
 		price: '10억',
 		like: 'F',
 		chatCount: 5,
+		likeCount: 3,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -74,5 +78,6 @@ const sampleData = [
 		price: '10억',
 		like: 'F',
 		chatCount: 5,
+		likeCount: 3,
 	},
 ];

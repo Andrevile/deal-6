@@ -46,17 +46,26 @@
     top: 19px;
 }
 
-.product__chatOutline{
+.rightBottom{
     position: absolute;
-    right: 19px;
+    right: 5px;
     bottom: 13px;
     font-size: var(--font-micro);
     color: var(--color-grey);
 }
 
-.product__chat {   
+.rightBottom__chat {   
     width: 12px;
     height: 12px;
     margin-right: 3px;
 }
 
+.rightBottom span {
+    margin-right: 10px;
+}
+
+.rightBottom__like {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
