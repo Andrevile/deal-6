@@ -1,27 +1,40 @@
 import './navbar.css';
 import { createDOMwithSelector } from '../../../util/createDOMwithSelector';
-import { CATEGORY_ICON } from '../../../constants/icon-path';
+// import CATEGORY_ICON from '/imgs/category.svg'; 경로문제 발생 (보류)
 
 export default class Mainnavbar {
+	locationName = '역삼동';
 	constructor({ $app }) {
 		this.$target = createDOMwithSelector('nav', '.nav');
 		$app.appendChild(this.$target);
+
 		this.$target.innerHTML = `
-            <div class='nav_category'>
-                <img src=${CATEGORY_ICON} alt='category'>
+            <div class='nav__category'>
+                <img src='/imgs/category.svg' alt='category'>
             </div>
-            <div class='nav_location'>
-                <img src='' alt='location'>
-                <span>역삼동</span>
+            <div class='nav__location'>
+                
             </div>
-            <div class='nav_rightSide'>
-                <img src= alt='profile'>
-                <img src= alt='menu'>
+            <div class='nav__rightSide'>
+                <img src='/imgs/account.svg' alt='profile'>
+                <img src='/imgs/menu.svg' alt='menu'>
             </div>
         `;
+
+		this.$location = document.querySelector('.nav__location');
+
+		this.render();
 	}
 
-	setState() {}
+	setState(newLocationName) {
+		this.locationName = newLocationName;
+		this.render();
+	}
 
-	render() {}
+	render() {
+		this.$location.innerHTML = `
+            <img src='/imgs/location.svg' alt='location'>
+            <span>${this.locationName}</span>
+        `;
+	}
 }
