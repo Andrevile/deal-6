@@ -1,15 +1,40 @@
 .nav {
-    width: 320px;
+    width: 100%;
     height: 56px;
     background: var(--color-baemin);
+    color : var(--color-white);
     border-radius: 0px 0px 16px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px;
+    
 }
 
 .nav__rightSide {
     display: flex;
-    justify-content: space-between;
+    justify-content: center
+}
+
+.nav__rightSide img:first-child{
+    margin-right: 18px;
+}
+
+.nav img {
+    width: 20px;
+    height: 20px;
+}
+
+.nav div {
+    width: 90px;
+    padding: 0px 10px;
+}
+
+.nav__location {
+    display: flex;
+    align-items: center;
+}
+
+.nav__location img{
+    margin-right: 5px;
 }
