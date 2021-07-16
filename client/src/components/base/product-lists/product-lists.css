@@ -3,12 +3,11 @@
     height: 139px;
     border: 1px solid var(--color-light-grey);
     padding: 16px;
+    position: relative;
 }
 
-.product .temp{
-    width: 106px;
-    height: 106px;
-    border: 1px solid var(--color-light-grey);
+.productOutline{
+    width: 100%;
 }
 
 .product__info {
@@ -19,16 +18,45 @@
 
 .product__name {
     font-size: var(--font-small);
-    margin : 4px 0px;
+    margin : 5px 0px;
 } 
 
 .product__location {
     color: var(--color-grey);
     font-size: var(--font-micro);
-    margin : 4px 0px;
+    margin : 5px 0px;
 }
 
 .product__price{
     font-size: var(--font-micro);
-    margin : 4px 0px;
+    margin : 5px 0px;
 }
+
+.product__imgs {
+    width: 106px;
+    height: 106px;
+    border: 1px solid var(--color-light-grey);
+}
+
+.product__like {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 19px;
+    top: 19px;
+}
+
+.product__chatOutline{
+    position: absolute;
+    right: 19px;
+    bottom: 13px;
+    font-size: var(--font-micro);
+    color: var(--color-grey);
+}
+
+.product__chat {   
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
+
