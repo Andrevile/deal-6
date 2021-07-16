@@ -14,7 +14,6 @@ const router = () => {
 		{ path: '/', view: Mainpage },
 		{ path: '/detail', view: Detailpage },
 		// { path: '/posts/:id', view: PostView },
-		// { path: '/settings', view: Settings },
 	];
 
 	// Test each route for potential match

@@ -1,13 +1,15 @@
 .detail__nav {
     width: 320px;
     height: 56px;
-    background-color: rgba(112, 104, 94, 0.8);
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding-left: 23px;
     padding-right: 27px;
+    position: absolute;
+    
 }
 
 #back {
