@@ -1,84 +1,42 @@
 import './product-lists.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class Productlists {
-	products = [
-		{
-			imgPath: '/imgs/photo.jpeg',
-			name: '문지호',
-			location: '인창동',
-			time: '2시간 전',
-			price: '10억',
-			like: 'F',
-			chatCount: 5,
-		},
-		{
-			imgPath: '/imgs/photo.jpeg',
-			name: '문지호',
-			location: '인창동',
-			time: '2시간 전',
-			price: '10억',
-			like: 'F',
-			chatCount: 5,
-		},
-		{
-			imgPath: '/imgs/photo.jpeg',
-			name: '문지호',
-			location: '인창동',
-			time: '2시간 전',
-			price: '10억',
-			like: 'F',
-			chatCount: 5,
-		},
-		{
-			imgPath: '/imgs/photo.jpeg',
-			name: '문지호',
-			location: '인창동',
-			time: '2시간 전',
-			price: '10억',
-			like: 'F',
-			chatCount: 5,
-		},
-		{
-			imgPath: '/imgs/photo.jpeg',
-			name: '문지호',
-			location: '인창동',
-			time: '2시간 전',
-			price: '10억',
-			like: 'F',
-			chatCount: 5,
-		},
-	]; // 초기값 빈배열 (현재는 테스트)
+	state = [];
 
-	constructor({ $app }) {
+	constructor({ $parent, initialState }) {
+		this.state = initialState;
 		this.$target = createDOMWithSelector('section', '.productOutline');
-		$app.appendChild(this.$target);
+		$parent.appendChild(this.$target);
 
 		this.render();
 	}
 
-	setState(newProducts) {
-		this.products = newProducts;
+	setState(nextState) {
+		this.state = nextState;
 		this.render();
 	}
 
 	render() {
-		const result = this.products
+		/*
+			Like 여부로 다른 태그 부여할것
+		*/
+		const result = this.state
 			.map((product) => {
 				return `
 				<article class='product'>
 					
-					<img class='product__img' src=${product.imgPath} data-route='/detail'>
+					<img class='product__img' src=${product.imgPath} data-link='/detail'>
 				
-					<div class='product__info' data-route='/detail'>
-						<span class='product__name'>${product.name}</span>
-						<span class='product__location'>${product.location}</span>
-						<span class='product__price'>${product.time}</span>
+					<div class='product__info'>
+						<span class='product__name' data-link='/detail'>${product.name}</span>
+						<span class='product__location' data-link='/detail'>${product.location}</span>
+						<span class='product__price' data-link='/detail'>${product.time}</span>
 					</div>
 					
-					<img class="product__like" src="/imgs/favorite_border_mini.svg" />
+					<img class="product__like" src="/icons/favorite_border_mini.svg" />
 	
 					<div class='product__chatOutline' >
-						<img class='product__chat' src='/imgs/chat_bubble_mini.svg'>
+						<img class='product__chat' src='/icons/chat_bubble_mini.svg'>
 						<span>${product.chatCount}</span>
 					</div>
 					

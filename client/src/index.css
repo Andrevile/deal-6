@@ -54,6 +54,7 @@ body {
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    position: relative;
 }
 
 .app::-webkit-scrollbar {

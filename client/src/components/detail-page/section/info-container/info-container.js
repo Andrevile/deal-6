@@ -1,6 +1,6 @@
 import {
 	createDOMWithSelector,
-	createImgDOMWithSelector,
+	// createImgDOMWithSelector,
 } from '../../../../util/createDOMWithSelector';
 import './info-container.css';
 
