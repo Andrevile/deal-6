@@ -1,0 +1,13 @@
+.postBtn {
+    position: sticky;
+    z-index: 1;
+    left: 248px;
+    bottom: 17px;
+    width: 56px;
+    height: 56px;
+    font-size: 40px;
+    background-color: var(--color-baemin);
+    color: var(--color-white);
+    border-radius: 50%;
+    border: none;
+}
