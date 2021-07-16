@@ -1,5 +1,5 @@
 import './product-lists.css';
-import { createDOMwithSelector } from '../../../util/createDOMwithSelector';
+import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class Productlists {
 	products = [
 		{
@@ -50,7 +50,7 @@ export default class Productlists {
 	]; // 초기값 빈배열 (현재는 테스트)
 
 	constructor({ $app }) {
-		this.$target = createDOMwithSelector('section', '.productOutline');
+		this.$target = createDOMWithSelector('section', '.productOutline');
 		$app.appendChild(this.$target);
 
 		this.render();
