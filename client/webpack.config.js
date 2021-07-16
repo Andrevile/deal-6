@@ -29,7 +29,7 @@ module.exports = {
           },
         ],
       },
-	  {
+	    {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"], 
 		// MiniCssExtractPlugin 플러그인은 CSS 파일을 별도 파일로 추출(extract) 합니다. 
@@ -60,7 +60,7 @@ module.exports = {
   ],
   devtool: "inline-source-map", // webpack-dev-server에만 쓰는 것은 아님. 더 알아보세요!
   devServer: {
-    contentBase: "./dist",
+    contentBase: "./assets", // dev 서버에
     port: 9000,
     hot: true,
   },
