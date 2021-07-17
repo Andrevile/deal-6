@@ -55,28 +55,28 @@ export default class ProductLists {
 		this.$target.innerHTML = result;
 	}
 
-	createLikeButton = (like) => {
+	createLikeButton(like) {
 		return like === 'T'
 			? `<img class="product__like" src="/icons/favorite.svg" />`
 			: `<img
 					class="product__like"
 					src="/icons/favorite_border_mini.svg"
 				/>`;
-	};
+	}
 
-	createChatCount = (count) => {
+	createChatCount(count) {
 		return count > 0
 			? `<img class='rightBottom__chat' src='/icons/chat_bubble_mini.svg' />
 						<span>${count}</span>`
 			: ``;
-	};
+	}
 
-	createLikeCount = (count) => {
+	createLikeCount(count) {
 		return count > 0
 			? `<img class='rightBottom__like' src='/icons/favorite_border_mini.svg' />
 						<span>${count}</span>`
 			: ``;
-	};
+	}
 
 	open() {
 		this.$target.style.display = 'block';
