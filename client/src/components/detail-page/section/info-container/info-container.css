@@ -29,3 +29,7 @@
 .small-text {
     font-size: 0.75rem;
 }
+
+.description {
+    line-height: 1.45rem;
+}

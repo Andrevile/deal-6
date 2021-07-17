@@ -44,7 +44,9 @@ export default class InfoContainer {
 		`;
 		};
 
-		const createProductDescriptionTemplate = ({ description }) => {};
+		const createProductDescriptionTemplate = ({ description }) => {
+			return `<div class='info description'>${description}</div>`;
+		};
 
 		const createProductCountInfoTemplate = ({
 			chatCount,
