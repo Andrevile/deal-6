@@ -2,7 +2,7 @@ import './detail-page.css';
 import ToolBar from '../components/detail-page/tool-bar/tool-bar.js';
 import Section from '../components/detail-page/section/section';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
-// import Footer from '../components/detail-page/footer/';
+import Footer from '../components/detail-page/footer/';
 
 export default class DetailPage {
 	state = {
@@ -34,10 +34,10 @@ export default class DetailPage {
 			$parent: this.$target,
 			initialState: this.state,
 		});
-		// this.footer = new Footer({
-		// 	$parent: this.$target,
-		// 	initialState: this.state,
-		// });
+		this.footer = new Footer({
+			$parent: this.$target,
+			initialState: this.state,
+		});
 
 		$app.appendChild(this.$target);
 	}
