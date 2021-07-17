@@ -26,8 +26,11 @@ export default class ProductLists {
 				
 					<div class='product__info'>
 						<span class='product__name' data-link='/detail'>${product.name}</span>
-						<span class='product__location' data-link='/detail'>${product.location}</span>
-						<span class='product__price' data-link='/location'>${product.time}</span>
+						<div>
+							<span class='product__location' data-link='/detail'>${product.location} ∙</span>
+							<span class='product__time' data-link='/location'>${product.time}</span>
+						</div>
+						<span class='product__price' data-link='/location'>${product.price}</span>
 					</div>
 					
 					${this.updateLikeButton(product.like)}
@@ -41,6 +44,13 @@ export default class ProductLists {
 			`;
 			})
 			.join('');
+
+		/*
+				고려할 부분!
+				1. user와 그 상품 주인인 경우 : like 대신 ':' 아이콘
+				2. product에 user id field 넣어서 userid와 비교한다.
+				3. like 모델이 따로 필요할듯? user와 product를 엮은
+			*/
 
 		this.$target.innerHTML = result;
 	}
@@ -67,4 +77,12 @@ export default class ProductLists {
 						<span>${count}</span>`
 			: ``;
 	};
+
+	open() {
+		this.$target.style.display = 'block';
+	}
+
+	close() {
+		this.$target.style.display = 'none';
+	}
 }

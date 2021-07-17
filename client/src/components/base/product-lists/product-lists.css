@@ -27,6 +27,12 @@
     margin : 5px 0px;
 }
 
+.product__time{
+    color: var(--color-grey);
+    font-size: var(--font-micro);
+    margin : 5px 0px;
+}
+
 .product__price{
     font-size: var(--font-micro);
     margin : 5px 0px;
