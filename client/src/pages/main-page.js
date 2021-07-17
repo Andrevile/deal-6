@@ -1,5 +1,5 @@
-import Navbar from '../components/main-page/navbar/navbar.js';
-import ProductLists from '../components/base/product-lists/product-lists.js';
+import Navbar from '../components/main-page/navigation-bar/navigation-bar.js';
+import ProductLists from '../components/base/product-list/product-list.js';
 import PostButton from '../components/main-page/write-post-button/write-post-button';
 
 export default class MainPage {

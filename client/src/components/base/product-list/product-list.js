@@ -1,4 +1,4 @@
-import './product-lists.css';
+import './product-list.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class ProductLists {
 	state = [];
@@ -26,15 +26,18 @@ export default class ProductLists {
 				
 					<div class='product__info'>
 						<span class='product__name' data-link='/detail'>${product.name}</span>
-						<span class='product__location' data-link='/detail'>${product.location}</span>
-						<span class='product__price' data-link='/location'>${product.time}</span>
+						<div>
+							<span class='product__location' data-link='/detail'>${product.location} ∙</span>
+							<span class='product__time' data-link='/location'>${product.time}</span>
+						</div>
+						<span class='product__price' data-link='/location'>${product.price}</span>
 					</div>
 					
-					${this.updateLikeButton(product.like)}
+					${this.createLikeButton(product.like)}
 
 					<div class='rightBottom' >
-						${this.viewChatCount(product.chatCount)}
-						${this.viewLikeCount(product.likeCount)}
+						${this.createChatCount(product.chatCount)}
+						${this.createLikeCount(product.likeCount)}
 					</div>
 						
 				</article>
@@ -42,10 +45,17 @@ export default class ProductLists {
 			})
 			.join('');
 
+		/*
+				고려할 부분!
+				1. user와 그 상품 주인인 경우 : like 대신 ':' 아이콘
+				2. product에 user id field 넣어서 userid와 비교한다.
+				3. like 모델이 따로 필요할듯? user와 product를 엮은
+			*/
+
 		this.$target.innerHTML = result;
 	}
 
-	updateLikeButton = (like) => {
+	createLikeButton = (like) => {
 		return like === 'T'
 			? `<img class="product__like" src="/icons/favorite.svg" />`
 			: `<img
@@ -54,17 +64,25 @@ export default class ProductLists {
 				/>`;
 	};
 
-	viewChatCount = (count) => {
+	createChatCount = (count) => {
 		return count > 0
 			? `<img class='rightBottom__chat' src='/icons/chat_bubble_mini.svg' />
 						<span>${count}</span>`
 			: ``;
 	};
 
-	viewLikeCount = (count) => {
+	createLikeCount = (count) => {
 		return count > 0
 			? `<img class='rightBottom__like' src='/icons/favorite_border_mini.svg' />
 						<span>${count}</span>`
 			: ``;
 	};
+
+	open() {
+		this.$target.style.display = 'block';
+	}
+
+	close() {
+		this.$target.style.display = 'none';
+	}
 }

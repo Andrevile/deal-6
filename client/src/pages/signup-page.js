@@ -1,15 +1,14 @@
-import Navbar from '../components/base/navigator/navigator';
+import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/signup-page/body/body';
 
+const mode = '회원가입';
 export default class SignUpPage {
-	state = {
-		setMode: '회원가입',
-	};
+	state = {};
 
 	constructor($parent) {
 		this.navbar = new Navbar({
 			$parent,
-			initialState: this.state.setMode,
+			initialState: mode,
 		});
 		this.body = new Body({ $parent });
 	}
