@@ -1,12 +1,10 @@
-import {
-	createDOMWithSelector,
-	createImgDOMWithSelector,
-} from '../../../../util/createDOMWithSelector';
+import { createDOMWithSelector } from '../../../../util/createDOMWithSelector';
 import './img-container.css';
 
 export default class ImgContainer {
-	constructor({ $parent, state }) {
-		this.state = state;
+	constructor({ $parent, initialState }) {
+		this.state = initialState;
+		this.$parent = $parent;
 		this.$imgContainer = createDOMWithSelector('div', '.img-container');
 		$parent.appendChild(this.$imgContainer);
 
@@ -14,9 +12,16 @@ export default class ImgContainer {
 	}
 
 	render() {
-		this.state.imgs.forEach((src) => {
-			let $img = createImgDOMWithSelector(src, '.gradient');
-			this.$imgContainer.appendChild($img);
-		});
+		const createImgTemplate = (src, ...selectors) => {
+			const isClassSelector = (selector) => selector[0] === '.';
+
+			return ` 
+				<img class=${selectors.filter(isClassSelector).join(' ')} src=${src} />
+			`;
+		};
+
+		this.$imgContainer.innerHTML = `
+			${this.state.imgs.map((src) => createImgTemplate(src, '.gradient')).join('\n')}	
+		`;
 	}
 }
