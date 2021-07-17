@@ -17,3 +17,15 @@
     height: 2.5rem;
     border-radius: 0.5rem;   
 }
+
+.sub-header-container {
+    margin-top: 0.3rem;
+}
+
+.grey-text {
+    color: var(--color-grey);
+}
+
+.small-text {
+    font-size: 0.75rem;
+}

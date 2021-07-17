@@ -33,7 +33,16 @@ export default class InfoContainer {
 			title,
 			category,
 			createdAt,
-		}) => {};
+		}) => {
+			return `
+			<div class='info'>
+				<h1>${title}</h1>
+				<div class='sub-header-container'>
+					<span class='grey-text small-text'>${category}∙${createdAt}</span>
+				</div>
+			</div>
+		`;
+		};
 
 		const createProductDescriptionTemplate = ({ description }) => {};
 
