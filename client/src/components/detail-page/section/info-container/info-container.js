@@ -16,7 +16,18 @@ export default class InfoContainer {
 	}
 
 	render() {
-		const createStatusSelectButtonTemplate = ({ status }) => {};
+		const createStatusSelectButtonTemplate = ({ status }) => {
+			status = Math.min(status, 2);
+
+			return `
+				<select name="status" value=${status} class="info status">
+				${STATUS.map((stat, i) => {
+					return status === i
+						? `<option value=${i} selected="selected"}>${stat}</option>`
+						: `<option value=${i} }>${stat}</option>`;
+				}).join('\n')}
+				</select>`;
+		};
 
 		const createProductHeaderTemplate = ({
 			title,

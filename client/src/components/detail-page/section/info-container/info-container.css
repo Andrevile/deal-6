@@ -5,3 +5,15 @@
     flex-direction: column;
     overflow-y: hidden;
 }
+
+.info {
+    width: 100%;
+    min-height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.info.status {
+    width: 5.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;   
+}
