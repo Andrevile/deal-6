@@ -33,3 +33,31 @@
 .description {
     line-height: 1.45rem;
 }
+
+.info.count {
+    min-height: 1rem;
+}
+
+.grey2-text {
+    color: var(--color-grey2);
+}
+
+.seller {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border: none;
+    background-color: var(--color-light-white);
+}
+
+h1 {
+    font-size: 1.2rem;
+}
+
+.black-bold-text {
+    font-weight: bold;
+    color: black;
+}

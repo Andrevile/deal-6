@@ -1,7 +1,4 @@
-import {
-	createDOMWithSelector,
-	// createImgDOMWithSelector,
-} from '../../../../util/createDOMWithSelector';
+import { createDOMWithSelector } from '../../../../util/createDOMWithSelector';
 import './info-container.css';
 
 const STATUS = ['판매중', '예약중', '판매완료'];
@@ -35,13 +32,13 @@ export default class InfoContainer {
 			createdAt,
 		}) => {
 			return `
-			<div class='info'>
-				<h1>${title}</h1>
-				<div class='sub-header-container'>
-					<span class='grey-text small-text'>${category}∙${createdAt}</span>
+				<div class='info'>
+					<h1>${title}</h1>
+					<div class='sub-header-container'>
+						<span class='grey-text small-text'>${category}∙${createdAt}</span>
+					</div>
 				</div>
-			</div>
-		`;
+			`;
 		};
 
 		const createProductDescriptionTemplate = ({ description }) => {
@@ -52,9 +49,25 @@ export default class InfoContainer {
 			chatCount,
 			wishCount,
 			visitCount,
-		}) => {};
+		}) => {
+			return `
+				<div class='info count sub-header-container'>
+					<span class='grey-text small-text'>채팅 ${chatCount}∙관심 ${wishCount}∙조회 ${visitCount}</span>
+				</div>
+			`;
+		};
 
-		const createProductSellerInfoTemplate = ({ seller, location }) => {};
+		const createProductSellerInfoTemplate = ({ seller, location }) => {
+			return `
+				<div class='info seller small-text'>
+					<div>판매자 정보</div>
+					<div>
+						<span>${seller}</span>
+						<span class='grey2-text'>${location}</span>
+					</div>
+				</div>
+			`;
+		};
 
 		this.$infoContainer.innerHTML = `
 			${createStatusSelectButtonTemplate(this.state)}
