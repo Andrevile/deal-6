@@ -1,0 +1,27 @@
+import './tool-bar.css';
+import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
+import { ARROW_BACK_ICON, MORE_VERT_ICON } from '../../../constants/icon-path';
+
+const isUserOwnProduct = (seller, user) => seller == user;
+
+export default class ToolBar {
+	constructor({ $parent, initialState }) {
+		this.state = initialState;
+		this.$target = createDOMWithSelector('nav', '.detail__nav');
+
+		$parent.appendChild(this.$target);
+
+		this.$target.innerHTML = `
+			<img src=${ARROW_BACK_ICON} id='back' />
+			${
+				isUserOwnProduct(this.state.seller, this.state.user)
+					? `<img src=${MORE_VERT_ICON} id='option' />`
+					: ''
+			}
+		`;
+	}
+
+	setState() {}
+
+	render() {}
+}
