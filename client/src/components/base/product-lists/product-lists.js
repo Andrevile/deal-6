@@ -27,7 +27,7 @@ export default class ProductLists {
 					<div class='product__info'>
 						<span class='product__name' data-link='/detail'>${product.name}</span>
 						<span class='product__location' data-link='/detail'>${product.location}</span>
-						<span class='product__price' data-link='/detail'>${product.time}</span>
+						<span class='product__price' data-link='/location'>${product.time}</span>
 					</div>
 					
 					${this.updateLikeButton(product.like)}

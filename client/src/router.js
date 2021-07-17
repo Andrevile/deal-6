@@ -1,6 +1,7 @@
 import MainPage from './pages/main-page';
 import DetailPage from './pages/detail-page';
 import SignUpPage from './pages/signup-page';
+import LocationPage from './pages/location-page';
 
 const pathToRegex = (path) =>
 	new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -15,6 +16,7 @@ const router = () => {
 		{ path: '/', view: MainPage },
 		{ path: '/detail', view: DetailPage },
 		{ path: '/signup', view: SignUpPage },
+		{ path: '/location', view: LocationPage },
 		// { path: '/posts/:id', view: PostView },
 	];
 

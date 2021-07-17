@@ -18,6 +18,11 @@
     font-size: var(--font-small);
 }
 
+.largeInput::placeholder{
+    font-weight: var(--font-regular);
+    font-size: var(--font-micro);
+}
+
 /* 
 display: flex;
 flex-direction: row;
