@@ -1,5 +1,9 @@
 import './footer.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
+import {
+	FAVORITE_ICON,
+	FAVORITE_BORDER_MINI_ICON,
+} from '../../../constants/icon-path';
 
 export default class Footer {
 	constructor({ $parent, initialState }) {
@@ -14,11 +18,24 @@ export default class Footer {
 	setState() {}
 
 	render() {
+		const createWishImgButtonTemplate = () => {
+			const isUsersWishProduct = () => {
+				// 유저가 이 아이템을 좋아하는지 서버에 조회한 결과값을 기준으로 데이터가 존재한다면
+				return true;
+			};
+
+			return isUsersWishProduct()
+				? `<img src=${FAVORITE_ICON} class='wish-icon' />`
+				: `<img src=${FAVORITE_BORDER_MINI_ICON} class='wish-icon' />`;
+		};
+
 		this.$footer.innerHTML = `
-            <div class='wish-and-price'>
-                <span>찜</span>    
-                <span class='vertical-line'></span>
-                <span>${this.state.price}원</span>
+            <div class="inner">
+                <div class='wish'>
+                    ${createWishImgButtonTemplate()}
+                </div>    
+                <div class='vertical-line'></div>
+                <div>${this.state.price}원</div>
             </div>
             <button>채팅 목록 보기</button>
         `;
