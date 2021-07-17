@@ -1,9 +1,9 @@
 import './write-post-button.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
-export default class writePostBtn {
+export default class WritePostButton {
 	constructor({ $parent }) {
-		this.$target = createDOMWithSelector('button', '.postBtn');
+		this.$target = createDOMWithSelector('button', '.postButton');
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `

@@ -43,11 +43,11 @@ export default class ChatLists {
 		this.$target.innerHTML = result;
 	}
 
-	createChatCount = (count) => {
+	createChatCount(count) {
 		return count > 0
 			? `<div class='chat__count'><span>${count}</span></div>`
 			: ``;
-	};
+	}
 
 	open() {
 		this.$target.style.display = 'block';

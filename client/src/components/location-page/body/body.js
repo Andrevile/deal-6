@@ -17,7 +17,7 @@ export default class BodyPart {
         <div class='location__btnOuter'></div>
         `;
 
-		this.$btn = document.querySelector('.location__btnOuter');
+		this.$Button = document.querySelector('.location__btnOuter');
 		this.render();
 	}
 
@@ -29,14 +29,14 @@ export default class BodyPart {
 	render() {
 		let result = '';
 
-		result += this.createMainBtn();
-		result += this.createNormalBtn();
-		result += this.createPlusBtn();
+		result += this.createMainButton();
+		result += this.createNormalButton();
+		result += this.createPlusButton();
 
-		this.$btn.innerHTML = result;
+		this.$Button.innerHTML = result;
 	}
 
-	createMainBtn() {
+	createMainButton() {
 		return this.state.length
 			? `
             <button class='location__mainBtn'>
@@ -49,7 +49,7 @@ export default class BodyPart {
 			: ``;
 	}
 
-	createNormalBtn() {
+	createNormalButton() {
 		return this.state.length > 1
 			? `
             <button class='location__normalBtn'>
@@ -61,7 +61,7 @@ export default class BodyPart {
             `
 			: ``;
 	}
-	createPlusBtn() {
+	createPlusButton() {
 		return this.state.length < 2
 			? `
             <button class='location__plusBtn'>

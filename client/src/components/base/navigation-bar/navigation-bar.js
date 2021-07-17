@@ -39,7 +39,7 @@ export default class NavigationBar {
         `;
 	}
 
-	setTarget = (initialState) => {
+	setTarget(initialState) {
 		switch (initialState) {
 			case '내 동네 설정하기':
 			case '회원가입':
@@ -53,5 +53,5 @@ export default class NavigationBar {
 				this.isUser = true;
 				break;
 		}
-	};
+	}
 }
