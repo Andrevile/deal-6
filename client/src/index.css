@@ -1,12 +1,12 @@
 
 :root {
    
-    --color-white: #ffffff;
+    --color-white: #FFFFFF;
     --color-baemin: #2AC1BC;
     --color-light-grey: #eee;
     --color-grey: #888888;
-
-
+    --color-nav-grey : #F6F6F6;
+   
     --color-light-white: #eeeeee;
     --color-dark-white: #bdbdbd;
     --color-dark-main: #26418f;
@@ -60,4 +60,3 @@ body {
 .app::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
-
