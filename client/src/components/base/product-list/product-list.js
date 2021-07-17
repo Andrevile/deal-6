@@ -1,4 +1,4 @@
-import './product-lists.css';
+import './product-list.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class ProductLists {
 	state = [];
@@ -33,11 +33,11 @@ export default class ProductLists {
 						<span class='product__price' data-link='/location'>${product.price}</span>
 					</div>
 					
-					${this.updateLikeButton(product.like)}
+					${this.createLikeButton(product.like)}
 
 					<div class='rightBottom' >
-						${this.viewChatCount(product.chatCount)}
-						${this.viewLikeCount(product.likeCount)}
+						${this.createChatCount(product.chatCount)}
+						${this.createLikeCount(product.likeCount)}
 					</div>
 						
 				</article>
@@ -55,7 +55,7 @@ export default class ProductLists {
 		this.$target.innerHTML = result;
 	}
 
-	updateLikeButton = (like) => {
+	createLikeButton = (like) => {
 		return like === 'T'
 			? `<img class="product__like" src="/icons/favorite.svg" />`
 			: `<img
@@ -64,14 +64,14 @@ export default class ProductLists {
 				/>`;
 	};
 
-	viewChatCount = (count) => {
+	createChatCount = (count) => {
 		return count > 0
 			? `<img class='rightBottom__chat' src='/icons/chat_bubble_mini.svg' />
 						<span>${count}</span>`
 			: ``;
 	};
 
-	viewLikeCount = (count) => {
+	createLikeCount = (count) => {
 		return count > 0
 			? `<img class='rightBottom__like' src='/icons/favorite_border_mini.svg' />
 						<span>${count}</span>`

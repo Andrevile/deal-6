@@ -1,16 +1,16 @@
-import Navbar from '../components/base/navigator/navigator';
+import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
 
-export default class SignUpPage {
+const mode = '내 동네 설정하기';
+export default class LocationPage {
 	state = {
-		setMode: '내 동네 설정하기',
 		allMyLocation: ['인창동'],
 	};
 
 	constructor($parent) {
 		this.navbar = new Navbar({
 			$parent,
-			initialState: this.state.setMode,
+			initialState: mode,
 		});
 		this.body = new Body({
 			$parent,

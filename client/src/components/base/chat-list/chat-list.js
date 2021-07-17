@@ -1,4 +1,4 @@
-import './chat-lists.css';
+import './chat-list.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class ChatLists {
 	state = [];
@@ -30,7 +30,7 @@ export default class ChatLists {
                     <div class='chat__rightSide'>
                         <div>
                             <span class='chat__time'>${chat.time}</span>
-                            ${this.viewChatCount(chat.count)}
+                            ${this.createChatCount(chat.count)}
                         </div>
                         <img class='chat__imgs' src=${chat.imgPath}>
                     </div>
@@ -43,7 +43,7 @@ export default class ChatLists {
 		this.$target.innerHTML = result;
 	}
 
-	viewChatCount = (count) => {
+	createChatCount = (count) => {
 		return count > 0
 			? `<div class='chat__count'><span>${count}</span></div>`
 			: ``;

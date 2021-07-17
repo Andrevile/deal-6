@@ -2,11 +2,12 @@ import './body.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import Button from '../../../components/base/large-button/large-button';
 
+const mode = '회원가입';
+
 export default class BodyPart {
 	state = {
 		id: '',
 		location: '',
-		setMode: '회원가입',
 	};
 
 	constructor({ $parent }) {
@@ -26,7 +27,7 @@ export default class BodyPart {
 
 		this.button = new Button({
 			$parent: this.$target,
-			initialState: this.state.setMode,
+			initialState: mode,
 		});
 	}
 }

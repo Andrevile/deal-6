@@ -1,7 +1,7 @@
-import './main-navbar.css';
+import './main-navigation-bar.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
-export default class Navigator {
+export default class NavigationBar {
 	state = '1';
 	constructor({ $parent, initialState, onClick }) {
 		this.$target = createDOMWithSelector('nav', '.mainNav');

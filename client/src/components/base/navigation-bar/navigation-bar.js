@@ -1,7 +1,7 @@
-import './navigator.css';
+import './navigation-bar.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
-export default class Navigator {
+export default class NavigationBar {
 	state = '';
 	$target = null;
 	isUser = false;
@@ -42,15 +42,10 @@ export default class Navigator {
 	setTarget = (initialState) => {
 		switch (initialState) {
 			case '내 동네 설정하기':
-				this.$target = createDOMWithSelector('nav', '.nav--grey');
-				break;
 			case '회원가입':
-				this.$target = createDOMWithSelector('nav', '.nav--grey');
-				break;
 			case '로그인':
-				this.$target = createDOMWithSelector('nav', '.nav--grey');
-				break;
 			case '내 계정':
+			case '메뉴':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
 			default:

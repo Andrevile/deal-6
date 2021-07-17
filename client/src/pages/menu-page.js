@@ -1,13 +1,13 @@
-import Navbar from '../components/base/navigator/navigator';
-import MainNavbar from '../components/menu-page/main-navbar/main-navbar';
-import ProductLists from '../components/base/product-lists/product-lists.js';
-import ChatLists from '../components/base/chat-lists/chat-lists';
+import Navbar from '../components/base/navigation-bar/navigation-bar';
+import MainNavbar from '../components/menu-page/main-navigation-bar/main-navigation-bar';
+import ProductLists from '../components/base/product-list/product-list.js';
+import ChatLists from '../components/base/chat-list/chat-list';
 
+const mode = '메뉴';
 export default class MenuPage {
 	state = {
 		products: sampleData,
 		locationName: '역삼동',
-		setMode: '메뉴',
 		navigatorIndex: '1',
 		chats: sampleChatData,
 	};
@@ -20,7 +20,7 @@ export default class MenuPage {
 	constructor($parent) {
 		this.navbar = new Navbar({
 			$parent,
-			initialState: this.state.setMode,
+			initialState: mode,
 		});
 
 		this.mainNavbar = new MainNavbar({

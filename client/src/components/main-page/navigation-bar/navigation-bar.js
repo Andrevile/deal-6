@@ -1,4 +1,4 @@
-import './navbar.css';
+import './navigation-bar.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 // import CATEGORY_ICON from '/imgs/category.svg'; 경로문제 발생 (보류)
 
@@ -10,7 +10,7 @@ export default class MainNavbar {
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
-            <div class='nav__category' data-route='hi'>
+            <div class='nav__category'>
                 <img src='/icons/category.svg' alt='category'>
             </div>
             <div class='nav__location'>
@@ -18,7 +18,7 @@ export default class MainNavbar {
             </div>
             <div class='nav__rightSide'>
                 <img src='/icons/account.svg' alt='profile'>
-                <img src='/icons/menu.svg' alt='menu'>
+                <img src='/icons/menu.svg' data-link='/menu' alt='menu'>
             </div>
         `;
 

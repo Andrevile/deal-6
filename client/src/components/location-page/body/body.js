@@ -29,14 +29,14 @@ export default class BodyPart {
 	render() {
 		let result = '';
 
-		result += this.viewMainBtn();
-		result += this.viewNormalBtn();
-		result += this.viewPlusBtn();
+		result += this.createMainBtn();
+		result += this.createNormalBtn();
+		result += this.createPlusBtn();
 
 		this.$btn.innerHTML = result;
 	}
 
-	viewMainBtn() {
+	createMainBtn() {
 		return this.state.length
 			? `
             <button class='location__mainBtn'>
@@ -49,7 +49,7 @@ export default class BodyPart {
 			: ``;
 	}
 
-	viewNormalBtn() {
+	createNormalBtn() {
 		return this.state.length > 1
 			? `
             <button class='location__normalBtn'>
@@ -61,7 +61,7 @@ export default class BodyPart {
             `
 			: ``;
 	}
-	viewPlusBtn() {
+	createPlusBtn() {
 		return this.state.length < 2
 			? `
             <button class='location__plusBtn'>

@@ -1,7 +1,7 @@
 import './large-button.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
-export default class Navigator {
+export default class LargeButton {
 	state = '';
 
 	constructor({ $parent, initialState }) {
