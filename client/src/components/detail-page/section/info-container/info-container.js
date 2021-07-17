@@ -4,9 +4,11 @@ import {
 } from '../../../../util/createDOMWithSelector';
 import './info-container.css';
 
+const STATUS = ['판매중', '예약중', '판매완료'];
+
 export default class InfoContainer {
-	constructor({ $parent, state }) {
-		this.state = state;
+	constructor({ $parent, initialState }) {
+		this.state = initialState;
 		this.$infoContainer = createDOMWithSelector('div', '.info-container');
 		$parent.appendChild(this.$infoContainer);
 
@@ -14,16 +16,30 @@ export default class InfoContainer {
 	}
 
 	render() {
-		const content = `
-			<div class='info status'>
-				<button>${this.state.status} v </button>
-			</div>
-			<div class='info'>${this.state.title}</div>
-			<div class='info'>${this.state.category}</div>
-			<div class='info'>${this.state.description}</div>
-			<div class='info'>${this.state.seller} </div>
-		`;
+		const createStatusSelectButtonTemplate = ({ status }) => {};
 
-		this.$infoContainer.innerHTML += content;
+		const createProductHeaderTemplate = ({
+			title,
+			category,
+			createdAt,
+		}) => {};
+
+		const createProductDescriptionTemplate = ({ description }) => {};
+
+		const createProductCountInfoTemplate = ({
+			chatCount,
+			wishCount,
+			visitCount,
+		}) => {};
+
+		const createProductSellerInfoTemplate = ({ seller, location }) => {};
+
+		this.$infoContainer.innerHTML = `
+			${createStatusSelectButtonTemplate(this.state)}
+			${createProductHeaderTemplate(this.state)}
+			${createProductDescriptionTemplate(this.state)}
+			${createProductCountInfoTemplate(this.state)}
+			${createProductSellerInfoTemplate(this.state)}
+		`;
 	}
 }
