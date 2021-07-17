@@ -38,6 +38,11 @@
 
    
     --animation-duration: 300ms;
+
+    --max-width-with-border: 322;
+    --max-width: 320;
+    --max-height-with-border: 570;
+    --max-height: 568;
 }
 
 body {
