@@ -5,6 +5,8 @@ import {
 	FAVORITE_BORDER_MINI_ICON,
 } from '../../../constants/icon-path';
 
+const isUserOwnProduct = (seller, user) => seller == user;
+
 export default class Footer {
 	constructor({ $parent, initialState }) {
 		this.state = initialState;
@@ -37,7 +39,11 @@ export default class Footer {
                 <div class='vertical-line'></div>
                 <div>${this.state.price}원</div>
             </div>
-            <button>채팅 목록 보기</button>
+            <button class='option-button'>${
+				isUserOwnProduct(this.state.seller, this.state.user)
+					? '채팅 목록 보기'
+					: '문의하기'
+			}</button>
         `;
 	}
 }
