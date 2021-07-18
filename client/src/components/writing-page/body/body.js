@@ -11,7 +11,7 @@ export default class Body {
 		category: '',
 		haveAllValue: false,
 	};
-	// state : 동네명 (string)
+
 	constructor({ $parent, initialState, refreshState }) {
 		this.state = initialState;
 		this.refreshState = refreshState;
@@ -20,32 +20,6 @@ export default class Body {
 
 		this.$target.innerHTML = `
             <div class='post__container'>
-                <div class='post__imgContainer'>
-                    <img src='/icons/image.svg' alt='image'>
-                    <div>
-                        <span>3/10</span>
-                    </div> 
-                </div>
-                <div class='post__imgOuter'>
-                    <img class='post__imgContainer' src='/imgs/photo.jpeg' alt='image'>
-                    <button class='post__removeBtn'><span>X</span></button>
-                </div>
-                <div class='post__imgOuter'>
-                    <img class='post__imgContainer' src='/imgs/photo.jpeg' alt='image'>
-                    <button class='post__removeBtn'><span>X</span></button>
-                </div>
-                <div class='post__imgOuter'>
-                    <img class='post__imgContainer' src='/imgs/photo.jpeg' alt='image'>
-                    <button class='post__removeBtn'><span>X</span></button>
-                </div>
-                <div class='post__imgOuter'>
-                    <img class='post__imgContainer' src='/imgs/photo.jpeg' alt='image'>
-                    <button class='post__removeBtn'><span>X</span></button>
-                </div>
-                <div class='post__imgOuter'>
-                    <img class='post__imgContainer' src='/imgs/photo.jpeg' alt='image'>
-                    <button class='post__removeBtn'><span>X</span></button>
-                </div>
             </div>
            
             <hr>
@@ -62,6 +36,7 @@ export default class Body {
             <textarea class='post__content' placeholder="게시글 내용을 작성해주세요."></textarea>
         `;
 
+		this.$container = document.querySelector('.post__container');
 		this.$title = document.querySelector('.post__title');
 		this.$price = document.querySelector('.post__price');
 		this.$content = document.querySelector('.post__content');
@@ -72,8 +47,7 @@ export default class Body {
 				e.target.value = e.target.value.slice(0, 30);
 			}
 			this.state.title = e.target.value;
-			this.checkHavingAllValue();
-			this.refreshState(this.state);
+			this.chcekValueAndRefreshState();
 		});
 		this.$price.addEventListener('keyup', (e) => {
 			// number만 받는다.
@@ -87,9 +61,51 @@ export default class Body {
 			// textarea 높이 가변조절
 			this.$content.style.height = this.$content.scrollHeight + 'px';
 			this.state.description = e.target.value;
-			this.checkHavingAllValue();
-			this.refreshState(this.state);
+			this.chcekValueAndRefreshState();
 		});
+
+		this.$container.addEventListener('click', (e) => {
+			if (
+				e.target.className === 'post__removeBtn' ||
+				e.target.className === 'post_X'
+			) {
+				let idx = e.target.dataset.idx;
+				let imageArray = this.state.imgPath;
+				imageArray.splice(idx, 1);
+				this.state.imgPath = imageArray;
+				this.setState(this.state);
+			} else if (e.target.className === 'addImage') {
+			}
+			this.chcekValueAndRefreshState();
+		});
+	}
+
+	setState(nextState) {
+		this.state = nextState;
+		this.render();
+	}
+
+	render() {
+		this.$container.innerHTML =
+			`<div class='post__imgContainer'>
+                <img src='/icons/image.svg' alt='image'>
+                <div>
+                    <span>${this.state.imgPath.length}/10</span>
+                </div> 
+            </div>` + this.renderImage();
+	}
+
+	renderImage() {
+		return this.state.imgPath
+			.map((image, idx) => {
+				return `
+              <div class='post__imgOuter'>
+                  <img class='post__imgContainer' src=${image} alt='image'>
+                  <button class='post__removeBtn' data-idx=${idx} ><span class='post_X' data-idx=${idx}>X</span></button>
+              </div>
+            `;
+			})
+			.join('');
 	}
 
 	renderButton() {
@@ -119,6 +135,7 @@ export default class Body {
 	}
 
 	checkHavingAllValue() {
+		// 가격제외 모든 값 있는지 확인
 		if (
 			this.state.title.length > 0 &&
 			this.state.description.length > 0 &&
@@ -129,5 +146,10 @@ export default class Body {
 			return;
 		}
 		this.state.haveAllValue = false;
+	}
+
+	chcekValueAndRefreshState() {
+		this.checkHavingAllValue();
+		this.refreshState(this.state);
 	}
 }
