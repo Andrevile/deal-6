@@ -27,6 +27,9 @@ export default class Body {
 		this.$price = document.querySelector('.post__price');
 		this.$content = document.querySelector('.post__content');
 
+		this.$price.addEventListener('keyup', (e) => {
+			e.target.value = e.target.value.replace(/[^0-9]/g, '');
+		});
 		this.$price.addEventListener('focusout', (e) => {
 			this.rearrangePrice(e);
 		});
@@ -34,7 +37,8 @@ export default class Body {
 
 	rearrangePrice(e) {
 		// 콤마와 원을 붙혀주는 함수
-		let length = e.target.value.length;
+		let value = e.target.value.toString();
+		let length = value.length;
 		let array = e.target.value.split('');
 
 		if (length > 3) {
