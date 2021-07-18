@@ -1,4 +1,4 @@
 .app {
     width: var(--max-width-with-border);
-    height: calc(var(--max-height-with-border)+20);
+    height: var(--max-height-with-border);
 }
