@@ -13,6 +13,9 @@ export default class NavigationBar {
 
 		$parent.appendChild(this.$target);
 
+		this.$target.addEventListener('click', (e) => {
+			if (e.target.className === 'nav__prev') history.back(-1);
+		});
 		this.render();
 	}
 
