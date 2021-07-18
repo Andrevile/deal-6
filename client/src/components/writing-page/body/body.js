@@ -158,7 +158,6 @@ export default class Body {
 		) {
 			//api 호출로 state 업데이트
 		}
-		// this.setState(this.state);
 		this.chcekValueAndRefreshState();
 	};
 
@@ -189,10 +188,7 @@ export default class Body {
 			e.target.className === 'category__button active' ||
 			e.target.className === 'category__button'
 		) {
-			console.log(this.state.category);
 			this.state.category = CATEGORY_LIST[e.target.dataset.idx];
-			console.log(this.state.category);
-			// this.setState(this.state);
 			this.chcekValueAndRefreshState();
 		}
 	}

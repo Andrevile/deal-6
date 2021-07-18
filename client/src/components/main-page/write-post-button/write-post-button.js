@@ -7,7 +7,7 @@ export default class WritePostButton {
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
-            <div>
+            <div data-link='/writing'>
                 <span data-link='/writing'>+</span>
             </div>
             
