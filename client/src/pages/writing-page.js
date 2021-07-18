@@ -7,6 +7,12 @@ const mode = '글쓰기';
 export default class WritingPage {
 	state = {
 		location: '인창동',
+		imgPath: [],
+		title: '',
+		description: '',
+		price: '',
+		category: '',
+		haveAllValue: false,
 	};
 
 	constructor($parent) {
@@ -16,7 +22,10 @@ export default class WritingPage {
 		});
 		this.body = new Body({
 			$parent,
-			initialState: mode,
+			initialState: this.state,
+			refreshState: (nextState) => {
+				this.state = nextState;
+			},
 		});
 		this.footer = new Footer({
 			$parent,
