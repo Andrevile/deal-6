@@ -5,8 +5,13 @@ export default class NavigationBar {
 	state = '';
 	$target = null;
 	isUser = false;
+	isModal = null;
+	doneIcon = false; // 글쓰기 모드 변수
+	activeDoneIcon = false; // 글쓰기 모드 변수
 
-	constructor({ $parent, initialState }) {
+	// 4번째 인자로 모달 클릭 이벤트 해야할듯.
+	constructor({ $parent, initialState, onClick, isModal = false }) {
+		this.isModal = isModal;
 		this.state = initialState;
 
 		this.setTarget(initialState);
@@ -16,28 +21,36 @@ export default class NavigationBar {
 		this.$target.addEventListener('click', (e) => {
 			if (e.target.className === 'nav__prev') history.back(-1);
 		});
+
+		this.$icon = document.querySelector('.nav__icon');
+		this.onClick = onClick;
+
+		this.$target.addEventListener('click', (e) => {
+			if (e.target.className === 'nav__doneActive') {
+				this.onClick();
+			}
+			// 추후 채팅 나가기에 대한 이벤트도 여기!
+		});
+
 		this.render();
 	}
 
 	setState(nextState) {
-		this.state = nextState;
+		// 글쓰기 모드에서만 사용
+		if (nextState) this.activeDoneIcon = true;
+		else this.activeDoneIcon = false;
 		this.render();
 	}
 
 	render() {
 		this.$target.innerHTML = `
             <img class='nav__prev' src='/icons/arrow_back_black.svg'/>
-
-        
             <span>
                 ${this.state}
             </span>
-            <div>
-                ${
-					this.isUser
-						? `<img class='nav__exit' src="/icons/exit.svg" />`
-						: ``
-				}
+            <div class='nav__icon'>
+                ${this.showExitIcon()}
+				${this.isDoneIcon()}
             </div>
         `;
 	}
@@ -51,10 +64,29 @@ export default class NavigationBar {
 			case '메뉴':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
+			case '글쓰기':
+				this.$target = createDOMWithSelector('nav', '.nav--white');
+				this.doneIcon = true;
+				break;
 			default:
 				this.$target = createDOMWithSelector('nav', '.nav--white');
 				this.isUser = true;
 				break;
 		}
+	}
+
+	isDoneIcon() {
+		if (this.doneIcon) {
+			if (this.activeDoneIcon)
+				return `<img class='nav__doneActive' src="/icons/done_active.svg" />`;
+			return `<img class='nav__done' src="/icons/done.svg" />`;
+		}
+		return ``;
+	}
+
+	showExitIcon() {
+		if (this.isUser)
+			return `<img class='nav__exit' src="/icons/exit.svg" />`;
+		return ``;
 	}
 }
