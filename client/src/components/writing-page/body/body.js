@@ -18,6 +18,7 @@ export default class Body {
             </div>
             <hr>
             <input class='post__title' type='text' placeholder="글 제목">
+            <span> (필수)카테고리를 선택해주세요.</span>
             <hr>
             <input class='post__price' type='text' placeholder="₩ 가격(선택사항)">
             <hr>
@@ -27,7 +28,13 @@ export default class Body {
 		this.$price = document.querySelector('.post__price');
 		this.$content = document.querySelector('.post__content');
 
+		this.$title.addEventListener('keyup', (e) => {
+			// 글자수 제한 (추후 경고 CSS 추가해도 될듯)
+			if (e.target.value.length > 30)
+				e.target.value = e.target.value.slice(0, 30);
+		});
 		this.$price.addEventListener('keyup', (e) => {
+			// number만 받는다.
 			e.target.value = e.target.value.replace(/[^0-9]/g, '');
 		});
 		this.$price.addEventListener('focusout', (e) => {
