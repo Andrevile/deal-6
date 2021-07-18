@@ -3,12 +3,12 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
 export default class WritePostButton {
 	constructor({ $parent }) {
-		this.$target = createDOMWithSelector('button', '.postButton');
+		this.$target = createDOMWithSelector('button', '.postBtn');
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
             <div>
-                <span>+</span>
+                <span data-link='/writing'>+</span>
             </div>
             
         `;
