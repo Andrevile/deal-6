@@ -3,7 +3,7 @@
     height: 20rem;
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    overflow: hidden;
     transition: transform 0.5s;
 }
 

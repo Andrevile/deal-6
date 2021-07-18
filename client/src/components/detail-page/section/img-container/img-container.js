@@ -24,6 +24,7 @@ export default class ImgContainer {
 		this.$parent = $parent;
 		this.currentImgIndex = 0;
 		this.$imgContainer = createDOMWithSelector('div', '.img-container');
+		this.$imgContainer.style.width = `${20 * this.state.imgs.length}rem`;
 		$parent.appendChild(this.$imgContainer);
 
 		/*
