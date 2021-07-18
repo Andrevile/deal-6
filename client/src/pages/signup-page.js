@@ -1,4 +1,4 @@
-import Navbar from '../components/base/navigation-bar/navigation-bar';
+import NavigationBar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/signup-page/body/body';
 
 const mode = '회원가입';
@@ -6,7 +6,7 @@ export default class SignUpPage {
 	state = {};
 
 	constructor($parent) {
-		this.navbar = new Navbar({
+		this.navbar = new NavigationBar({
 			$parent,
 			initialState: mode,
 		});
