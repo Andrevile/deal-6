@@ -58,6 +58,11 @@ export default class ImgContainer {
 			movePrevOrNextHandler(1)
 		);
 
+		window.onkeydown = (e) => {
+			if (e.keyCode == 37) movePrevOrNextHandler(-1);
+			else if (e.keyCode == 39) movePrevOrNextHandler(1);
+		};
+
 		this.$buttonContainer = createDOMWithSelector('div', '.next-and-prev');
 		this.$buttonContainer.appendChild(this.$prevButton);
 		this.$buttonContainer.appendChild(this.$nextButton);
