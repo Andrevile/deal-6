@@ -1,11 +1,4 @@
-nav, nav * {
-
-}
-
-section {
-
-}
-
-footer, footer * {
-
+.detail-page {
+    width: var(--max-width-with-border);
+    height: var(--max-height-with-border);
 }

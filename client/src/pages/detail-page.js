@@ -1,8 +1,8 @@
 import './detail-page.css';
-import Navigator from '../components/detail-page/navigator/navigator.js';
+import ToolBar from '../components/detail-page/navigator/navigator.js';
 import Section from '../components/detail-page/section/section';
-// import { createDOMWithSelector } from '../util/createDOMWithSelector';
-// import Footer from '../components/detail-page/footer/';
+import Footer from '../components/detail-page/footer/';
+import { createDOMWithSelector } from '../util/createDOMWithSelector';
 
 export default class DetailPage {
 	state = {
@@ -18,10 +18,23 @@ export default class DetailPage {
 		imgs: ['/imgs/shoes-1.jpg', '/imgs/shoes-1.jpg', '/imgs/shoes-1.jpg'],
 	};
 
-	constructor($app) {
-		this.navigator = new Navigator({ $parent: $app, state: this.state });
-		this.section = new Section({ $parent: $app, state: this.state });
-		// this.footer = new Footer({ $app }, this.state);
+	constructor($parent) {
+		this.$target = createDOMWithSelector('div', '.detail-page');
+
+		this.toolBar = new ToolBar({
+			$parent: this.$target,
+			initialState: this.state,
+		});
+		this.section = new Section({
+			$parent: this.$target,
+			initialState: this.state,
+		});
+		this.footer = new Footer({
+			$parent: this.$target,
+			initialState: this.state,
+		});
+
+		$parent.appendChild(this.$target);
 	}
 
 	setState() {}

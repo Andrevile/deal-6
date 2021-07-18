@@ -3,6 +3,7 @@ import DetailPage from './pages/detail-page';
 import SignUpPage from './pages/signup-page';
 import LocationPage from './pages/location-page';
 import MenuPage from './pages/menu-page';
+import UserPage from './pages/user-page';
 
 const pathToRegex = (path) =>
 	new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -19,7 +20,7 @@ const router = () => {
 		{ path: '/signup', view: SignUpPage },
 		{ path: '/location', view: LocationPage },
 		{ path: '/menu', view: MenuPage },
-		// { path: '/posts/:id', view: PostView },
+		{ path: '/user', view: UserPage },
 	];
 
 	// Test each route for potential match
