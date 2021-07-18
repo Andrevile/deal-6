@@ -1,6 +1,7 @@
 import './body.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import { CATEGORY_LIST } from '../../../constants/category-list';
+
 export default class Body {
 	state = {
 		location: '인창동',
@@ -26,8 +27,8 @@ export default class Body {
             <input class='post__title' type='text' placeholder="글 제목">
             <div class='category'>
                 <span>(필수)카테고리를 선택해주세요.</span>
-                <div class='category__button'>
-                    ${this.renderButton()}
+                <div class='category__buttonOuter'>
+                    
                 </div>
             </div>
             <hr>
@@ -40,44 +41,27 @@ export default class Body {
 		this.$title = document.querySelector('.post__title');
 		this.$price = document.querySelector('.post__price');
 		this.$content = document.querySelector('.post__content');
+		this.$category = document.querySelector('.category__buttonOuter');
 
 		this.$title.addEventListener('keyup', (e) => {
-			// 글자수 제한 (추후 경고 CSS 추가해도 될듯)
-			if (e.target.value.length > 30) {
-				e.target.value = e.target.value.slice(0, 30);
-			}
-			this.state.title = e.target.value;
-			this.chcekValueAndRefreshState();
+			this.bindTitleEvent(e);
 		});
 		this.$price.addEventListener('keyup', (e) => {
-			// number만 받는다.
-			e.target.value = e.target.value.replace(/[^0-9]/g, '');
-			this.state.price = e.target.value;
+			this.bindPriceKeyUpEvent(e);
 		});
 		this.$price.addEventListener('focusout', (e) => {
 			this.rearrangePrice(e);
 		});
 		this.$content.addEventListener('keyup', (e) => {
-			// textarea 높이 가변조절
-			this.$content.style.height = this.$content.scrollHeight + 'px';
-			this.state.description = e.target.value;
-			this.chcekValueAndRefreshState();
+			this.bindContentEvent(e);
 		});
-
+		this.$category.addEventListener('click', (e) => {
+			this.bindCategoryEvent(e);
+		});
 		this.$container.addEventListener('click', (e) => {
-			if (
-				e.target.className === 'post__removeBtn' ||
-				e.target.className === 'post_X'
-			) {
-				let idx = e.target.dataset.idx;
-				let imageArray = this.state.imgPath;
-				imageArray.splice(idx, 1);
-				this.state.imgPath = imageArray;
-				this.setState(this.state);
-			} else if (e.target.className === 'addImage') {
-			}
-			this.chcekValueAndRefreshState();
+			this.bindImageButtonEvent(e);
 		});
+		this.render();
 	}
 
 	setState(nextState) {
@@ -87,12 +71,14 @@ export default class Body {
 
 	render() {
 		this.$container.innerHTML =
-			`<div class='post__imgContainer'>
-                <img src='/icons/image.svg' alt='image'>
+			`<div class='post__imgContainer addImage'>
+                <img class='addImage' src='/icons/image.svg' alt='image'>
                 <div>
                     <span>${this.state.imgPath.length}/10</span>
                 </div> 
             </div>` + this.renderImage();
+
+		this.$category.innerHTML = this.renderButton();
 	}
 
 	renderImage() {
@@ -109,8 +95,12 @@ export default class Body {
 	}
 
 	renderButton() {
-		return CATEGORY_LIST.map((category) => {
-			return `<button>${category}</button>`;
+		return CATEGORY_LIST.map((category, idx) => {
+			if (category === this.state.category) {
+				return `<button class='category__button active' data-idx=${idx}>${category}</button>`;
+			} else {
+				return `<button class='category__button' data-idx=${idx}>${category}</button>`;
+			}
 		}).join('');
 	}
 
@@ -151,5 +141,59 @@ export default class Body {
 	chcekValueAndRefreshState() {
 		this.checkHavingAllValue();
 		this.refreshState(this.state);
+	}
+
+	bindImageButtonEvent = (e) => {
+		if (
+			e.target.className === 'post__removeBtn' ||
+			e.target.className === 'post_X'
+		) {
+			let idx = e.target.dataset.idx;
+			let imageArray = this.state.imgPath;
+			imageArray.splice(idx, 1);
+			this.state.imgPath = imageArray;
+		} else if (
+			e.target.className === 'addImage' ||
+			e.target.className === 'post__imgContainer addImage'
+		) {
+			//api 호출로 state 업데이트
+		}
+		// this.setState(this.state);
+		this.chcekValueAndRefreshState();
+	};
+
+	bindContentEvent(e) {
+		// textarea 높이 가변조절
+		this.$content.style.height = this.$content.scrollHeight + 'px';
+		this.state.description = e.target.value;
+		this.chcekValueAndRefreshState();
+	}
+
+	bindTitleEvent(e) {
+		// 글자수 제한 (추후 경고 CSS 추가해도 될듯)
+		if (e.target.value.length > 30) {
+			e.target.value = e.target.value.slice(0, 30);
+		}
+		this.state.title = e.target.value;
+		this.chcekValueAndRefreshState();
+	}
+
+	bindPriceKeyUpEvent(e) {
+		// number만 받는다.
+		e.target.value = e.target.value.replace(/[^0-9]/g, '');
+		this.state.price = e.target.value;
+	}
+
+	bindCategoryEvent(e) {
+		if (
+			e.target.className === 'category__button active' ||
+			e.target.className === 'category__button'
+		) {
+			console.log(this.state.category);
+			this.state.category = CATEGORY_LIST[e.target.dataset.idx];
+			console.log(this.state.category);
+			// this.setState(this.state);
+			this.chcekValueAndRefreshState();
+		}
 	}
 }
