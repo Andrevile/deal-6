@@ -16,14 +16,7 @@ export default class LocationPage {
 			$parent,
 			initialState: this.state.allMyLocation,
 			onClick: (e, idx) => {
-				if (
-					e.target.className === 'location__plusBtn' ||
-					e.target.className === 'location__plus'
-				) {
-					this.modal.open();
-				} else if (e.target.className === 'location__cancelBtn') {
-					this.bindRemoveLocationEvent(e, idx);
-				}
+				this.bindButtonClickEvent(e, idx);
 			},
 		});
 		this.modal = new Modal({
@@ -40,11 +33,13 @@ export default class LocationPage {
 
 	bindModalClickEvent(e, value) {
 		if (
+			// 닫기 및 외부 클릭 시 발생
 			e.target.className === 'modal__overlay' ||
-			e.target.className === 'modal__cancle'
+			e.target.className === 'modal__cancel'
 		) {
 			this.modal.close();
 		} else if (e.target.className === 'modal__confirm active') {
+			// 확인 클릭 시 발생
 			// api로 동네 추가
 			this.state.allMyLocation = [...this.state.allMyLocation, value];
 			this.modal.close();
@@ -52,10 +47,39 @@ export default class LocationPage {
 		}
 	}
 
-	bindRemoveLocationEvent(e, idx) {
+	bindRemoveLocationEvent(idx) {
 		let LocationArray = [...this.state.allMyLocation];
 		LocationArray.splice(idx, 1);
 		this.state.allMyLocation = LocationArray;
 		this.setState();
+		/* 
+			--추후 예정--
+			삭제 시(각각 api 요청 동반 예상)
+			2개일때 :
+				idx 0 삭제 -> idx 1을 메인동네로
+				idx 1 삭제 -> 그대로
+			1개일때 :
+				메인 삭제
+		*/
+	}
+
+	bindButtonClickEvent(e, value) {
+		if (
+			// plus click event
+			e.target.className === 'location__plusBtn' ||
+			e.target.className === 'location__plus'
+		) {
+			this.modal.open();
+		} else if (e.target.className === 'location__cancelBtn') {
+			// cancel(X) click event
+			this.bindRemoveLocationEvent(value);
+		} else if (e.target.className === 'location__normalBtn') {
+			console.log('MuYaHo');
+			/* 
+			--추후 예정--
+			일반 동네 click event ( 메인 동네로 change )
+			그 후 다시 api 요청을 통해서 리렌더링 방식 
+			*/
+		}
 	}
 }
