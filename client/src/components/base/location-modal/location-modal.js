@@ -17,7 +17,12 @@ export default class LocationModal {
               `;
 
 		this.onClick = onClick;
+		this.$input = document.querySelector('.modal__input');
+		this.$confirmButton = document.querySelector('.modal__confirm');
 
+		this.$input.addEventListener('keydown', (e) => {
+			this.bindInputEvent(e);
+		});
 		this.$target.addEventListener('click', (e) => {
 			let inputValue = this.$input.value;
 			this.onClick(e, inputValue);
@@ -30,5 +35,21 @@ export default class LocationModal {
 
 	close() {
 		this.$target.style.display = 'none';
+	}
+
+	bindInputEvent(e) {
+		this.checkRegexEvent(e);
+		this.checkLengthEvent(e);
+	}
+
+	checkRegexEvent(e) {
+		const regex = /[^가-힣,0-9|]/g;
+		e.target.value = e.target.value.replace(regex, '');
+	}
+
+	checkLengthEvent(e) {
+		let length = e.target.value.length;
+		if (length > 0) this.$confirmButton.classList.add('active');
+		else this.$confirmButton.classList.remove('active');
 	}
 }

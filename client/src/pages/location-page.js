@@ -42,9 +42,10 @@ export default class LocationPage {
 			e.target.className === 'modal__cancle'
 		) {
 			this.modal.close();
-		} else if (e.target.className === 'modal__confirm') {
+		} else if (e.target.className === 'modal__confirm active') {
 			// api로 동네 추가
 			this.state.allMyLocation = [...this.state.allMyLocation, value];
+			this.modal.close();
 			this.setState();
 		}
 	}

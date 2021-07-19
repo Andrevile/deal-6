@@ -53,6 +53,10 @@
     line-height: 20px;
 }
 
+.modal__confirm {
+    color :  var(--color-grey);
+}
+
 .modal__confirm.active {
     color :  var(--color-baemin);
 }
