@@ -19,14 +19,7 @@ export default class NavigationBar {
 		$parent.appendChild(this.$target);
 
 		this.$target.addEventListener('click', (e) => {
-			if (this.isModal === true) {
-				this.onClick(e, 0);
-			} else if (this.state === '메뉴') {
-				this.onClick(e);
-				setTimeout(() => {
-					history.back(-1);
-				}, 400);
-			} else if (e.target.className === 'nav__prev') history.back(-1);
+			this.bindPrevButtonClickEvent(e);
 		});
 
 		this.$icon = document.querySelector('.nav__icon');
@@ -96,5 +89,20 @@ export default class NavigationBar {
 		if (this.isUser)
 			return `<img class='nav__exit' src="/icons/exit.svg" />`;
 		return ``;
+	}
+
+	bindPrevButtonClickEvent(e) {
+		if (this.isModal === true) {
+			this.onClick(e, 0);
+		} else if (
+			this.state === '메뉴' ||
+			this.state === '내 계정' ||
+			this.state === '로그인'
+		) {
+			this.onClick(e);
+			setTimeout(() => {
+				history.back(-1);
+			}, 400);
+		} else if (e.target.className === 'nav__prev') history.back(-1);
 	}
 }

@@ -4,6 +4,7 @@ import ProductLists from '../components/base/product-list/product-list.js';
 import ChatLists from '../components/base/chat-list/chat-list';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import './menu-page.css';
+
 const mode = '메뉴';
 export default class MenuPage {
 	state = {
