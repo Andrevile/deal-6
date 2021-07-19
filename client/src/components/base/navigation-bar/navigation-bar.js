@@ -49,8 +49,8 @@ export default class NavigationBar {
                 ${this.state}
             </span>
             <div class='nav__icon'>
-                ${this.showExitIcon()}
-				${this.isDoneIcon()}
+                ${this.createExitIcon()}
+				${this.createDoneIcon()}
             </div>
         `;
 	}
@@ -62,6 +62,7 @@ export default class NavigationBar {
 			case '로그인':
 			case '내 계정':
 			case '메뉴':
+			case '카테고리':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
 			case '글쓰기':
@@ -75,7 +76,7 @@ export default class NavigationBar {
 		}
 	}
 
-	isDoneIcon() {
+	createDoneIcon() {
 		if (this.doneIcon) {
 			if (this.activeDoneIcon)
 				return `<img class='nav__doneActive' src="/icons/done_active.svg" />`;
@@ -84,7 +85,7 @@ export default class NavigationBar {
 		return ``;
 	}
 
-	showExitIcon() {
+	createExitIcon() {
 		if (this.isUser)
 			return `<img class='nav__exit' src="/icons/exit.svg" />`;
 		return ``;
