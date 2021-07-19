@@ -2,7 +2,7 @@ import './location-modal.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
 export default class LocationModal {
-	constructor({ $parent }) {
+	constructor({ $parent, onClick }) {
 		this.$target = createDOMWithSelector('div', '.modal');
 		$parent.appendChild(this.$target);
 		this.$target.innerHTML = `
@@ -15,10 +15,19 @@ export default class LocationModal {
                     </div>
                 </div>
               `;
+
+		this.onClick = onClick;
+
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e);
+		});
+	}
+
+	open() {
+		this.$target.style.display = 'block';
+	}
+
+	close() {
+		this.$target.style.display = 'none';
 	}
 }
-
-// const overlay = this.$target.querySelector('.overlay');
-
-// overlay.addEventListener('click', (e) => {
-// });

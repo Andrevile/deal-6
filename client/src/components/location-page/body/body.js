@@ -3,7 +3,7 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
 export default class BodyPart {
 	state = [];
-	constructor({ $parent, initialState }) {
+	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
 		this.$target = createDOMWithSelector('div', '.location');
 		$parent.appendChild(this.$target);
@@ -17,6 +17,10 @@ export default class BodyPart {
         <div class='location__btnOuter'></div>
         `;
 
+		this.onClick = onClick;
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e);
+		});
 		this.$Button = document.querySelector('.location__btnOuter');
 		this.render();
 	}
@@ -65,7 +69,7 @@ export default class BodyPart {
 		return this.state.length < 2
 			? `
             <button class='location__plusBtn'>
-                <span>
+                <span class='location__plus'>
                     +
                 </span>
             </button>

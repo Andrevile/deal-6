@@ -15,10 +15,25 @@ export default class LocationPage {
 		this.body = new Body({
 			$parent,
 			initialState: this.state.allMyLocation,
-			onClick: () => {},
+			onClick: (e) => {
+				if (
+					e.target.className === 'location__plusBtn' ||
+					e.target.className === 'location__plus'
+				) {
+					this.modal.open();
+				}
+			},
 		});
 		this.modal = new Modal({
 			$parent,
+			onClick: (e) => {
+				if (
+					e.target.className === 'modal__overlay' ||
+					e.target.className === 'modal__cancle'
+				) {
+					this.modal.close();
+				}
+			},
 		});
 	}
 
