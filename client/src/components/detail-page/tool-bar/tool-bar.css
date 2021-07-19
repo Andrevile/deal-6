@@ -14,12 +14,12 @@
     
 }
 
-#back {
+.back {
     width: 0.5rem;
     height: 1rem;
 }
 
-#option {
+.option {
     width: 0.125rem;
     height: 1.5rem;
 }
