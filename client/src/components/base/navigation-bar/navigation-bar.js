@@ -20,7 +20,7 @@ export default class NavigationBar {
 
 		this.$target.addEventListener('click', (e) => {
 			if (this.isModal === true) {
-				this.onClick(e);
+				this.onClick(e, 0);
 			} else if (e.target.className === 'nav__prev') history.back(-1);
 		});
 

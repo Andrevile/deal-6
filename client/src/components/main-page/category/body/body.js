@@ -2,7 +2,7 @@ import './body.css';
 import { createDOMWithSelector } from '../../../../util/createDOMWithSelector';
 
 export default class Body {
-	constructor({ $parent, initialState }) {
+	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
 		console.log(this.CATEGORY_LIST);
 		this.$target = createDOMWithSelector('section', '.categoryList');
@@ -11,12 +11,12 @@ export default class Body {
 		this.$target.appendChild(this.$Wrapper);
 		this.$target.innerHTML = this.renderCategories();
 
-		// this.onClick = onClick;
+		this.onClick = onClick;
 		// this.$confirmButton = document.querySelector('.alert__confirm');
 
-		// this.$target.addEventListener('click', (e) => {
-		// 	this.onClick(e);
-		// });
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e, e.target.dataset.idx);
+		});
 	}
 
 	open() {
@@ -29,10 +29,10 @@ export default class Body {
 
 	renderCategories() {
 		return this.state
-			.map((category) => {
+			.map((category, idx) => {
 				return `
                 <article class='categoryList__container'>
-                    <div class='categoryList__img'>
+                    <div class='categoryList__img' data-idx=${idx}>
                     </div>
                     <span>${category}</span>
                 </article>

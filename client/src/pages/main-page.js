@@ -27,8 +27,8 @@ export default class MainPage {
 		this.category = new Category({
 			$parent,
 			CATEGORY_LIST,
-			onClick: (e) => {
-				this.bindCategoryClickEvent(e);
+			onClick: (e, idx) => {
+				this.bindCategoryClickEvent(e, idx);
 			},
 		});
 	}
@@ -51,10 +51,14 @@ export default class MainPage {
 			}, 500);
 		}
 	}
-	bindCategoryClickEvent(e) {
+	bindCategoryClickEvent(e, idx) {
 		if (e.target.className === 'nav__prev') {
 			this.category.close();
 			this.ProductLists.open();
+		} else if (e.target.className === 'categoryList__img') {
+			this.category.close();
+			this.ProductLists.open();
+			console.log(CATEGORY_LIST[idx]); // api 인자로 물건들 호출
 		}
 		/*
 			CATEGORY_LIST[idx];

@@ -15,14 +15,17 @@ export default class Category {
 			$parent: this.$target,
 			initialState: mode,
 			isModal: true,
-			onClick: (e) => {
-				this.onClick(e);
+			onClick: (e, idx) => {
+				this.onClick(e, idx);
 			},
 		});
 
 		this.bodyPart = new BodyPart({
 			$parent: this.$target,
 			initialState: CATEGORY_LIST,
+			onClick: (e, idx) => {
+				this.onClick(e, idx);
+			},
 		});
 
 		// this.onClick = onClick;
