@@ -12,13 +12,17 @@ export default class ToolBar {
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
-			<img src=${ARROW_BACK_ICON} id='back' />
+			<img src=${ARROW_BACK_ICON} class='back' />
 			${
 				isUserOwnProduct(this.state.seller, this.state.user)
-					? `<img src=${MORE_VERT_ICON} id='option' />`
+					? `<img src=${MORE_VERT_ICON} class='option' />`
 					: ''
 			}
 		`;
+
+		this.$target.addEventListener('click', (e) => {
+			if (e.target.className === 'back') history.back(-1);
+		});
 	}
 
 	setState() {}
