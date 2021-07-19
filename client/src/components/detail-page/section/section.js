@@ -23,7 +23,9 @@ export default class DetailSection {
 
 		this.$imgContainer = new ImgContainer({
 			$parent: this.$imgContainerWrapper,
-			initialState: this.state,
+			initialState: {
+				imgs: this.state.imgs,
+			},
 		});
 
 		this.$infoContainer = new InfoContainer({

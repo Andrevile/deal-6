@@ -8,7 +8,7 @@ export default class DetailPage {
 	state = {
 		// TEST CASE
 		user: '남영우', // pk값을 들고있을지, 이름을 들고 있을지 고민입니다.
-		seller: '남영우',
+		seller: '남영',
 		price: 35000,
 		title: '빈티지 롤러 스케이트!',
 		description: `어린시절 추억의 향수를 불러 일으키는 롤러 스케이트입니다. 빈티지 특성상 사용감 있지만 전체적으로 깨끗한 상태입니다. 촬영용 소품이나, 거실에 장식용으로 추천해 드립니다. 단품 입고 되었습니다.<br>
@@ -28,15 +28,35 @@ export default class DetailPage {
 
 		this.toolBar = new ToolBar({
 			$parent: this.$target,
-			initialState: this.state,
+			initialState: {
+				user: this.state.user,
+				seller: this.state.seller,
+			},
 		});
 		this.section = new Section({
 			$parent: this.$target,
-			initialState: this.state,
+			initialState: {
+				user: this.state.user,
+				seller: this.state.seller,
+				title: this.state.title,
+				description: this.state.description,
+				status: this.state.status,
+				location: this.state.location,
+				category: this.state.category,
+				createdAt: this.state.createdAt,
+				chatCount: this.state.chatCount,
+				wishCount: this.state.wishCount,
+				visitCount: this.state.visitCount,
+				imgs: this.state.imgs,
+			},
 		});
 		this.footer = new Footer({
 			$parent: this.$target,
-			initialState: this.state,
+			initialState: {
+				price: this.state.price,
+				user: this.state.user,
+				seller: this.state.seller,
+			},
 		});
 
 		$parent.appendChild(this.$target);
