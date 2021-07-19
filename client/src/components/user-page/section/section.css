@@ -1,0 +1,42 @@
+.section,
+.form {
+    /* background-color: rgb(245, 232, 215); */
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    height: 4rem;
+    width: 20rem;
+    margin-top: 2rem;
+}
+
+.text {
+    width: calc(100%-2rem);
+    height: 2.6rem;
+    margin-top: 2.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.input {
+    width: 18rem;
+    height: 2.5rem;
+    border: 1px solid #D7D7D7;
+    border-radius: 0.5rem;
+    font-size: var(--font-small);
+}
+
+.input::placeholder{
+    font-weight: var(--font-regular);
+    font-size: var(--font-micro);
+}
+
+.signup {
+    width: 20rem;
+    background-color: white;
+    border: none;
+    align-items: center;
+}

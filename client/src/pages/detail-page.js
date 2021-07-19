@@ -1,8 +1,8 @@
 import './detail-page.css';
 import ToolBar from '../components/detail-page/tool-bar/tool-bar.js';
 import Section from '../components/detail-page/section/section';
+import Footer from '../components/detail-page/footer/';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
-import Footer from '../components/detail-page/footer/footer';
 
 export default class DetailPage {
 	state = {
@@ -23,8 +23,8 @@ export default class DetailPage {
 		visitCount: 5,
 	};
 
-	constructor($app) {
-		this.$target = createDOMWithSelector('div', 'app');
+	constructor($parent) {
+		this.$target = createDOMWithSelector('div', '.detail-page');
 
 		this.toolBar = new ToolBar({
 			$parent: this.$target,
@@ -39,7 +39,7 @@ export default class DetailPage {
 			initialState: this.state,
 		});
 
-		$app.appendChild(this.$target);
+		$parent.appendChild(this.$target);
 	}
 
 	setState() {}

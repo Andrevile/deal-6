@@ -17,7 +17,7 @@ export default class MainNavbar {
                 
             </div>
             <div class='nav__rightSide'>
-                <img src='/icons/account.svg' alt='profile'>
+                <img src='/icons/account.svg' alt='profile' data-link="/user">
                 <img src='/icons/menu.svg' data-link='/menu' alt='menu'>
             </div>
         `;
