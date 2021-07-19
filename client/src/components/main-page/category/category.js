@@ -6,14 +6,18 @@ import BodyPart from './body/body';
 const mode = '카테고리';
 
 export default class Category {
-	constructor({ $parent, CATEGORY_LIST }) {
-		// $parent.getBoundingClientRect().height = 568px;
+	constructor({ $parent, CATEGORY_LIST, onClick }) {
 		this.$target = createDOMWithSelector('div', '.categoryWrapper');
 		$parent.appendChild(this.$target);
 
+		this.onClick = onClick;
 		this.navigationBar = new NavigationBar({
 			$parent: this.$target,
 			initialState: mode,
+			isModal: true,
+			onClick: (e) => {
+				this.onClick(e);
+			},
 		});
 
 		this.bodyPart = new BodyPart({
@@ -30,11 +34,10 @@ export default class Category {
 	}
 
 	open() {
-		// this.$target.style.visibility = 'visible';
 		this.$target.classList.add('active');
 	}
 
 	close() {
-		this.$target.style.visibility = 'hidden';
+		this.$target.classList.remove('active');
 	}
 }
