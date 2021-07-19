@@ -1,4 +1,4 @@
-import AppBar from '../components/base/navigator/navigator';
+import AppBar from '../components/base/navigation-bar/navigation-bar';
 import Section from '../components/user-page/section/section';
 
 export default class UserPage {

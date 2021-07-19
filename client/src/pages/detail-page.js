@@ -1,7 +1,7 @@
 import './detail-page.css';
 import ToolBar from '../components/detail-page/tool-bar/tool-bar.js';
 import Section from '../components/detail-page/section/section';
-import Footer from '../components/detail-page/footer/';
+import Footer from '../components/detail-page/footer/footer';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 
 export default class DetailPage {
