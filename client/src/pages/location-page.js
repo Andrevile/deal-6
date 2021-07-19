@@ -26,22 +26,26 @@ export default class LocationPage {
 		});
 		this.modal = new Modal({
 			$parent,
-			onClick: (e) => {
-				if (
-					e.target.className === 'modal__overlay' ||
-					e.target.className === 'modal__cancle'
-				) {
-					this.modal.close();
-				}
+			onClick: (e, value) => {
+				this.bindModalClickEvent(e, value);
 			},
 		});
 	}
 
 	setState() {
-		//리렌더링파트
+		this.body.setState(this.state.allMyLocation);
 	}
 
-	render() {
-		//렌더링파트
+	bindModalClickEvent(e, value) {
+		if (
+			e.target.className === 'modal__overlay' ||
+			e.target.className === 'modal__cancle'
+		) {
+			this.modal.close();
+		} else if (e.target.className === 'modal__confirm') {
+			// api로 동네 추가
+			this.state.allMyLocation = [...this.state.allMyLocation, value];
+			this.setState();
+		}
 	}
 }

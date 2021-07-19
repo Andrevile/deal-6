@@ -19,7 +19,8 @@ export default class LocationModal {
 		this.onClick = onClick;
 
 		this.$target.addEventListener('click', (e) => {
-			this.onClick(e);
+			let inputValue = this.$input.value;
+			this.onClick(e, inputValue);
 		});
 	}
 
