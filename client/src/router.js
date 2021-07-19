@@ -48,9 +48,10 @@ const router = () => {
 	}
 	// console.log(match.route)
 
-	const app = document.querySelector('.app');
-	app.innerHTML = '';
-	new match.route.view(app);
+	const $app = document.querySelector('.app');
+	$app.scrollTop = 0;
+	$app.innerHTML = '';
+	new match.route.view($app);
 };
 
 export { router, navigateTo };
