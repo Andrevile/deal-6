@@ -2,7 +2,8 @@ import Navbar from '../components/base/navigation-bar/navigation-bar';
 import MainNavbar from '../components/menu-page/main-navigation-bar/main-navigation-bar';
 import ProductLists from '../components/base/product-list/product-list.js';
 import ChatLists from '../components/base/chat-list/chat-list';
-
+import { createDOMWithSelector } from '../util/createDOMWithSelector';
+import './menu-page.css';
 const mode = '메뉴';
 export default class MenuPage {
 	state = {
@@ -18,13 +19,21 @@ export default class MenuPage {
         3 : 관심목록
     */
 	constructor($parent) {
+		this.$parent = createDOMWithSelector('div', '.menuWrapper');
+		$parent.appendChild(this.$parent);
+
 		this.navbar = new Navbar({
-			$parent,
+			$parent: this.$parent,
 			initialState: mode,
+			onClick: (e) => {
+				if (e.target.className === 'nav__prev') {
+					this.$parent.classList.remove('active');
+				}
+			},
 		});
 
 		this.mainNavbar = new MainNavbar({
-			$parent,
+			$parent: this.$parent,
 			initialState: this.state.navigatorIndex,
 			onClick: (idx) => {
 				this.bindMainNavbarEvent(idx);
@@ -32,15 +41,19 @@ export default class MenuPage {
 		});
 
 		this.productLists = new ProductLists({
-			$parent,
+			$parent: this.$parent,
 			initialState: this.state.products,
 		});
 
 		this.chatLists = new ChatLists({
-			$parent,
+			$parent: this.$parent,
 			initialState: this.state.chats,
 		});
 		this.chatLists.close();
+
+		setTimeout(() => {
+			this.$parent.classList.add('active');
+		}, 0);
 	}
 
 	setState() {
