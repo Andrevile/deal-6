@@ -5,23 +5,34 @@ import InfoContainer from './info-container/info-container';
 
 export default class DetailSection {
 	$imgContainer = null;
+	index = 0;
 
-	constructor({ $parent, state }) {
-		console.log($parent);
-		this.state = state;
-		this.$section = createDOMWithSelector('section');
+	constructor({ $parent, initialState }) {
+		this.state = initialState;
+		this.$section = createDOMWithSelector('section', '.section');
+
+		this.$imgContainerWrapper = createDOMWithSelector(
+			'div',
+			'.img-container-wrapper'
+		);
+
+		this.$infoContainerWrapper = createDOMWithSelector(
+			'div',
+			'.info-container-wrapper'
+		);
 
 		this.$imgContainer = new ImgContainer({
-			$parent: this.$section,
-			state: this.state,
+			$parent: this.$imgContainerWrapper,
+			initialState: this.state,
 		});
 
 		this.$infoContainer = new InfoContainer({
-			$parent: this.$section,
-			state: this.state,
+			$parent: this.$infoContainerWrapper,
+			initialState: this.state,
 		});
-		console.log(this.$section);
 
+		this.$section.appendChild(this.$imgContainerWrapper);
+		this.$section.appendChild(this.$infoContainerWrapper);
 		$parent.appendChild(this.$section);
 
 		this.render();
