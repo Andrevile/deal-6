@@ -129,7 +129,7 @@ const sampleChatData = [
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content:
+		description:
 			'It is description,t is descriptiont is descriptiont is descriptiont is descriptiont is descriptiont is description',
 		time: '2시간 전',
 		count: 5,
@@ -137,35 +137,35 @@ const sampleChatData = [
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content: 'It is description',
+		description: 'It is description',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content: 'It is description',
+		description: 'It is description',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content: 'It is description',
+		description: 'It is description',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content: 'It is description',
+		description: 'It is description',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
 		name: '문지호',
-		content: 'It is description',
+		description: 'It is description',
 		time: '2시간 전',
 		count: 5,
 	},

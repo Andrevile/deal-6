@@ -3,6 +3,7 @@ import DetailPage from './pages/detail-page';
 import SignUpPage from './pages/signup-page';
 import LocationPage from './pages/location-page';
 import MenuPage from './pages/menu-page';
+import WritingPage from './pages/writing-page';
 
 const pathToRegex = (path) =>
 	new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -19,6 +20,7 @@ const router = () => {
 		{ path: '/signup', view: SignUpPage },
 		{ path: '/location', view: LocationPage },
 		{ path: '/menu', view: MenuPage },
+		{ path: '/writing', view: WritingPage },
 		// { path: '/posts/:id', view: PostView },
 	];
 
