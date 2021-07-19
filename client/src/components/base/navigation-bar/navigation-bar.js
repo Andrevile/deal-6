@@ -5,7 +5,7 @@ export default class NavigationBar {
 	state = '';
 	$target = null;
 	isUser = false;
-	isModal = null;
+	isModal = false;
 	doneIcon = false; // 글쓰기 모드 변수
 	activeDoneIcon = false; // 글쓰기 모드 변수
 
@@ -13,13 +13,15 @@ export default class NavigationBar {
 	constructor({ $parent, initialState, onClick, isModal = false }) {
 		this.isModal = isModal;
 		this.state = initialState;
-
+		this.isModal ? (this.onClick = onClick) : '';
 		this.setTarget(initialState);
 
 		$parent.appendChild(this.$target);
 
 		this.$target.addEventListener('click', (e) => {
-			if (e.target.className === 'nav__prev') history.back(-1);
+			if (this.isModal === true) {
+				this.onClick(e);
+			} else if (e.target.className === 'nav__prev') history.back(-1);
 		});
 
 		this.$icon = document.querySelector('.nav__icon');

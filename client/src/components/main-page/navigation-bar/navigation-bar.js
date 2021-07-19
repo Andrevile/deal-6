@@ -4,14 +4,16 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
 export default class MainNavbar {
 	state = '';
-	constructor({ $parent, initialState }) {
+	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
 		this.$target = createDOMWithSelector('nav', '.nav');
 		$parent.appendChild(this.$target);
 
+		this.onClick = onClick;
+
 		this.$target.innerHTML = `
             <div class='nav__category'>
-                <img src='/icons/category.svg' alt='category'>
+                <img class='nav__categoryImg' src='/icons/category.svg' alt='category'>
             </div>
             <div class='nav__location'>
                 
@@ -21,6 +23,10 @@ export default class MainNavbar {
                 <img src='/icons/menu.svg' data-link='/menu' alt='menu'>
             </div>
         `;
+
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e);
+		});
 
 		this.$location = document.querySelector('.nav__location');
 
