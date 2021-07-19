@@ -1,6 +1,6 @@
 import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
-
+import Modal from '../components/base/location-modal/location-modal';
 const mode = '내 동네 설정하기';
 export default class LocationPage {
 	state = {
@@ -15,6 +15,10 @@ export default class LocationPage {
 		this.body = new Body({
 			$parent,
 			initialState: this.state.allMyLocation,
+			onClick: () => {},
+		});
+		this.modal = new Modal({
+			$parent,
 		});
 	}
 
