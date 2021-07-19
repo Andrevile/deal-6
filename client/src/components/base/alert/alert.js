@@ -1,7 +1,7 @@
 import './alert.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 
-export default class LocationModal {
+export default class Alert {
 	constructor({ $parent, onClick }) {
 		this.$target = createDOMWithSelector('div', '.alert');
 		$parent.appendChild(this.$target);
