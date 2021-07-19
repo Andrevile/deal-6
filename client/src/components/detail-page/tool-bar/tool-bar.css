@@ -1,0 +1,25 @@
+.detail__nav {
+    width: 20rem;
+    height: 3.5rem;
+    background: linear-gradient(#b4b4b4, transparent);
+    z-index: 100;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.7rem;
+    position: absolute;
+    
+}
+
+.back {
+    width: 0.5rem;
+    height: 1rem;
+}
+
+.option {
+    width: 0.125rem;
+    height: 1.5rem;
+}

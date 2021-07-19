@@ -1,7 +1,19 @@
-.detail__section-img {
-    width: 320px;
-    height: 320px;
-    margin-top: -56px;
-    z-index: 5;
+.section {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-container-wrapper {
+    transition: transform 0.5s;
+    width: 100%;
+}
+
+.info-container-wrapper {
+    width: calc(100%-2rem);
+    flex-grow: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1.5rem;
+    overflow-y: hidden;
 }
 
