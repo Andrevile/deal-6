@@ -3,6 +3,8 @@ import './info-container.css';
 
 const STATUS = ['판매중', '예약중', '판매완료'];
 
+const isUserOwnProduct = (seller, user) => seller == user;
+
 export default class InfoContainer {
 	constructor({ $parent, initialState }) {
 		this.state = initialState;
@@ -13,17 +15,22 @@ export default class InfoContainer {
 	}
 
 	render() {
-		const createStatusSelectButtonTemplate = ({ status }) => {
+		const createStatusSelectButtonTemplate = ({ status, seller, user }) => {
 			status = Math.min(status, 2);
 
-			return `
-				<select name="status" value=${status} class="info status">
-				${STATUS.map((stat, i) => {
-					return status === i
-						? `<option value=${i} selected="selected"}>${stat}</option>`
-						: `<option value=${i} }>${stat}</option>`;
-				}).join('\n')}
-				</select>`;
+			return isUserOwnProduct(seller, user)
+				? `
+					<select name="status" value=${status} class="info status">
+					${STATUS.map((stat, i) => {
+						return status === i
+							? `<option value=${i} selected="selected"}>${stat}</option>`
+							: `<option value=${i} }>${stat}</option>`;
+					}).join('\n')}
+					</select>
+				`
+				: `
+					<button class="info status">${STATUS[status]} </button>
+				`;
 		};
 
 		const createProductHeaderTemplate = ({
