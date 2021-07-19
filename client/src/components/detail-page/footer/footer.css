@@ -1,4 +1,4 @@
-.footer {
+.detail__footer {
     width: calc(100%-2rem);
     height: 4rem;
     display: flex;

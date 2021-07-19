@@ -3,7 +3,7 @@ import './info-container.css';
 
 const STATUS = ['판매중', '예약중', '판매완료'];
 
-const isUserOwnProduct = (seller, user) => seller == user;
+const isUserOwnProduct = (seller, user) => seller === user;
 
 export default class InfoContainer {
 	constructor({ $parent, initialState }) {

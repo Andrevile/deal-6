@@ -23,6 +23,7 @@ const router = () => {
 		{ path: '/menu', view: MenuPage },
 		{ path: '/user', view: UserPage },
 		{ path: '/writing', view: WritingPage },
+		{ path: '/chat', view: MenuPage },
 	];
 
 	// Test each route for potential match
