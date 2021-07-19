@@ -49,11 +49,6 @@ export default class ImgContainer {
 			this.currentImgIndex += move;
 		};
 
-		// this.$imgContainer.addEventListener('keydown', (e) => {
-		// 	if (e.keyCode == 37) movePrevOrNextHandler(-1);
-		// 	else if (e.keyCode == 39) movePrevOrNextHandler(1);
-		// });
-
 		this.$prevButton.addEventListener('click', () =>
 			movePrevOrNextHandler(-1)
 		);
@@ -63,32 +58,19 @@ export default class ImgContainer {
 		);
 
 		window.addEventListener('keydown', function (e) {
-			if (e.defaultPrevented) {
-				if (e.keyCode == 37) movePrevOrNextHandler(-1);
-				else movePrevOrNextHandler(1);
-			}
-
-			if (e.keyCode == 37 || e.keyCode == 39) {
-				e.preventDefault();
-			}
-
 			const keyCode = e.keyCode;
 			console.log('pushed key ' + e.key);
 
 			if (keyCode == 37) {
 				// left key
+				e.preventDefault();
 				movePrevOrNextHandler(-1);
 			} else if (keyCode == 39) {
 				// right key
+				e.preventDefault();
 				movePrevOrNextHandler(1);
 			}
 		});
-
-		// window.onkeydown = (e) => {
-		// 	if (e.keyCode == 37) this.$prevButton.dispatchEvent('click');
-		// 	else if (e.keyCode == 39) this.$nextButton.dispatchEvent('click');
-		// 	else; /* do nothing */
-		// };
 
 		this.$buttonContainer = createDOMWithSelector('div', '.next-and-prev');
 		this.$buttonContainer.appendChild(this.$prevButton);
