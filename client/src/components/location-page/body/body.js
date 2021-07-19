@@ -19,7 +19,9 @@ export default class BodyPart {
 
 		this.onClick = onClick;
 		this.$target.addEventListener('click', (e) => {
-			this.onClick(e);
+			let idx = 0;
+			if (e.target.dataset.idx) idx = e.target.dataset.idx;
+			this.onClick(e, idx);
 		});
 		this.$Button = document.querySelector('.location__btnOuter');
 		this.render();
@@ -47,7 +49,7 @@ export default class BodyPart {
                 <span>
                     ${this.state[0]}
                 </span>
-                <img src="/icons/cancel.svg" />
+                <img class='location__cancelBtn' src="/icons/cancel.svg" data-idx='0'/>
             </button>
             `
 			: ``;
@@ -60,7 +62,7 @@ export default class BodyPart {
                 <span>
                     ${this.state[1]}
                 </span>
-                <img src="/icons/cancel_baemin.svg" />
+                <img class='location__cancelBtn' src="/icons/cancel_baemin.svg" data-idx='1'/>
             </button>
             `
 			: ``;

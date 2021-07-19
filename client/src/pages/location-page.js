@@ -15,12 +15,14 @@ export default class LocationPage {
 		this.body = new Body({
 			$parent,
 			initialState: this.state.allMyLocation,
-			onClick: (e) => {
+			onClick: (e, idx) => {
 				if (
 					e.target.className === 'location__plusBtn' ||
 					e.target.className === 'location__plus'
 				) {
 					this.modal.open();
+				} else if (e.target.className === 'location__cancelBtn') {
+					this.bindRemoveLocationEvent(e, idx);
 				}
 			},
 		});
@@ -48,5 +50,12 @@ export default class LocationPage {
 			this.modal.close();
 			this.setState();
 		}
+	}
+
+	bindRemoveLocationEvent(e, idx) {
+		let LocationArray = [...this.state.allMyLocation];
+		LocationArray.splice(idx, 1);
+		this.state.allMyLocation = LocationArray;
+		this.setState();
 	}
 }
