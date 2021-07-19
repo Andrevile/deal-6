@@ -21,6 +21,11 @@ export default class NavigationBar {
 		this.$target.addEventListener('click', (e) => {
 			if (this.isModal === true) {
 				this.onClick(e, 0);
+			} else if (this.state === '메뉴') {
+				this.onClick(e);
+				setTimeout(() => {
+					history.back(-1);
+				}, 400);
 			} else if (e.target.className === 'nav__prev') history.back(-1);
 		});
 
