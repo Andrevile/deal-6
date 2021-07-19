@@ -10,7 +10,7 @@ export default class LocationModal {
 		this.$target.innerHTML = `
                 <div class="alert__overlay"></div>
                 <div class="alert__content">
-                    <span class="alert__guide">정말로 이 버튼을 삭제하시겠습니까?</span>
+                    <span class="alert__guide">정말로 삭제하시겠습니까?</span>
                     <div class="alert__checkOne">
                         <span class="alert__cancel">취소</span><span class="alert__confirm">삭제</span>
                     </div>
