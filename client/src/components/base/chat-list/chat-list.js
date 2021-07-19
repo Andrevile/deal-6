@@ -24,7 +24,7 @@ export default class ChatLists {
 					
 					<div class='chat__info'>
 						<span class='chat__name'>${chat.name}</span>
-						<span class='chat__content'>${chat.content}</span>
+						<span class='chat__content'>${chat.description}</span>
 					</div>
 					
                     <div class='chat__rightSide'>

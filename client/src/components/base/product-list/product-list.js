@@ -22,7 +22,7 @@ export default class ProductLists {
 				return `
 				<article class='product'>
 					
-					<img class='product__img' src=${product.imgPath} data-link='/signup'>
+					<img class='product__imgs' src=${product.imgPath} data-link='/signup'>
 				
 					<div class='product__info'>
 						<span class='product__name' data-link='/detail'>${product.name}</span>

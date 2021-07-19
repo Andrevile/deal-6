@@ -7,20 +7,13 @@
     --color-grey: #888888;
     --color-nav-grey : #F6F6F6;
     --color-grey2: #828282;
+    --color-grey3: #D7D7D7;
     --color-baemin-span: #219A95;
-
+    --color-Offwhite: #F6F6F6;;
     --color-light-white: #eeeeee;
-    --color-dark-white: #bdbdbd;
-    --color-dark-main: #26418f;
-    --color-dark-grey: #4d4d4d;
-
-    
-    --color-blue: #73aace;
-    --color-yellow: #fff7d1;
-    --color-orange: #feb546;
     --color-black: #000000;
+    --color-error: #F45452;
 
-    
     
     --font-large: 48px;
     --font-medium: 28px;
@@ -33,10 +26,6 @@
     --weight-semi-bold: 400;
     --weight-regular: 300;
 
-  
-    --size-border-radius: 4px;
-
-   
     --animation-duration: 300ms;
 
     --max-width-with-border: 322px;
