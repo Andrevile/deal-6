@@ -12,7 +12,7 @@ export default class LocationModal {
                 <div class="alert__content">
                     <span class="alert__guide">정말로 이 버튼을 삭제하시겠습니까?</span>
                     <div class="alert__checkOne">
-                        <span class="alert__cancel">취소</span><span class="alert__confirm">나가기</span>
+                        <span class="alert__cancel">취소</span><span class="alert__confirm">삭제</span>
                     </div>
                 </div>
               `;
@@ -21,8 +21,7 @@ export default class LocationModal {
 		this.$confirmButton = document.querySelector('.alert__confirm');
 
 		this.$target.addEventListener('click', (e) => {
-			let inputValue = this.$input.value;
-			this.onClick(e, inputValue);
+			this.onClick(e);
 		});
 	}
 
