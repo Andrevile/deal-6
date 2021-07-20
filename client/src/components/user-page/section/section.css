@@ -5,11 +5,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .form {
-    height: 4rem;
-    width: 20rem;
+    height: 90px;
     margin-top: 2rem;
 }
 
@@ -40,4 +40,14 @@
     background-color: white;
     border: none;
     align-items: center;
+}
+
+.login__alert {
+    display: none;
+    color: var(--color-error);
+    font-size: var(--font-nano)
+}
+
+.login__alert.active {
+    display: block;
 }
