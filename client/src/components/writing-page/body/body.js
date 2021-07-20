@@ -106,22 +106,23 @@ export default class Body {
 
 	rearrangePrice(e) {
 		// 콤마와 원을 붙혀주는 함수
-		let value = e.target.value.toString();
-		let length = value.length;
-		let array = e.target.value.split('');
+		if (e.target.value[0] !== '₩') {
+			let length = e.target.value.length;
+			let array = e.target.value.split('');
 
-		if (length > 3) {
-			let count = 1;
-			for (let i = length - 1; i > 0; i--) {
-				if (count % 3 === 0) {
-					array.splice(i, 0, ',');
+			if (length > 3) {
+				let count = 1;
+				for (let i = length - 1; i > 0; i--) {
+					if (count % 3 === 0) {
+						array.splice(i, 0, ',');
+					}
+					count++;
 				}
-				count++;
 			}
-		}
 
-		let result = '₩ ' + array.join('');
-		e.target.value = result;
+			let result = '₩ ' + array.join('');
+			e.target.value = result;
+		}
 	}
 
 	checkHavingAllValue() {

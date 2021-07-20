@@ -4,9 +4,21 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 export default class LargeButton {
 	state = '';
 
-	constructor({ $parent, initialState }) {
+	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
-		this.$target = createDOMWithSelector('button', '.largeButton');
+		if (this.state === '회원가입')
+			this.$target = createDOMWithSelector(
+				'button',
+				'.largeButton',
+				'.disable'
+			);
+		else this.$target = createDOMWithSelector('button', '.largeButton');
+
+		this.onClick = onClick;
+
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e);
+		});
 		this.$target.innerText = this.state;
 		$parent.appendChild(this.$target);
 	}

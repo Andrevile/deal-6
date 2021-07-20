@@ -27,6 +27,7 @@
     border: 1px solid #D7D7D7;
     border-radius: 0.5rem;
     font-size: var(--font-small);
+    padding: 5px 15px;
 }
 
 .input::placeholder{
