@@ -99,14 +99,15 @@ export default class MainPage {
 		} else if (e.target.className === 'miniModal__location') {
 			// 동네 클릭 시 발생
 			this.locationMiniModal.close();
-			this.state.index = idx;
-			//api 요청 후 product state도 변경 (비동기제어)
-			this.$parent.scrollTo({
-				top: 0,
-				behavior: 'smooth',
-			});
-
-			this.setState();
+			if (this.state.index !== idx) {
+				this.state.index = idx;
+				//api 요청 후 product state도 변경 (비동기제어)
+				this.$parent.scrollTo({
+					top: 0,
+					behavior: 'smooth',
+				});
+				this.setState();
+			}
 		}
 	}
 }
