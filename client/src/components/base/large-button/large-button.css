@@ -12,3 +12,18 @@
     color: var(--color-white);
     font-size: var(--font-small);
 }
+
+.largeButton.disable{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    width: 290px;
+    height: 42px;
+    background: var(--color-baemin-disable);
+    border-radius: 8px;
+    border: none;
+    color: var(--color-white);
+    font-size: var(--font-small);
+}
