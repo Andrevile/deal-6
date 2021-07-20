@@ -42,7 +42,8 @@ export default class BodyPart {
 
 		this.$target.addEventListener('keyup', (e) => {
 			if (e.target.id === 'id' || e.target.id === 'location') {
-				e.target.id === 'location' ? this.checkRegexEvent(e) : '';
+				e.target.id === 'id' ? this.checkIdRegex(e) : '';
+				e.target.id === 'location' ? this.checkLocationRegex(e) : '';
 				this.activateButton();
 			}
 		});
@@ -55,8 +56,14 @@ export default class BodyPart {
 			this.button.$target.classList.add('disable');
 		}
 	}
-	checkRegexEvent(e) {
+	checkLocationRegex(e) {
 		const regex = /[^가-힣,0-9|]/g;
 		e.target.value = e.target.value.replace(regex, '');
+	}
+
+	checkIdRegex(e) {
+		const regex = /[^a-z,A-Z,0-9|]/g;
+		e.target.value = e.target.value.replace(regex, '');
+		e.target.value = e.target.value.slice(0, 20);
 	}
 }
