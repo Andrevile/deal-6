@@ -5,7 +5,7 @@ export default class NavigationBar {
 	state = '';
 	$target = null;
 	isUser = false;
-	isModal = null;
+	isModal = false;
 	doneIcon = false; // 글쓰기 모드 변수
 	activeDoneIcon = false; // 글쓰기 모드 변수
 
@@ -13,13 +13,13 @@ export default class NavigationBar {
 	constructor({ $parent, initialState, onClick, isModal = false }) {
 		this.isModal = isModal;
 		this.state = initialState;
-
+		this.isModal ? (this.onClick = onClick) : '';
 		this.setTarget(initialState);
 
 		$parent.appendChild(this.$target);
 
 		this.$target.addEventListener('click', (e) => {
-			if (e.target.className === 'nav__prev') history.back(-1);
+			this.bindPrevButtonClickEvent(e);
 		});
 
 		this.$icon = document.querySelector('.nav__icon');
@@ -49,8 +49,8 @@ export default class NavigationBar {
                 ${this.state}
             </span>
             <div class='nav__icon'>
-                ${this.showExitIcon()}
-				${this.isDoneIcon()}
+                ${this.createExitIcon()}
+				${this.createDoneIcon()}
             </div>
         `;
 	}
@@ -62,6 +62,7 @@ export default class NavigationBar {
 			case '로그인':
 			case '내 계정':
 			case '메뉴':
+			case '카테고리':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
 			case '글쓰기':
@@ -75,7 +76,7 @@ export default class NavigationBar {
 		}
 	}
 
-	isDoneIcon() {
+	createDoneIcon() {
 		if (this.doneIcon) {
 			if (this.activeDoneIcon)
 				return `<img class='nav__doneActive' src="/icons/done_active.svg" />`;
@@ -84,9 +85,24 @@ export default class NavigationBar {
 		return ``;
 	}
 
-	showExitIcon() {
+	createExitIcon() {
 		if (this.isUser)
 			return `<img class='nav__exit' src="/icons/exit.svg" />`;
 		return ``;
+	}
+
+	bindPrevButtonClickEvent(e) {
+		if (this.isModal === true) {
+			this.onClick(e, 0);
+		} else if (
+			this.state === '메뉴' ||
+			this.state === '내 계정' ||
+			this.state === '로그인'
+		) {
+			this.onClick(e);
+			setTimeout(() => {
+				history.back(-1);
+			}, 400);
+		} else if (e.target.className === 'nav__prev') history.back(-1);
 	}
 }

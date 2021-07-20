@@ -1,5 +1,7 @@
 import AppBar from '../components/base/navigation-bar/navigation-bar';
 import Section from '../components/user-page/section/section';
+import { createDOMWithSelector } from '../util/createDOMWithSelector';
+import './user-page.css';
 
 export default class UserPage {
 	isUserLogin() {
@@ -8,15 +10,27 @@ export default class UserPage {
 	}
 
 	constructor($parent) {
+		this.$parent = createDOMWithSelector('div', '.userWrapper');
+		$parent.appendChild(this.$parent);
+
 		this.state = '남영우';
 		this.$appBar = new AppBar({
-			$parent,
+			$parent: this.$parent,
 			initialState: this.isUserLogin() ? '내 계정' : '로그인',
+			onClick: (e) => {
+				if (e.target.className === 'nav__prev') {
+					this.$parent.classList.remove('active');
+				}
+			},
 		});
 
 		this.$section = new Section({
-			$parent,
+			$parent: this.$parent,
 			initialState: this.isUserLogin() ? this.state : '',
 		});
+
+		setTimeout(() => {
+			this.$parent.classList.add('active');
+		}, 0);
 	}
 }

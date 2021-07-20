@@ -1,6 +1,6 @@
 import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
-import Modal from '../components/base/location-modal/location-modal';
+import Modal from '../components/location-page/location-modal/location-modal';
 import Alert from '../components/base/alert/alert';
 
 const mode = '내 동네 설정하기';

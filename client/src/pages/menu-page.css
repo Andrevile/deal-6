@@ -1,0 +1,11 @@
+.menuWrapper {
+    visibility: hidden;
+    transition: all 400ms ease-in-out;
+    transform: translateX(100%);
+    opacity: 0%;
+}
+.menuWrapper.active {
+    visibility: visible;
+    transform: translateX(0%);
+    opacity: 100%;
+}
