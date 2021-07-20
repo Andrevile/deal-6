@@ -93,8 +93,8 @@ export default class ProductLists {
 					if (entry.target.id === 'end') {
 						observer.unobserve(entry.target);
 
-						endTag.classList.add('spinner');
-						endTag.innerHTML = `<img class='rightBottom__like' src='/icons/loading-loader-svgrepo-com.svg' />`;
+						// endTag.classList.add('spinner');
+						// endTag.innerHTML = `<img class='rightBottom__like' src='/icons/loading-loader-svgrepo-com.svg' />`;
 
 						// const data = await api.randomCats();
 						// if (data.success) {
@@ -105,7 +105,7 @@ export default class ProductLists {
 						// endTag.classList.remove('spinner');
 						// } else {
 						// endTag.classList.remove('spinner');
-						// endTag.innerText = `❗No More Stuff❗`;
+						endTag.innerText = `❗No More Stuff❗`;
 
 						// }
 
