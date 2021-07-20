@@ -32,10 +32,11 @@ export default class BodyPart {
 			$parent: this.$target,
 			initialState: mode,
 			onClick: (e) => {
-				console.log(e.target.className);
+				e.preventDefault();
 				if (e.target.className === 'largeButton') {
 					// api (this.state 정보 인자)
 					// 회원가입 알림 및 클릭시 로그인 이동
+					console.log('api 처리');
 				}
 			},
 		});
