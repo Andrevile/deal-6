@@ -1,6 +1,7 @@
 import './body.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import Button from '../../../components/base/large-button/large-button';
+import WelcomeModal from '../modal/modal';
 
 const mode = '회원가입';
 
@@ -37,6 +38,19 @@ export default class BodyPart {
 					// api (this.state 정보 인자)
 					// 회원가입 알림 및 클릭시 로그인 이동
 					console.log('api 처리');
+					this.welcomeModal.open();
+				}
+			},
+		});
+
+		this.welcomeModal = new WelcomeModal({
+			$parent,
+			onClick: (e) => {
+				if (
+					e.target.className === 'welcome__overlay'
+					// 외부 클릭 시 발생
+				) {
+					this.welcomeModal.close();
 				}
 			},
 		});
