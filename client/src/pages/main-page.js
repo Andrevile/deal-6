@@ -3,18 +3,18 @@ import ProductLists from '../components/base/product-list/product-list.js';
 import PostButton from '../components/main-page/write-post-button/write-post-button';
 import Category from '../components/main-page/category/category.js';
 import { CATEGORY_LIST } from '../constants/category-list';
-
+import LocationMiniModal from '../components/main-page/location-mini-modal/location-mini-modal';
 export default class MainPage {
 	state = {
 		products: sampleData,
-		locationName: '역삼동',
+		locationName: ['역삼동', '인창동'],
 	};
 
 	constructor($parent) {
 		this.$parent = $parent;
 		this.navbar = new Navbar({
 			$parent,
-			initialState: this.state.locationName,
+			initialState: this.state.locationName[0],
 			onClick: (e) => {
 				this.bindNavBarClickEvent(e);
 			},
@@ -35,6 +35,11 @@ export default class MainPage {
 			onClick: (e, idx) => {
 				this.bindCategoryClickEvent(e, idx);
 			},
+		});
+
+		this.locationMiniModal = new LocationMiniModal({
+			$parent,
+			initialState: this.state.locationName,
 		});
 	}
 
