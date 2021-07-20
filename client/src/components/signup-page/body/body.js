@@ -31,20 +31,32 @@ export default class BodyPart {
 		this.button = new Button({
 			$parent: this.$target,
 			initialState: mode,
-			onClick: () => {},
+			onClick: (e) => {
+				console.log(e.target.className);
+				if (e.target.className === 'largeButton') {
+					// api (this.state 정보 인자)
+					// 회원가입 알림 및 클릭시 로그인 이동
+				}
+			},
 		});
 
 		this.$target.addEventListener('keyup', (e) => {
 			if (e.target.id === 'id' || e.target.id === 'location') {
-				if (
-					this.$id.value.length > 0 &&
-					this.$location.value.length > 0
-				) {
-					this.button.$target.classList.remove('disable');
-				} else {
-					this.button.$target.classList.add('disable');
-				}
+				e.target.id === 'location' ? this.checkRegexEvent(e) : '';
+				this.activateButton();
 			}
 		});
+	}
+
+	activateButton() {
+		if (this.$id.value.length > 0 && this.$location.value.length > 0) {
+			this.button.$target.classList.remove('disable');
+		} else {
+			this.button.$target.classList.add('disable');
+		}
+	}
+	checkRegexEvent(e) {
+		const regex = /[^가-힣,0-9|]/g;
+		e.target.value = e.target.value.replace(regex, '');
 	}
 }
