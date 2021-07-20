@@ -89,7 +89,6 @@ export default class ProductLists {
 		const observerCallback = (entries, observer) => {
 			entries.forEach(async (entry) => {
 				if (entry.isIntersecting) {
-					console.log(entry.target.id);
 					if (entry.target.id === 'end') {
 						observer.unobserve(entry.target);
 

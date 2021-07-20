@@ -40,8 +40,8 @@ export default class MainNavbar {
 
 	render() {
 		this.$location.innerHTML = `
-            <img src='/icons/location.svg' alt='location'>
-            <span>${this.state}</span>
+            <img class='nav__locationIcon' src='/icons/location.svg' alt='location'>
+            <span class='nav__locationName'>${this.state}</span>
         `;
 	}
 }

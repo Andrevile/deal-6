@@ -20,9 +20,9 @@ export default class MiniModal {
 		this.onClick = onClick;
 		this.$content = document.querySelector('.miniModal__content');
 
-		// this.$target.addEventListener('click', (e) => {
-		// 	this.onClick(e);
-		// });
+		this.$target.addEventListener('click', (e) => {
+			this.onClick(e, e.target.dataset.idx);
+		});
 		this.render();
 	}
 
@@ -32,11 +32,16 @@ export default class MiniModal {
 			`<div data-link='/location'>내 동네 설정하기</div>`;
 	}
 
+	setState(nextState) {
+		this.state = nextState;
+		this.render();
+	}
+
 	renderLocationName() {
 		return this.state
 			.map(
 				(locationName, idx) =>
-					`<div data-idx=${idx}>${locationName}</div>`
+					`<div class="miniModal__location" data-idx=${idx}>${locationName}</div>`
 			)
 			.join('');
 	}

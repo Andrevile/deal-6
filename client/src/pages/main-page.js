@@ -8,13 +8,14 @@ export default class MainPage {
 	state = {
 		products: sampleData,
 		locationName: ['역삼동', '인창동'],
+		index: 0,
 	};
 
 	constructor($parent) {
 		this.$parent = $parent;
 		this.navbar = new Navbar({
 			$parent,
-			initialState: this.state.locationName[0],
+			initialState: this.state.locationName[this.state.index],
 			onClick: (e) => {
 				this.bindNavBarClickEvent(e);
 			},
@@ -40,11 +41,15 @@ export default class MainPage {
 		this.locationMiniModal = new LocationMiniModal({
 			$parent,
 			initialState: this.state.locationName,
+			onClick: (e, idx) => {
+				this.bindLocationModalClickEvent(e, idx);
+			},
 		});
 	}
 
 	setState() {
 		//리렌더링파트
+		this.navbar.setState(this.state.locationName[this.state.index]);
 		this.ProductLists.setState(this.state.products);
 	}
 
@@ -62,6 +67,11 @@ export default class MainPage {
 				this.ProductLists.close();
 			}, 500);
 			this.$parent.scrollTop = 0;
+		} else if (
+			e.target.className === 'nav__locationIcon' ||
+			e.target.className === 'nav__locationName'
+		) {
+			this.locationMiniModal.open();
 		}
 	}
 	bindCategoryClickEvent(e, idx) {
@@ -78,6 +88,26 @@ export default class MainPage {
 			기준으로 api 호출 후
 			product 뿌리기 (setState)
 		*/
+	}
+
+	bindLocationModalClickEvent(e, idx) {
+		if (
+			e.target.className === 'miniModal__overlay'
+			// 외부 클릭 시 발생
+		) {
+			this.locationMiniModal.close();
+		} else if (e.target.className === 'miniModal__location') {
+			// 동네 클릭 시 발생
+			this.locationMiniModal.close();
+			this.state.index = idx;
+			//api 요청 후 product state도 변경 (비동기제어)
+			this.$parent.scrollTo({
+				top: 0,
+				behavior: 'smooth',
+			});
+
+			this.setState();
+		}
 	}
 }
 
