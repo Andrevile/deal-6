@@ -6,7 +6,7 @@ import './user-page.css';
 export default class UserPage {
 	isUserLogin() {
 		/* 유저가 로그인 되어 있다면, true 반환 아니면 false */
-		return true;
+		return false;
 	}
 
 	constructor($parent) {
