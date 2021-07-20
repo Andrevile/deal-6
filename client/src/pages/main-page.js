@@ -11,6 +11,7 @@ export default class MainPage {
 	};
 
 	constructor($parent) {
+		this.$parent = $parent;
 		this.navbar = new Navbar({
 			$parent,
 			initialState: this.state.locationName,
@@ -46,9 +47,11 @@ export default class MainPage {
 			e.target.className === 'nav__categoryImg' // 카테고리 클릭 시 발생
 		) {
 			this.category.open();
+
 			setTimeout(() => {
 				this.ProductLists.close();
 			}, 500);
+			this.$parent.scrollTop = 0;
 		}
 	}
 	bindCategoryClickEvent(e, idx) {
