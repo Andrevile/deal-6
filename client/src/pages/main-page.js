@@ -22,6 +22,10 @@ export default class MainPage {
 		this.ProductLists = new ProductLists({
 			$parent,
 			initialState: this.state.products,
+			refreshState: (nextState) => {
+				this.state.products = nextState;
+				this.setState();
+			},
 		});
 		this.postButton = new PostButton({ $parent });
 
@@ -36,6 +40,7 @@ export default class MainPage {
 
 	setState() {
 		//리렌더링파트
+		this.ProductLists.setState(this.state.products);
 	}
 
 	render() {
