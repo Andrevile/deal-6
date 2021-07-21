@@ -1,16 +1,24 @@
-import { createDOMWithSelector } from '../util/createDOMWithSelector';
-import './NotFound.css';
+import Navbar from '../components/base/navigation-bar/navigation-bar';
+import Redirect from '../components/base/redirect/redirect';
+
+const mode = '-';
 
 export default class NotFound {
+	state = {
+		link: '/',
+		message: 'Home',
+		status: '404',
+		content: 'Page not found',
+	};
 	constructor($parent) {
-		this.$target = createDOMWithSelector('div', '.notfound');
-		$parent.appendChild(this.$target);
+		new Navbar({
+			$parent,
+			initialState: mode,
+		});
 
-		this.$target.innerHTML = `
-            <button class='notfound__button' data-link='/'>Go to the Home</button>
-            <img src="/imgs/notfound.gif">
-            <h1>404</h1>
-            <div>Page not found</div>
-        `;
+		new Redirect({
+			$parent,
+			initialState: this.state,
+		});
 	}
 }
