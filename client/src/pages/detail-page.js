@@ -42,7 +42,7 @@ export default class DetailPage {
 			},
 			onClick: (e) => {
 				if (e.target.className === 'back') {
-					history.back(-1);
+					history.state ? navigateTo('/') : history.back(-1);
 				} else if (e.target.className === 'option')
 					this.productModal.open();
 			},
