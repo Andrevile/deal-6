@@ -5,25 +5,28 @@ const promiseHandler = require('../utils/promiseHandler');
 
 const userRepository = {
 	findAll: async () => {
-		const connection = await pool.getConnection();
 		const query = `SELECT username FROM api_server.user;`;
 
+		const users = selectQueryExecutor(query);
+		/*
+		const connection = await pool.getConnection();
 		const [result, err] = await promiseHandler(connection.query(query));
 
 		if (err) {
-			/* DB connection 에서 error 가 생기면 발생하는 경우 */
-			throw new CustomError(error.NO_DATA);
+			// DB connection 에서 error 가 생기면 발생하는 경우
+			throw new CustomError(error.DATABASE_ERROR);
 		}
 
 		const [users] = result;
 		connection.release();
+		*/
 		return users;
 	},
 
 	findOne: async (id) => {
 		const query = `SELECT username FROM api_server.user where id='${id}';`;
-		const connection = await pool.getConnection();
 
+		const connection = await pool.getConnection();
 		const [result, err] = await promiseHandler(connection.query(query));
 
 		if (err) {
