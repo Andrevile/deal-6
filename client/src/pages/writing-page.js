@@ -26,8 +26,9 @@ export default class WritingPage {
 			$parent,
 			initialState: mode,
 			onClick: () => {
-				// state에 username 추가하고 haveAllValue를 빼면 될듯!
+				// state에 userid 추가하고 (추가안해도 인자로 받아서 괜찮을듯) haveAllValue를 빼면 될듯!
 				// 게시물 post 요청 (this.state)
+				// menupage로 이동 (바로 상품 올린거 확인 가능)
 			},
 		});
 		this.body = new Body({

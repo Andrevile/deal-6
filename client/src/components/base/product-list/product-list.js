@@ -23,21 +23,24 @@ export default class ProductLists {
 	}
 
 	createView() {
+		/*
+			pk를 이용해 data-link 에 삽입
+		*/
 		return (
 			this.state
 				.map((product) => {
 					return `
 			<article class='product'>
 				
-				<img class='product__imgs' src=${product.imgPath} data-link='/signup'>
+				<img class='product__imgs' src=${product.imgPath} data-link='/detail'>
 			
 				<div class='product__info'>
 					<span class='product__name' data-link='/detail'>${product.name}</span>
 					<div>
 						<span class='product__location' data-link='/detail'>${product.location} ∙</span>
-						<span class='product__time' data-link='/location'>${product.time}</span>
+						<span class='product__time' data-link='/detail'>${product.time}</span>
 					</div>
-					<span class='product__price' data-link='/location'>${product.price}</span>
+					<span class='product__price' data-link='/detail'>${product.price}</span>
 				</div>
 				
 				${this.createLikeButton(product.like)}
