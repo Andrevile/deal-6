@@ -28,4 +28,10 @@ module.exports = {
 		errorMessage: '해당 아이디가 존재하지 않습니다.',
 		serverMessage: 'No such user error',
 	},
+
+	JWT_TOKEN_INVALID_ERROR: {
+		code: 401,
+		errorMessage: '검증되지 않은 token 입니다.',
+		serverMessage: 'Wrong JWT token access error',
+	},
 };

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
-const { UserRepository } = require('../repository/user-repository');
+const error = require('../constants/error');
+const CustomError = require('../errors/custom-error');
+const { userRepository } = require('../repository/user-repository');
 
 /**
  *
@@ -24,8 +26,17 @@ const verifyJWT = async (token) => {
 		return null;
 	}
 
-	const { id } = decodeToken;
-	return await UserRepository.findOne(id);
+	const user = await userRepository.findOne(decodeToken.id);
+
+	if (isInvalidPayLoad(decodeToken, user)) {
+		throw new CustomError(error.JWT_TOKEN_INVALID_ERROR);
+	}
+
+	return user;
+};
+
+const isInvalidPayLoad = (decodeToken, user) => {
+	return decodeToken.id !== user.id || decodeToken.pk !== user.pk;
 };
 
 module.exports = { createJWT, verifyJWT };

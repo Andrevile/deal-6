@@ -5,13 +5,18 @@ module.exports = async (req, res, next) => {
 	/**
 	 * JWT Token 을 decode 를 통해 유저를 식별한다.
 	 */
-	const token = req.headers.JWT;
-
+	const token = req.cookies.JWT;
+	console.log(token);
 	if (token) {
-		const user = await verifyJWT(token);
-		req.user = user;
-		next();
-		return;
+		try {
+			const user = await verifyJWT(token);
+
+			req.user = user;
+			next();
+			return;
+		} catch (err) {
+			next(err);
+		}
 	}
 
 	next();
