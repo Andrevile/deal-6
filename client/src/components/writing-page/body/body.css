@@ -42,12 +42,14 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    position: relative;
 }
-
 .post__imgContainer img{
     width: 18px;
     height: 18px;
 }
+
+
 
 .post__imgContainer span{
     color: var(--color-grey);
@@ -129,6 +131,11 @@
     overflow-y:hidden;
 }
 
-
-
-
+#image {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    opacity: 0;
+    width: 70px;
+    height: 70px;
+}

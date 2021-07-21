@@ -72,6 +72,7 @@ export default class Body {
 	render() {
 		this.$container.innerHTML =
 			`<div class='post__imgContainer addImage'>
+				<input class='addImage' id='image' type='file'>
                 <img class='addImage' src='/icons/image.svg' alt='image'>
                 <div>
                     <span>${this.state.imgPath.length}/10</span>
