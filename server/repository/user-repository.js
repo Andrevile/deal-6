@@ -9,9 +9,9 @@ const userRepository = {
 	},
 
 	findOne: async (id) => {
-		const query = `SELECT username FROM api_server.user where id='${id}';`;
+		const query = `SELECT username, id, pk, createdAt  FROM api_server.user where id='${id}';`;
 
-		const user = await selectQueryExecutor(query);
+		let [user] = await selectQueryExecutor(query);
 		return user;
 	},
 };
