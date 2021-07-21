@@ -1,17 +1,6 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const config = require('../config/config');
 
-const connection = mysql.createConnection(config.db);
+const pool = mysql.createPool(config.db);
 
-connection.connect(function (err) {
-	if (err) throw err;
-
-	console.log('Connected!');
-	const sql = `Select * From ${config.db.database}.User;`;
-	connection.query(sql, function (err, result) {
-		if (err) throw err;
-		console.log('All Users : ', result);
-	});
-});
-
-module.export = { mysql };
+module.exports = { pool };
