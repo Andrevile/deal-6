@@ -30,6 +30,7 @@ export default class DetailPage {
 	};
 
 	constructor($parent) {
+		this.haveHistoryState();
 		console.log(history.state);
 		this.$target = createDOMWithSelector('div', '.detail-page');
 
@@ -40,8 +41,9 @@ export default class DetailPage {
 				seller: this.state.seller,
 			},
 			onClick: (e) => {
-				if (e.target.className === 'back') history.back(-1);
-				else if (e.target.className === 'option')
+				if (e.target.className === 'back') {
+					history.back(-1);
+				} else if (e.target.className === 'option')
 					this.productModal.open();
 			},
 		});
@@ -80,4 +82,12 @@ export default class DetailPage {
 	setState() {}
 
 	render() {}
+
+	haveHistoryState() {
+		if (history.state) {
+			let tempState = history.state;
+			tempState.haveAllValue = true;
+			this.state = tempState;
+		}
+	}
 }
