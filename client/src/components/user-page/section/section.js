@@ -19,6 +19,12 @@ export default class Section {
 		this.onClick = onClick;
 
 		this.render();
+
+		this.$section.addEventListener('keyup', (e) => {
+			if (e.target.className === 'input') {
+				this.checkIdRegex(e);
+			}
+		});
 	}
 	setState(nextState) {
 		this.state = nextState;
@@ -58,6 +64,12 @@ export default class Section {
 			});
 			this.$downtag.innerHTML = `<button class="signup" data-link="/signup">회원가입</button>`;
 		}
+	}
+
+	checkIdRegex(e) {
+		const regex = /[^a-z,A-Z,0-9|]/g;
+		e.target.value = e.target.value.replace(regex, '');
+		e.target.value = e.target.value.slice(0, 20);
 	}
 }
 
