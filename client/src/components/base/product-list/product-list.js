@@ -43,7 +43,13 @@ export default class ProductLists {
 					<span class='product__price' data-link='/detail'>${product.price}</span>
 				</div>
 				
-				${this.createLikeButton(product.like)}
+				${
+					this.isUserOwnProduct(product.seller, product.user)
+						? this.createOptionButton()
+						: this.createLikeButton(product.like)
+				}
+				
+				
 
 				<div class='rightBottom' >
 					${this.createChatCount(product.chatCount)}
@@ -62,6 +68,13 @@ export default class ProductLists {
 			2. product에 user id field 넣어서 userid와 비교한다.
 			3. like 모델이 따로 필요할듯? user와 product를 엮은
 		*/
+	}
+	isUserOwnProduct(seller, user) {
+		return seller === user;
+	}
+
+	createOptionButton() {
+		return `<img class="product__like" src="/icons/more_vert_grey.svg" />`;
 	}
 
 	createLikeButton(like) {
