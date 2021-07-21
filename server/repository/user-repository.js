@@ -1,41 +1,17 @@
-const { pool } = require('../db/db');
-const CustomError = require('../errors/custom-error');
-const error = require('../constants/error');
-const promiseHandler = require('../utils/promiseHandler');
+const { selectQueryExecutor } = require('../utils/queryExecutor');
 
 const userRepository = {
 	findAll: async () => {
 		const query = `SELECT username FROM api_server.user;`;
 
-		const users = selectQueryExecutor(query);
-		/*
-		const connection = await pool.getConnection();
-		const [result, err] = await promiseHandler(connection.query(query));
-
-		if (err) {
-			// DB connection 에서 error 가 생기면 발생하는 경우
-			throw new CustomError(error.DATABASE_ERROR);
-		}
-
-		const [users] = result;
-		connection.release();
-		*/
+		const users = await selectQueryExecutor(query);
 		return users;
 	},
 
 	findOne: async (id) => {
 		const query = `SELECT username FROM api_server.user where id='${id}';`;
 
-		const connection = await pool.getConnection();
-		const [result, err] = await promiseHandler(connection.query(query));
-
-		if (err) {
-			connection.release();
-			throw new CustomError(error.DATABASE_ERROR);
-		}
-
-		const [user] = result;
-		connection.release();
+		const user = await selectQueryExecutor(query);
 		return user;
 	},
 };
