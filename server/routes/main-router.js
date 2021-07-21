@@ -1,5 +1,5 @@
 const express = require('express');
-const decodeJWT = require('../middlewares/auth');
+const decodeJWT = require('../middlewares/decode-jwt');
 const { getMyUserTown } = require('../services/user-town-service');
 const { getAllMyWish, updateWishProduct } = require('../services/wish-service');
 const {
