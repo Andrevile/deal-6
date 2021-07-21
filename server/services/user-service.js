@@ -24,8 +24,7 @@ const signIn = async (req, res, next) => {
 			throw new CustomError(error.LOGIN_ERROR);
 		}
 		/* 클라이언트의 cookie 에 발행된 JWT 를 넣어줍니다. */
-		res.cookie.JWT = createJWT(user);
-
+		res.cookie('JWT', createJWT(user));
 		const { code, message } = success.LOGIN;
 
 		res.status(code).json({ user, message });
