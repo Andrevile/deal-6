@@ -1,4 +1,10 @@
 module.exports = {
+	SAMPLE_ERROR: {
+		statusCode: 400,
+		errorMessage: '클라이언트에 전달한 메세지입니다.',
+		serverMessage: '서버에 표시할 로그입니다.',
+	},
+
 	INVALID_INPUT_ERROR: {
 		statusCode: 400,
 		errorMessage: '잘못된 입력이 있습니다.',
