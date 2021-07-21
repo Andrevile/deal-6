@@ -1,6 +1,7 @@
 const { userRepository } = require('../repository/user-repository');
 const CustomError = require('../errors/custom-error');
 const error = require('../constants/error');
+const { createJWT } = require('../utils/jwt');
 
 const getAllUsers = async (req, res, next) => {
 	try {
@@ -21,7 +22,8 @@ const signIn = async (req, res, next) => {
 		if (!user) {
 			throw new CustomError(error.LOGIN_ERROR);
 		}
-
+		/* 클라이언트의 cookie 에 발행된 JWT 를 넣어줍니다. */
+		res.cookie(createJWT(user));
 		res.status(200).json(user);
 		return;
 	} catch (err) {
