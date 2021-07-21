@@ -9,10 +9,6 @@ router.post('/sign-in', signIn);
 
 router.post('/sign-up', signUp);
 
-router.get('/all', getAllUsers);
-
-// router.get('/me', decodeJWT, getCurrentUser);
-
-// router.get('/all', decodeJWT, getAllUser);
+router.get('/all', decodeJWT, getAllUsers);
 
 module.exports = router;
