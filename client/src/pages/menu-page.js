@@ -20,6 +20,7 @@ export default class MenuPage {
         3 : 관심목록
     */
 	constructor($parent) {
+		console.log(location.pathname);
 		this.$parent = createDOMWithSelector('div', '.menuWrapper');
 		$parent.appendChild(this.$parent);
 

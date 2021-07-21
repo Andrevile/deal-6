@@ -151,7 +151,7 @@ export default class Body {
 				}
 			}
 
-			let result = '₩ ' + array.join('');
+			let result = '₩' + array.join('');
 			e.target.value = result;
 		}
 	}

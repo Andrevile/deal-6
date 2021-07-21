@@ -19,12 +19,12 @@ const router = () => {
 	const routes = [
 		{ path: '/', view: MainPage },
 		{ path: '/detail', view: DetailPage },
+		{ path: '/detail/:id', view: DetailPage },
 		{ path: '/signup', view: SignUpPage },
 		{ path: '/location', view: LocationPage },
 		{ path: '/menu', view: MenuPage },
 		{ path: '/user', view: UserPage },
 		{ path: '/writing', view: WritingPage },
-		{ path: '/chat/:id', view: MenuPage },
 		{ path: '/:notfound', view: NotFound },
 	];
 

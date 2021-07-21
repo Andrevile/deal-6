@@ -24,7 +24,7 @@ export default class ImgContainer {
 		this.$parent = $parent;
 		this.currentImgIndex = 0;
 		this.$imgContainer = createDOMWithSelector('div', '.img-container');
-		this.$imgContainer.style.width = `${20 * this.state.imgs.length}rem`;
+		this.$imgContainer.style.width = `${20 * this.state.length}rem`;
 		$parent.appendChild(this.$imgContainer);
 
 		/*
@@ -36,7 +36,7 @@ export default class ImgContainer {
 
 		const isOutOfBound = (move) => {
 			return (
-				this.currentImgIndex + move >= this.state.imgs.length ||
+				this.currentImgIndex + move >= this.state.length ||
 				this.currentImgIndex + move < 0
 			);
 		};
@@ -79,7 +79,7 @@ export default class ImgContainer {
 		$parent.appendChild(this.$buttonContainer);
 
 		this.$imgContainer.innerHTML = `
-			${this.state.imgs.map((src) => createImgTemplate(src, '.gradient')).join('\n')}	
+			${this.state.map((src) => createImgTemplate(src, '.gradient')).join('\n')}	
 		`;
 
 		this.render();

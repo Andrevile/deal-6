@@ -122,6 +122,8 @@ const sampleData = [
 		like: 'T',
 		chatCount: 5,
 		likeCount: 3,
+		user: '문지호',
+		seller: '남영우',
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -132,6 +134,8 @@ const sampleData = [
 		like: 'F',
 		chatCount: 5,
 		likeCount: 0,
+		user: '문지호',
+		seller: '문지호',
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -142,6 +146,8 @@ const sampleData = [
 		like: 'F',
 		chatCount: 5,
 		likeCount: 3,
+		user: '문지호',
+		seller: '문지호',
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -152,6 +158,8 @@ const sampleData = [
 		like: 'F',
 		chatCount: 5,
 		likeCount: 3,
+		user: '문지호',
+		seller: '남영우',
 	},
 	{
 		imgPath: '/imgs/photo.jpeg',
@@ -162,5 +170,7 @@ const sampleData = [
 		like: 'F',
 		chatCount: 5,
 		likeCount: 3,
+		user: '문지호',
+		seller: '남영우',
 	},
 ];

@@ -1,5 +1,7 @@
 import './product-list.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
+// import ProductModal from '../product-modal/product-modal';
+
 export default class ProductLists {
 	state = [];
 
@@ -9,7 +11,11 @@ export default class ProductLists {
 		$parent.appendChild(this.$target);
 
 		this.refreshState = refreshState;
+
 		this.render();
+		/*this.productModal = new ProductModal({
+			$parent: this.$target,
+		}); 보류; */
 	}
 
 	setState(nextState) {
@@ -74,7 +80,7 @@ export default class ProductLists {
 	}
 
 	createOptionButton() {
-		return `<img class="product__like" src="/icons/more_vert_grey.svg" />`;
+		return `<img class="product__option" src="/icons/more_vert_grey.svg" />`;
 	}
 
 	createLikeButton(like) {

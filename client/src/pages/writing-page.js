@@ -1,7 +1,7 @@
 import NavigationBar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/writing-page/body/body';
 import Footer from '../components/writing-page/footer/footer';
-
+// import { navigateTo } from '../router';
 const mode = '글쓰기';
 
 export default class WritingPage {
@@ -32,7 +32,7 @@ export default class WritingPage {
 			onClick: () => {
 				// state에 userid 추가하고 (추가안해도 인자로 받아서 괜찮을듯) haveAllValue를 빼면 될듯!
 				// 게시물 post 요청 (this.state)
-				// menupage로 이동 (바로 상품 올린거 확인 가능)
+				// navigateTo('/detail',this.state) PK 추가해야할듯!
 			},
 		});
 		this.body = new Body({
