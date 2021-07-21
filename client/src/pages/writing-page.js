@@ -6,22 +6,26 @@ const mode = '글쓰기';
 
 export default class WritingPage {
 	state = {
-		location: '인창동',
-		imgPath: [
-			'/imgs/photo.jpeg',
-			'/imgs/photo.jpeg',
-			'/imgs/photo.jpeg',
-			'/imgs/photo.jpeg',
-			'/imgs/photo.jpeg',
-		],
+		user: '', // pk값을 들고있을지, 이름을 들고 있을지 고민입니다.
+		seller: '',
+		price: '',
 		title: '',
 		description: '',
-		price: '',
+		status: 0,
+		location: '인창동', // 기본적으로 유저의 메인동네를 갖고 있어야한다.
 		category: '',
+		imgPath: [],
+		createdAt: '',
+		chatCount: 0,
+		wishCount: 0,
+		visitCount: 0,
 		haveAllValue: false,
 	};
+
 	// haveAllValue : 모든 값이 있어야 Navbar doneIcon 활성화 가능!
 	constructor($parent) {
+		this.haveHistoryState();
+		console.log(this.state);
 		this.navigationBar = new NavigationBar({
 			$parent,
 			initialState: mode,
@@ -48,5 +52,13 @@ export default class WritingPage {
 		this.state = nextState;
 		this.navigationBar.setState(this.state.haveAllValue);
 		this.body.setState(nextState);
+	}
+
+	haveHistoryState() {
+		if (history.state) {
+			let tempState = history.state;
+			tempState.haveAllValue = true;
+			this.state = tempState;
+		}
 	}
 }

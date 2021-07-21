@@ -3,15 +3,7 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import { CATEGORY_LIST } from '../../../constants/category-list';
 
 export default class Body {
-	state = {
-		location: '인창동',
-		imgPath: [],
-		title: '',
-		description: '',
-		price: '',
-		category: '',
-		haveAllValue: false,
-	};
+	state = {};
 
 	constructor({ $parent, initialState, refreshState }) {
 		this.state = initialState;
@@ -24,7 +16,7 @@ export default class Body {
             </div>
            
             <hr>
-            <input class='post__title' type='text' placeholder="글 제목">
+            <input class='post__title' type='text' placeholder="글 제목" value=${this.state.title}>
             <div class='category'>
                 <span>(필수)카테고리를 선택해주세요.</span>
                 <div class='category__buttonOuter'>
@@ -32,9 +24,9 @@ export default class Body {
                 </div>
             </div>
             <hr>
-            <input class='post__price' type='text' placeholder="₩ 가격(선택사항)">
+            <input class='post__price' type='text' placeholder="₩ 가격(선택사항)" value=${this.state.price}>
             <hr>
-            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요."></textarea>
+            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.description}</textarea>
         `;
 
 		this.$container = document.querySelector('.post__container');
@@ -142,9 +134,7 @@ export default class Body {
 					</div> 
 				</form>`;
 	}
-	hi(value) {
-		alert(value);
-	}
+
 	rearrangePrice(e) {
 		// 콤마와 원을 붙혀주는 함수
 		if (e.target.value[0] !== '₩') {
