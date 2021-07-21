@@ -42,7 +42,6 @@
 }
 
 .move {
-    /* border: none; */
     color: var(--color-grey);
     border: none;
     background-color: transparent;

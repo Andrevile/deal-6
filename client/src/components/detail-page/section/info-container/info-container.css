@@ -15,7 +15,9 @@
 .info.status {
     width: 5.5rem;
     height: 2.5rem;
-    border-radius: 0.5rem;   
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-grey3);
+    padding: 0px 10px;
 }
 
 .sub-header-container {
