@@ -1,5 +1,5 @@
-const { userRepository } = require('../repository/user-repository');
-const { locationRepository } = require('../repository/location-repository');
+const { userRepo } = require('../repository/user-repository');
+const { locationRepo } = require('../repository/location-repository');
 const CustomError = require('../errors/custom-error');
 const error = require('../constants/error');
 const success = require('../constants/success');
@@ -7,7 +7,7 @@ const { createJWT } = require('../utils/jwt');
 
 const getAllUsers = async (req, res, next) => {
 	try {
-		const users = await userRepository.findAll();
+		const users = await userRepo.findAll();
 
 		res.status(200).json({ users });
 		return;
@@ -19,7 +19,7 @@ const getAllUsers = async (req, res, next) => {
 const signIn = async (req, res, next) => {
 	try {
 		const userId = req.body.id;
-		const [user] = await userRepository.findOne(userId);
+		const [user] = await userRepo.findOne(userId);
 
 		if (!user) {
 			throw new CustomError(error.LOGIN_ERROR);
@@ -39,18 +39,18 @@ const signUp = async (req, res, next) => {
 	try {
 		const { id, location } = req.body;
 
-		let [user] = await userRepository.findOne(id);
+		let [user] = await userRepo.findOne(id);
 
 		if (user) {
 			throw new CustomError(error.EXIST_USER_ID_ERROR);
 		}
 
-		const [isExistedLocation] = await locationRepository.findOne(location);
+		const [isExistedLocation] = await locationRepo.findOne(location);
 
 		let newLocation =
-			isExistedLocation || (await locationRepository.create(location));
+			isExistedLocation || (await locationRepo.create(location));
 
-		user = await userRepository.create(id, location);
+		user = await userRepo.create(id, location);
 
 		const { code, message } = success.SIGNUP;
 
