@@ -1,7 +1,10 @@
 const API_ENDPOINT = '/api';
 
 const getData = (url) => {
-	return fetch(`${API_ENDPOINT}` + `${url}`).then((res) => res.json());
+	return fetch(`${API_ENDPOINT}` + `${url}`).then((res) => {
+		if (!res.ok) throw new Error('Http Error...');
+		return res.json();
+	});
 };
 
 const postData = (url, data) => {
@@ -11,7 +14,10 @@ const postData = (url, data) => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-	}).then((res) => res.json());
+	}).then((res) => {
+		if (!res.ok) throw new Error('Http Error...');
+		return res.json();
+	});
 };
 
 const patchData = (url, data) => {
@@ -21,13 +27,19 @@ const patchData = (url, data) => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-	}).then((res) => res.json());
+	}).then((res) => {
+		if (!res.ok) throw new Error('Http Error...');
+		return res.json();
+	});
 };
 
 const deleteData = (url) => {
 	return fetch(`${API_ENDPOINT}` + `${url}`, {
 		method: 'DELETE',
-	}).then((res) => res.json());
+	}).then((res) => {
+		if (!res.ok) throw new Error('Http Error...');
+		return res.json();
+	});
 };
 
 export const api = {
@@ -39,10 +51,10 @@ export const api = {
 					data: JSON.stringify(data),
 				};
 			})
-			.catch(() => {
+			.catch((e) => {
 				return {
 					success: false,
-					message: 'Error 발생!',
+					message: e.message,
 				};
 			});
 	},
@@ -54,10 +66,10 @@ export const api = {
 					data: JSON.stringify(data),
 				};
 			})
-			.catch(() => {
+			.catch((e) => {
 				return {
 					success: false,
-					message: 'Error 발생!',
+					message: e.message,
 				};
 			});
 	},
@@ -69,10 +81,10 @@ export const api = {
 					data: JSON.stringify(data),
 				};
 			})
-			.catch(() => {
+			.catch((e) => {
 				return {
 					success: false,
-					message: 'Error 발생!',
+					message: e.message,
 				};
 			});
 	},
@@ -83,10 +95,10 @@ export const api = {
 					success: true,
 				};
 			})
-			.catch(() => {
+			.catch((e) => {
 				return {
 					success: false,
-					message: 'Error 발생!',
+					message: e.message,
 				};
 			});
 	},
