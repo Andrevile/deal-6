@@ -9,7 +9,7 @@ import { api } from '../api/api';
 export default class MainPage {
 	state = {
 		products: sampleData,
-		locationName: ['역삼동', '인창동'], // default로 하나는 갖고 있어야 한다!
+		locationName: ['역삼동'], // default로 하나는 갖고 있어야 한다!
 		index: 0,
 	};
 
@@ -51,16 +51,21 @@ export default class MainPage {
 		// this.initiallizeData();
 	}
 
+	// 위에 주석 있음..!
 	initiallizeData() {
-		// api 안되면 new Promise()
-		api.get('/blah').then((res) => {
-			if (res.success) {
-				// this.state = ?
-				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
-			} else {
-				alert(res.message);
-			}
-		});
+		/*
+			api 호출 (자신 동네들, 프로덕트)
+		*/
+
+		api.get('/')
+			.then((res) => {
+				this.state.products = res.data;
+				this.state.locationName = res.data;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
@@ -94,6 +99,18 @@ export default class MainPage {
 			this.category.close();
 			this.ProductLists.open();
 			console.log(CATEGORY_LIST[idx]); // api 인자로 물건들 호출
+			/*
+				api 호출 (자신 동네들, 프로덕트)
+			*/
+
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 		}
 		/*
 			CATEGORY_LIST[idx];
@@ -112,13 +129,20 @@ export default class MainPage {
 			// 동네 클릭 시 발생
 			this.locationMiniModal.close();
 			if (this.state.index !== idx) {
-				this.state.index = idx;
-				//api 요청 후 product state도 변경 (비동기제어)
-				this.$parent.scrollTo({
-					top: 0,
-					behavior: 'smooth',
-				});
-				this.setState();
+				//this.state.locationName[this.state.index]
+				api.get('/')
+					.then((res) => {
+						this.state.index = idx;
+						this.state.products = res.data;
+						this.$parent.scrollTo({
+							top: 0,
+							behavior: 'smooth',
+						});
+						this.setState();
+					})
+					.catch((e) => {
+						alert(e.message);
+					});
 			}
 		}
 	}
@@ -126,7 +150,8 @@ export default class MainPage {
 
 const sampleData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -138,7 +163,8 @@ const sampleData = [
 		seller: '남영우',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -150,7 +176,8 @@ const sampleData = [
 		seller: '문지호',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -162,7 +189,8 @@ const sampleData = [
 		seller: '문지호',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -174,7 +202,8 @@ const sampleData = [
 		seller: '남영우',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
