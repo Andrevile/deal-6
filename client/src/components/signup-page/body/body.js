@@ -36,9 +36,10 @@ export default class BodyPart {
 			onClick: (e) => {
 				e.preventDefault();
 				if (e.target.className === 'largeButton') {
-					// api (this.state 정보 인자)
-					// 회원가입 알림 및 클릭시 로그인 이동
-					api.post('/signup', this.state)
+					api.post('/user/sign-up', {
+						id: this.$id.value,
+						location: this.$location.value,
+					})
 						.then(() => {
 							this.welcomeModal.open();
 						})
