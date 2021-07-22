@@ -4,7 +4,7 @@ import { createDOMWithSelector } from '../../../../util/createDOMWithSelector';
 export default class Body {
 	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
-		console.log(this.CATEGORY_LIST);
+
 		this.$target = createDOMWithSelector('section', '.categoryList');
 		$parent.appendChild(this.$target);
 		this.$Wrapper = createDOMWithSelector('div', '.ctgWrapper');

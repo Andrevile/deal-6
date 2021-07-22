@@ -15,11 +15,11 @@ export default class LargeButton {
 		else this.$target = createDOMWithSelector('button', '.largeButton');
 
 		this.onClick = onClick;
+		$parent.appendChild(this.$target);
 
+		this.$target.innerText = this.state;
 		this.$target.addEventListener('click', (e) => {
 			this.onClick(e);
 		});
-		this.$target.innerText = this.state;
-		$parent.appendChild(this.$target);
 	}
 }

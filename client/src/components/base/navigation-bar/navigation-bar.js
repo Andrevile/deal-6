@@ -9,11 +9,9 @@ export default class NavigationBar {
 	doneIcon = false; // 글쓰기 모드 변수
 	activeDoneIcon = false; // 글쓰기 모드 변수
 
-	// 4번째 인자로 모달 클릭 이벤트 해야할듯.
 	constructor({ $parent, initialState, onClick, isModal = false }) {
 		this.isModal = isModal;
 		this.state = initialState;
-		this.isModal ? (this.onClick = onClick) : '';
 		this.setTarget(initialState);
 
 		$parent.appendChild(this.$target);
@@ -95,9 +93,9 @@ export default class NavigationBar {
 		if (this.isModal === true) {
 			this.onClick(e, 0);
 		} else if (
-			this.state === '메뉴' ||
-			this.state === '내 계정' ||
-			this.state === '로그인'
+			(e.target.className === 'nav__prev' && this.state === '메뉴') ||
+			(e.target.className === 'nav__prev' && this.state === '내 계정') ||
+			(e.target.className === 'nav__prev' && this.state === '로그인')
 		) {
 			this.onClick(e);
 			setTimeout(() => {
