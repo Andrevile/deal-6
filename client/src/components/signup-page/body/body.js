@@ -2,6 +2,7 @@ import './body.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import Button from '../../../components/base/large-button/large-button';
 import WelcomeModal from '../modal/modal';
+import { api } from '../../../api/api';
 
 const mode = '회원가입';
 
@@ -37,8 +38,13 @@ export default class BodyPart {
 				if (e.target.className === 'largeButton') {
 					// api (this.state 정보 인자)
 					// 회원가입 알림 및 클릭시 로그인 이동
-					console.log('api 처리');
-					this.welcomeModal.open();
+					api.post('/signup', this.state)
+						.then(() => {
+							this.welcomeModal.open();
+						})
+						.catch((e) => {
+							alert(e.message);
+						});
 				}
 			},
 		});
@@ -72,7 +78,7 @@ export default class BodyPart {
 		}
 	}
 	checkLocationRegex(e) {
-		const regex = /[^가-힣,0-9|]/g;
+		const regex = /[^ㄱ-ㅎ,가-힣,0-9|]/g;
 		e.target.value = e.target.value.replace(regex, '');
 	}
 

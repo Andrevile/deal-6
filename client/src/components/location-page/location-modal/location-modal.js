@@ -43,7 +43,7 @@ export default class LocationModal {
 	}
 
 	checkRegexEvent(e) {
-		const regex = /[^가-힣,0-9|]/g;
+		const regex = /[^ㄱ-ㅎ,가-힣,0-9|]/g;
 		e.target.value = e.target.value.replace(regex, '');
 	}
 
