@@ -3,7 +3,7 @@ const {
 	insertQueryExecutor,
 } = require('../utils/queryExecutor');
 
-const locationRepository = {
+const locationRepo = {
 	findAll: async () => {
 		const query = `SELECT location.pk, location.name FROM api_server.location;`;
 
@@ -30,4 +30,4 @@ const locationRepository = {
 	},
 };
 
-module.exports = { locationRepository };
+module.exports = { locationRepo };

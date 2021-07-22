@@ -3,7 +3,7 @@ const {
 	insertQueryExecutor,
 } = require('../utils/queryExecutor');
 
-const userRepository = {
+const userRepo = {
 	findAll: async () => {
 		const query = `SELECT user.id, user.pk, user.createdAt, user.updatedAt FROM api_server.user;`;
 
@@ -28,4 +28,4 @@ const userRepository = {
 	},
 };
 
-module.exports = { userRepository };
+module.exports = { userRepo };
