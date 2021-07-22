@@ -1,7 +1,16 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
-const { UserRepository } = require('../repository/user-repository');
+const error = require('../constants/error');
+const CustomError = require('../errors/custom-error');
+const { userRepository } = require('../repository/user-repository');
 
+/**
+ *
+ * @param {object} user - DB 에서 조회한 결과
+ * @param {string} user.id - user의 id
+ * @param {string} user.pk - user의 pk
+ * @returns {string} JWT 입니다.
+ */
 const createJWT = (user) => {
 	const payload = {
 		pk: user.pk,
@@ -17,8 +26,17 @@ const verifyJWT = async (token) => {
 		return null;
 	}
 
-	const { id } = decodeToken;
-	return await UserRepository.findOne(id);
+	const user = await userRepository.findOne(decodeToken.id);
+
+	if (isInvalidPayLoad(decodeToken, user)) {
+		throw new CustomError(error.JWT_TOKEN_INVALID_ERROR);
+	}
+
+	return user;
+};
+
+const isInvalidPayLoad = (decodeToken, user) => {
+	return decodeToken.id !== user.id || decodeToken.pk !== user.pk;
 };
 
 module.exports = { createJWT, verifyJWT };
