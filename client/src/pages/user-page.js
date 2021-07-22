@@ -18,7 +18,7 @@ export default class UserPage {
 
 		this.$appBar = new AppBar({
 			$parent: this.$parent,
-			initialState: this.mode,
+			initialState: this.state.mode,
 			onClick: (e) => {
 				if (e.target.className === 'nav__prev') {
 					this.$parent.classList.remove('active');
@@ -28,11 +28,17 @@ export default class UserPage {
 
 		this.$section = new Section({
 			$parent: this.$parent,
-			initialState: this.state,
+			initialState: this.state.user,
 			onClick: (e, inputValue) => {
 				if (this.isUserLogin()) {
 					// logout api 호출 (쿠키 제거)만 하면 끝
-					navigateTo('/');
+					api.get('/')
+						.then(() => {
+							navigateTo('/');
+						})
+						.catch((e) => {
+							alert(e.message);
+						});
 				} else {
 					e.preventDefault();
 					if (inputValue.length === 0) {
@@ -42,6 +48,13 @@ export default class UserPage {
 						}, 2000);
 					} else {
 						console.log('login');
+						api.get('/')
+							.then(() => {
+								navigateTo('/');
+							})
+							.catch((e) => {
+								alert(e.message);
+							});
 						// login api 호출
 						// 성공시 : (쿠키 삽입)만 하면 끝 + navigateTo('/');
 						// 실패시 : 경고문구 || 길이가 0이거나
@@ -55,20 +68,23 @@ export default class UserPage {
 			this.$parent.classList.add('active');
 		}, 0);
 
-		// this.initiallizeData();
+		this.initiallizeData();
 	}
 
+	/*
+		유저가 없을때?
+	*/
 	initiallizeData() {
-		// api 안되면 new Promise()
-		api.get('/blah').then((res) => {
-			if (res.success) {
-				// this.state.mode = '내 계정'
-				// this.state.user = '@@@@@'
-				// this.setState(); 어떤식의 데이터가 오는지 확인!
-			} else {
-				alert(res.message);
-			}
-		});
+		api.get('/')
+			.then((res) => {
+				// 아래는 로그인 한 상태 기준
+				this.state.user = res.data.id;
+				this.state.mode = '내 계정';
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
