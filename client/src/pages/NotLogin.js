@@ -1,21 +1,18 @@
-import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Redirect from '../components/base/redirect/redirect';
-
-const mode = '-';
+import { navigateTo } from '../router';
 
 export default class NotLogin {
 	state = {
-		link: '/user',
-		message: 'Login',
+		link: '/',
+		message: '2초 후 홈으로 이동❗',
 		status: '',
 		content: 'This service requires login',
 	};
 	constructor($parent) {
-		new Navbar({
-			$parent,
-			initialState: mode,
-		});
-
 		new Redirect({ $parent, initialState: this.state });
+
+		setTimeout(() => {
+			navigateTo('/');
+		}, 2000);
 	}
 }

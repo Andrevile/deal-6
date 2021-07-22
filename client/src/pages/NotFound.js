@@ -1,7 +1,4 @@
-import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Redirect from '../components/base/redirect/redirect';
-
-const mode = '-';
 
 export default class NotFound {
 	state = {
@@ -11,11 +8,6 @@ export default class NotFound {
 		content: 'Page not found',
 	};
 	constructor($parent) {
-		new Navbar({
-			$parent,
-			initialState: mode,
-		});
-
 		new Redirect({
 			$parent,
 			initialState: this.state,

@@ -61,7 +61,6 @@ export default class NavigationBar {
 			case '내 계정':
 			case '메뉴':
 			case '카테고리':
-			case '-':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
 			case '글쓰기':
