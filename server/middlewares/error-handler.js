@@ -7,6 +7,6 @@ module.exports = (err, req, res, next) => {
 		return res.status(err.code).json({ message: err.message });
 	} else {
 		console.log(`[ERROR] : Unknown error : ${err}`);
-		return res.status(500).json('');
+		return res.status(500).json({ message: 'unknown error!' });
 	}
 };
