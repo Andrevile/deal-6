@@ -26,7 +26,7 @@ export default class Body {
             <hr>
             <input class='post__price' type='text' placeholder="₩ 가격(선택사항)" value=${this.state.price}>
             <hr>
-            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.description}</textarea>
+            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.content}</textarea>
         `;
 
 		this.$container = document.querySelector('.post__container');
@@ -160,7 +160,7 @@ export default class Body {
 		// 가격제외 모든 값 있는지 확인
 		if (
 			this.state.title.length > 0 &&
-			this.state.description.length > 0 &&
+			this.state.content.length > 0 &&
 			this.state.imgPath.length > 0 &&
 			this.state.category.length > 0
 		) {
@@ -191,7 +191,7 @@ export default class Body {
 	bindContentEvent(e) {
 		// textarea 높이 가변조절
 		this.$content.style.height = this.$content.scrollHeight + 'px';
-		this.state.description = e.target.value;
+		this.state.content = e.target.value;
 		this.chcekValueAndRefreshState();
 	}
 

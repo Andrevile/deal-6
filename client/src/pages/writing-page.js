@@ -10,7 +10,7 @@ export default class WritingPage {
 		seller: '',
 		price: '',
 		title: '',
-		description: '',
+		content: '',
 		status: 0,
 		location: '인창동', // 기본적으로 유저의 메인동네를 갖고 있어야한다.
 		category: '',

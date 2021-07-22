@@ -4,6 +4,8 @@ import PostButton from '../components/main-page/write-post-button/write-post-but
 import Category from '../components/main-page/category/category.js';
 import { CATEGORY_LIST } from '../constants/category-list';
 import LocationMiniModal from '../components/main-page/location-mini-modal/location-mini-modal';
+import { api } from '../api/api';
+
 export default class MainPage {
 	state = {
 		products: sampleData,
@@ -45,16 +47,26 @@ export default class MainPage {
 				this.bindLocationModalClickEvent(e, idx);
 			},
 		});
+
+		// this.initiallizeData();
+	}
+
+	initiallizeData() {
+		// api 안되면 new Promise()
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.state = ?
+				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
+		});
 	}
 
 	setState() {
 		//리렌더링파트
 		this.navbar.setState(this.state.locationName[this.state.index]);
 		this.ProductLists.setState(this.state.products);
-	}
-
-	render() {
-		//렌더링파트
 	}
 
 	bindNavBarClickEvent(e) {
