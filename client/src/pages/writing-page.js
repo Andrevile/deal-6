@@ -1,7 +1,9 @@
 import NavigationBar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/writing-page/body/body';
 import Footer from '../components/writing-page/footer/footer';
-// import { navigateTo } from '../router';
+import { navigateTo } from '../router';
+import { api } from '../api/api';
+
 const mode = '글쓰기';
 
 export default class WritingPage {
@@ -30,6 +32,23 @@ export default class WritingPage {
 			$parent,
 			initialState: mode,
 			onClick: () => {
+				if (history.state) {
+					api.update('/', this.state)
+						.then(() => {
+							navigateTo('/detail', this.state);
+						})
+						.catch((e) => {
+							alert(e.message);
+						});
+				} else {
+					api.post('/', this.state)
+						.then(() => {
+							navigateTo('/detail', this.state);
+						})
+						.catch((e) => {
+							alert(e.message);
+						});
+				}
 				// state에 userid 추가하고 (추가안해도 인자로 받아서 괜찮을듯) haveAllValue를 빼면 될듯!
 				// 게시물 post 요청 (this.state)
 				// navigateTo('/detail',this.state) PK 추가해야할듯!
@@ -46,6 +65,23 @@ export default class WritingPage {
 			$parent,
 			initialState: this.state.location,
 		});
+
+		history.state ? '' : this.initiallizeData();
+	}
+
+	initiallizeData() {
+		// 메인동네 + 유저네임 / + 셀러네임(same)
+
+		api.get('/')
+			.then((res) => {
+				this.state.location = res.data.MainLocation;
+				this.state.user = res.data.id;
+				this.state.seller = res.data.id;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState(nextState) {
