@@ -62,22 +62,38 @@ export default class LocationPage {
 		) {
 			this.modal.close();
 		} else if (e.target.className === 'modal__confirm active') {
-			// 확인 클릭 시 발생
-			// api로 동네 추가
-			this.state.allMyLocation = [...this.state.allMyLocation, value];
-			this.modal.close();
-			this.modal.$input = ''; // input 초기화
-			this.setState();
+			api.post('/', { location: value })
+				.then(() => {
+					// 확인 클릭 시 발생
+					// api로 동네 추가
+					this.state.allMyLocation = [
+						...this.state.allMyLocation,
+						value,
+					];
+					this.modal.close();
+					this.modal.$input = ''; // input 초기화
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 		}
 	}
 
 	bindRemoveLocationEvent(idx) {
-		let LocationArray = [...this.state.allMyLocation];
-		LocationArray.splice(idx, 1);
-		this.state.allMyLocation = LocationArray;
-		this.setState();
+		api.delete('/?location')
+			.then(() => {
+				let LocationArray = [...this.state.allMyLocation];
+				LocationArray.splice(idx, 1);
+				this.state.allMyLocation = LocationArray;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
+
 		/* 
-			--추후 예정--
+			--추후 예정-- (백에서 처리해야 할듯)
 			삭제 시(각각 api 요청 동반 예상)
 			2개일때 :
 				idx 0 삭제 -> idx 1을 메인동네로
