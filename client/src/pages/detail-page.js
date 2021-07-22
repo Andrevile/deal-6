@@ -20,9 +20,9 @@ export default class DetailPage {
 		location: '문래동',
 		category: '기타 중고물품',
 		imgPath: [
-			'/imgs/shoes-1.jpg',
-			'/imgs/shoes-1.jpg',
-			'/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
 		],
 		createdAt: '3분전',
 		chatCount: 3,

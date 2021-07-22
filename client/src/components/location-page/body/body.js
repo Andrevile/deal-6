@@ -49,7 +49,7 @@ export default class BodyPart {
                 <span>
                     ${this.state[0]}
                 </span>
-                <img class='location__cancelBtn' src="/icons/cancel.svg" data-idx='0'/>
+                <img class='location__cancelBtn' src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/cancel.svg" data-idx='0'/>
             </button>
             `
 			: ``;
@@ -62,7 +62,7 @@ export default class BodyPart {
                 <span>
                     ${this.state[1]}
                 </span>
-                <img class='location__cancelBtn' src="/icons/cancel_baemin.svg" data-idx='1'/>
+                <img class='location__cancelBtn' src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/cancel_baemin.svg" data-idx='1'/>
             </button>
             `
 			: ``;

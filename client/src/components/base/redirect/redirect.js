@@ -14,7 +14,7 @@ export default class Redirect {
 		$parent.appendChild(this.$target);
 		this.$target.innerHTML = `
 		    <button class='redirect__button' data-link=${this.state.link}>${this.state.message}</button>
-		    <img src="/imgs/notfound.gif">
+		    <img src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/notfound.gif">
 		    <h1>${this.state.status}</h1>
 		    <div>${this.state.content}</div>
 		`;

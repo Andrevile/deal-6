@@ -1,6 +1,5 @@
 import './navigation-bar.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
-// import CATEGORY_ICON from '/imgs/category.svg'; 경로문제 발생 (보류)
 
 export default class MainNavbar {
 	state = '';
@@ -13,14 +12,14 @@ export default class MainNavbar {
 
 		this.$target.innerHTML = `
             <div class='nav__category'>
-                <img class='nav__categoryImg' src='/icons/category.svg' alt='category'>
+                <img class='nav__categoryImg' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/category.svg' alt='category'>
             </div>
             <div class='nav__location'>
                 
             </div>
             <div class='nav__rightSide'>
-                <img src='/icons/account.svg' alt='profile' data-link="/user">
-                <img src='/icons/menu.svg' data-link='/menu' alt='menu'>
+                <img src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/account.svg' alt='profile' data-link="/user">
+                <img src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/menu.svg' data-link='/menu' alt='menu'>
             </div>
         `;
 
@@ -40,7 +39,7 @@ export default class MainNavbar {
 
 	render() {
 		this.$location.innerHTML = `
-            <img class='nav__locationIcon' src='/icons/location.svg' alt='location'>
+            <img class='nav__locationIcon' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/location.svg' alt='location'>
             <span class='nav__locationName'>${this.state}</span>
         `;
 	}
