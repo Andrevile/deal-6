@@ -1,4 +1,5 @@
 const { userRepository } = require('../repository/user-repository');
+const { locationRepository } = require('../repository/location-repository');
 const CustomError = require('../errors/custom-error');
 const error = require('../constants/error');
 const success = require('../constants/success');
@@ -8,7 +9,7 @@ const getAllUsers = async (req, res, next) => {
 	try {
 		const users = await userRepository.findAll();
 
-		res.status(200).json(users);
+		res.status(200).json({ users });
 		return;
 	} catch (err) {
 		next(err);
@@ -18,7 +19,7 @@ const getAllUsers = async (req, res, next) => {
 const signIn = async (req, res, next) => {
 	try {
 		const userId = req.body.id;
-		const user = await userRepository.findOne(userId);
+		const [user] = await userRepository.findOne(userId);
 
 		if (!user) {
 			throw new CustomError(error.LOGIN_ERROR);
@@ -34,9 +35,29 @@ const signIn = async (req, res, next) => {
 	}
 };
 
-const signUp = async (req, res) => {
-	// 임시
-	res.status(200).json({ message: '성공' });
+const signUp = async (req, res, next) => {
+	try {
+		const { id, location } = req.body;
+
+		let [user] = await userRepository.findOne(id);
+
+		if (user) {
+			throw new CustomError(error.EXIST_USER_ID_ERROR);
+		}
+
+		const [isExistedLocation] = await locationRepository.findOne(location);
+
+		let newLocation =
+			isExistedLocation || (await locationRepository.create(location));
+
+		user = await userRepository.create(id, location);
+
+		const { code, message } = success.SIGNUP;
+
+		res.status(code).json({ user, message, location: newLocation });
+	} catch (err) {
+		next(err);
+	}
 };
 
 module.exports = { signIn, signUp, getAllUsers };

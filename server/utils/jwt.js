@@ -23,17 +23,19 @@ const verifyJWT = async (token) => {
 	const decodeToken = jwt.verify(token, config.jwt.secretKey);
 
 	if (!decodeToken) {
-		return null;
+		return new CustomError(error.JWT_TOKEN_INVALID_ERROR);
 	}
 
 	const user = await userRepository.findOne(decodeToken.id);
 
-	if (isInvalidPayLoad(decodeToken, user)) {
+	if (isExistedId(user) || isInvalidPayLoad(decodeToken, user)) {
 		throw new CustomError(error.JWT_TOKEN_INVALID_ERROR);
 	}
 
 	return user;
 };
+
+const isExistedId = (user) => user.length !== 0;
 
 const isInvalidPayLoad = (decodeToken, user) => {
 	return decodeToken.id !== user.id || decodeToken.pk !== user.pk;

@@ -23,4 +23,9 @@ module.exports = {
 		code: 200,
 		message: '성공적으로 로그인했습니다.',
 	},
+
+	SIGNUP: {
+		code: 200,
+		message: '성공적으로 회원가입 했습니다.',
+	},
 };
