@@ -52,6 +52,14 @@
     top: 19px;
 }
 
+.product__option {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 19px;
+    top: 19px;
+}
+
 .rightBottom{
     position: absolute;
     right: 5px;

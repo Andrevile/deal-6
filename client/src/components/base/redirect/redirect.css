@@ -1,0 +1,40 @@
+.redirect {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    margin-top: 70px   
+}
+
+.redirect img{
+    width: 80%;
+    height: 40%;
+}
+
+
+.redirect div{
+    font-size: 20px;
+}
+
+.redirect h1{
+    margin-top: 20px;
+    font-size: 24px;
+    color: var(--color-error)
+}
+
+.redirect__button{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    width: 150px;
+    height: 35px;
+    background: var(--color-baemin);
+    border-radius: 8px;
+    border: none;
+    color: var(--color-white);
+    font-size: var(--font-small);
+    margin-bottom: 10px;
+    
+}

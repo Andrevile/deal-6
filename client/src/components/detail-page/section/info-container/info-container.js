@@ -28,9 +28,7 @@ export default class InfoContainer {
 					}).join('\n')}
 					</select>
 				`
-				: `
-					<button class="info status">${STATUS[status]} </button>
-				`;
+				: '';
 		};
 
 		const createProductHeaderTemplate = ({

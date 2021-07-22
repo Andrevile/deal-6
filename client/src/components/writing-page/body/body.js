@@ -3,15 +3,7 @@ import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import { CATEGORY_LIST } from '../../../constants/category-list';
 
 export default class Body {
-	state = {
-		location: '인창동',
-		imgPath: [],
-		title: '',
-		description: '',
-		price: '',
-		category: '',
-		haveAllValue: false,
-	};
+	state = {};
 
 	constructor({ $parent, initialState, refreshState }) {
 		this.state = initialState;
@@ -24,7 +16,7 @@ export default class Body {
             </div>
            
             <hr>
-            <input class='post__title' type='text' placeholder="글 제목">
+            <input class='post__title' type='text' placeholder="글 제목" value=${this.state.title}>
             <div class='category'>
                 <span>(필수)카테고리를 선택해주세요.</span>
                 <div class='category__buttonOuter'>
@@ -32,9 +24,9 @@ export default class Body {
                 </div>
             </div>
             <hr>
-            <input class='post__price' type='text' placeholder="₩ 가격(선택사항)">
+            <input class='post__price' type='text' placeholder="₩ 가격(선택사항)" value=${this.state.price}>
             <hr>
-            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요."></textarea>
+            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.description}</textarea>
         `;
 
 		this.$container = document.querySelector('.post__container');
@@ -61,6 +53,13 @@ export default class Body {
 		this.$container.addEventListener('click', (e) => {
 			this.bindImageButtonEvent(e);
 		});
+		// this.$container.addEventListener('change', (e) => {
+		// 	console.log(this.$container);
+		// 	if (e.target.id === '#image') {
+		// 		console.log(e.target.value);
+		// 	}
+		// });
+		// 위의 방식은 input file이 아닌 container가 출력.. (추후 알아봐야할듯!)
 		this.render();
 	}
 
@@ -70,15 +69,37 @@ export default class Body {
 	}
 
 	render() {
-		this.$container.innerHTML =
-			`<div class='post__imgContainer addImage'>
-                <img class='addImage' src='/icons/image.svg' alt='image'>
-                <div>
-                    <span>${this.state.imgPath.length}/10</span>
-                </div> 
-            </div>` + this.renderImage();
+		this.$container.innerHTML = this.renderImageForm() + this.renderImage();
 
 		this.$category.innerHTML = this.renderButton();
+
+		this.$input = document.querySelector('#image');
+		this.$input.onchange = (e) => {
+			console.log(e.target.files);
+			/*
+				let files = e.target.files;
+
+				api 호출 후 파일경로 받아옴 -> setState -> chcekValueAndRefreshState() 호출
+				
+				let formData = new FormData();
+				const config = {
+					header: { 'content-type': 'multipart/fomr-data' }
+				}
+				formData.append("file", files)
+
+				아래처럼 로직 (가상)
+				axios.post('/api/board/image', formData, config)
+					.then(response => {
+						if (response.data.success) {
+							setImages([...Images, response.data.filePath])
+							props.refreshFunction([...Images, response.data.filePath])
+							setShow(true)
+						} else {
+							alert('파일을 저장하는데 실패했습니다.')
+						}
+					})
+			*/
+		};
 	}
 
 	renderImage() {
@@ -104,6 +125,16 @@ export default class Body {
 		}).join('');
 	}
 
+	renderImageForm() {
+		return `<form action='/' method="post" enctype="multipart/form-data" class='post__imgContainer'>
+					<input  id='image' type='file' accept=".jpg, .jpeg, .png" multiple>
+					<img src='/icons/image.svg' alt='image'>
+					<div>
+						<span>${this.state.imgPath.length}/10</span>
+					</div> 
+				</form>`;
+	}
+
 	rearrangePrice(e) {
 		// 콤마와 원을 붙혀주는 함수
 		if (e.target.value[0] !== '₩') {
@@ -120,7 +151,7 @@ export default class Body {
 				}
 			}
 
-			let result = '₩ ' + array.join('');
+			let result = '₩' + array.join('');
 			e.target.value = result;
 		}
 	}
@@ -153,13 +184,8 @@ export default class Body {
 			let imageArray = this.state.imgPath;
 			imageArray.splice(idx, 1);
 			this.state.imgPath = imageArray;
-		} else if (
-			e.target.className === 'addImage' ||
-			e.target.className === 'post__imgContainer addImage'
-		) {
-			//api 호출로 state 업데이트
+			this.chcekValueAndRefreshState();
 		}
-		this.chcekValueAndRefreshState();
 	};
 
 	bindContentEvent(e) {
@@ -193,4 +219,17 @@ export default class Body {
 			this.chcekValueAndRefreshState();
 		}
 	}
+
+	// bindingEvent(e) {
+	// 	this.handleImageUploadEvent(e);
+	// }
+
+	// handleImageUploadEvent(e) {
+	// 	const files = this.imgInputElement.files;
+	// 	console.log(files, e);
+	// }
+
+	// changeInputFileEvent(value) {
+	// 	console.log(value);
+	// }
 }

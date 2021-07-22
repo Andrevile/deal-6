@@ -5,7 +5,7 @@ import {
 	FAVORITE_BORDER_MINI_ICON,
 } from '../../../constants/icon-path';
 
-const isUserOwnProduct = (seller, user) => seller == user;
+const isUserOwnProduct = (seller, user) => seller === user;
 
 export default class Footer {
 	constructor({ $parent, initialState }) {

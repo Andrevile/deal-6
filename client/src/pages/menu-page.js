@@ -20,6 +20,7 @@ export default class MenuPage {
         3 : 관심목록
     */
 	constructor($parent) {
+		console.log(location.pathname);
 		this.$parent = createDOMWithSelector('div', '.menuWrapper');
 		$parent.appendChild(this.$parent);
 
@@ -69,6 +70,10 @@ export default class MenuPage {
 			this.productLists.open();
 			this.productLists.setState(this.state.products); // 수정 할 부분(api로 newData 필요) 분기처리 후에!
 		}
+
+		/*
+			bindMainNavbarEvent 에서 api 처리해줘도 될듯! (이게 더 맞는듯)
+		*/
 	}
 
 	// bindMainNavbarEvent : 현재 nav idx와 다르다면 처리

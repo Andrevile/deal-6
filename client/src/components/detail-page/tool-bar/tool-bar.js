@@ -5,10 +5,11 @@ import { ARROW_BACK_ICON, MORE_VERT_ICON } from '../../../constants/icon-path';
 const isUserOwnProduct = (seller, user) => seller == user;
 
 export default class ToolBar {
-	constructor({ $parent, initialState }) {
+	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
 		this.$target = createDOMWithSelector('nav', '.detail__nav');
-
+		this.state.seller = 'test';
+		this.state.user = 'test';
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
@@ -21,7 +22,7 @@ export default class ToolBar {
 		`;
 
 		this.$target.addEventListener('click', (e) => {
-			if (e.target.className === 'back') history.back(-1);
+			onClick(e);
 		});
 	}
 

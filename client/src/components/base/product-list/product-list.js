@@ -1,5 +1,7 @@
 import './product-list.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
+// import ProductModal from '../product-modal/product-modal';
+
 export default class ProductLists {
 	state = [];
 
@@ -9,7 +11,11 @@ export default class ProductLists {
 		$parent.appendChild(this.$target);
 
 		this.refreshState = refreshState;
+
 		this.render();
+		/*this.productModal = new ProductModal({
+			$parent: this.$target,
+		}); 보류; */
 	}
 
 	setState(nextState) {
@@ -23,24 +29,33 @@ export default class ProductLists {
 	}
 
 	createView() {
+		/*
+			pk를 이용해 data-link 에 삽입
+		*/
 		return (
 			this.state
 				.map((product) => {
 					return `
 			<article class='product'>
 				
-				<img class='product__imgs' src=${product.imgPath} data-link='/signup'>
+				<img class='product__imgs' src=${product.imgPath} data-link='/detail'>
 			
 				<div class='product__info'>
 					<span class='product__name' data-link='/detail'>${product.name}</span>
 					<div>
 						<span class='product__location' data-link='/detail'>${product.location} ∙</span>
-						<span class='product__time' data-link='/location'>${product.time}</span>
+						<span class='product__time' data-link='/detail'>${product.time}</span>
 					</div>
-					<span class='product__price' data-link='/location'>${product.price}</span>
+					<span class='product__price' data-link='/detail'>${product.price}</span>
 				</div>
 				
-				${this.createLikeButton(product.like)}
+				${
+					this.isUserOwnProduct(product.seller, product.user)
+						? this.createOptionButton()
+						: this.createLikeButton(product.like)
+				}
+				
+				
 
 				<div class='rightBottom' >
 					${this.createChatCount(product.chatCount)}
@@ -59,6 +74,13 @@ export default class ProductLists {
 			2. product에 user id field 넣어서 userid와 비교한다.
 			3. like 모델이 따로 필요할듯? user와 product를 엮은
 		*/
+	}
+	isUserOwnProduct(seller, user) {
+		return seller === user;
+	}
+
+	createOptionButton() {
+		return `<img class="product__option" src="/icons/more_vert_grey.svg" />`;
 	}
 
 	createLikeButton(like) {

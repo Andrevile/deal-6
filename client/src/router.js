@@ -5,12 +5,13 @@ import LocationPage from './pages/location-page';
 import MenuPage from './pages/menu-page';
 import UserPage from './pages/user-page';
 import WritingPage from './pages/writing-page';
-
+import NotFound from './pages/NotFound';
+import NotLogin from './pages/NotLogin';
 const pathToRegex = (path) =>
 	new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
-const navigateTo = (url) => {
-	history.pushState(null, null, url);
+const navigateTo = (url, props = null) => {
+	history.pushState(props, null, url); // props는 popstate시 자연스럽게 비워진다!
 	router();
 };
 
@@ -18,12 +19,14 @@ const router = () => {
 	const routes = [
 		{ path: '/', view: MainPage },
 		{ path: '/detail', view: DetailPage },
+		{ path: '/detail/:id', view: DetailPage },
 		{ path: '/signup', view: SignUpPage },
 		{ path: '/location', view: LocationPage },
 		{ path: '/menu', view: MenuPage },
 		{ path: '/user', view: UserPage },
 		{ path: '/writing', view: WritingPage },
-		{ path: '/chat', view: MenuPage },
+		{ path: '/notlogin', view: NotLogin },
+		{ path: '/:notfound', view: NotFound },
 	];
 
 	// Test each route for potential match
