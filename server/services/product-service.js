@@ -31,6 +31,30 @@ const getAllProducts = async (req, res, next) => {
 	}
 };
 
+const getMySellProducts = async (req, res, next) => {
+	try {
+		const user = req.user;
+
+		const products = await productRepo.findAllBySeller(user.id);
+
+		for (let i = 0; i < products.length; i++) {
+			let [url] = await productImgPathRepo.findOne(products[i].pk, 0);
+
+			if (!url) {
+				throw new CustomError(error.NO_IMG_ERROR);
+			}
+
+			products[i].url = url;
+		}
+
+		const { code, message } = success.DEFAULT_READ;
+
+		res.status(code).json({ user, products, message, success: true });
+	} catch (err) {
+		next(err);
+	}
+};
+
 const getProductByPk = async (req, res, next) => {
 	try {
 		const pk = req.params.pk;
@@ -111,6 +135,7 @@ const deleteProduct = async (req, res, next) => {
 
 module.exports = {
 	getAllProducts,
+	getMySellProducts,
 	getProductByPk,
 	updateProduct,
 	deleteProduct,

@@ -13,6 +13,12 @@ const productRepo = {
 		return await selectQueryExecutor(query);
 	},
 
+	findAllBySeller: async (seller) => {
+		const query = `SELECT * FROM product P WHERE seller='${seller}';`;
+
+		return await selectQueryExecutor(query);
+	},
+
 	findOne: async (pk) => {
 		const query = `SELECT * FROM product where pk=${pk};`;
 
