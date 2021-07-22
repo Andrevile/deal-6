@@ -55,6 +55,7 @@ const getProductByPk = async (req, res, next) => {
 		next(err);
 	}
 };
+
 // TODO
 const updateProduct = async (req, res, next) => {
 	try {

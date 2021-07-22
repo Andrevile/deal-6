@@ -1,27 +1,20 @@
+/* eslint-disable no-unused-vars */
 const {
 	selectQueryExecutor,
 	insertQueryExecutor,
 	updateQueryExecutor,
 	deleteQueryExecutor,
-	transactionQueryExecutor,
 } = require('../utils/queryExecutor');
 
-const productRepository = {
+const productRepo = {
 	findAll: async (category, location) => {
-		const query = `
-        SELECT 
-            P.pk, P.title, P.wishCount, P.chatCount, P.price, P.location
-        FROM 
-            product P
-        WHERE
-            category=${category}, location=${location};
-        `;
+		const query = `SELECT * FROM product P WHERE category=${category}, location=${location};`;
 
 		return await selectQueryExecutor(query);
 	},
 
 	findOne: async (pk) => {
-		const query = `SELECT * FROM product where pk='${pk}';`;
+		const query = `SELECT * FROM product where pk=${pk};`;
 
 		return await selectQueryExecutor(query);
 	},
@@ -36,6 +29,18 @@ const productRepository = {
 
 		return await insertQueryExecutor(query);
 	},
+
+	update: async (pk, status) => {
+		const query = `UPDATE product SET status=${status} WHERE pk=${pk};`;
+
+		return await updateQueryExecutor(query);
+	},
+
+	delete: async (pk) => {
+		const query = `DELETE FROM product WHERE pk=${pk};`;
+
+		return await deleteQueryExecutor(query);
+	},
 };
 
-module.exports = { productRepository };
+module.exports = { productRepo };
