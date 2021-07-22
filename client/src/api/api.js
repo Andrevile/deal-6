@@ -44,62 +44,72 @@ const deleteData = (url) => {
 
 export const api = {
 	get: (url) => {
-		getData(url)
-			.then((data) => {
-				return {
-					success: true,
-					data: JSON.stringify(data),
-				};
-			})
-			.catch((e) => {
-				return {
-					success: false,
-					message: e.message,
-				};
-			});
+		return new Promise((resolve, reject) => {
+			getData(url)
+				.then((data) => {
+					resolve({
+						success: true,
+						data: JSON.stringify(data),
+					});
+				})
+				.catch((e) => {
+					reject({
+						success: false,
+						message: e.message,
+					});
+				});
+		});
 	},
+
 	post: (url, data) => {
-		postData(url, data)
-			.then((data) => {
-				return {
-					success: true,
-					data: JSON.stringify(data),
-				};
-			})
-			.catch((e) => {
-				return {
-					success: false,
-					message: e.message,
-				};
-			});
+		return new Promise((resolve, reject) => {
+			postData(url, data)
+				.then((data) => {
+					resolve({
+						success: true,
+						data: JSON.stringify(data),
+					});
+				})
+				.catch((e) => {
+					reject({
+						success: false,
+						message: e.message,
+					});
+				});
+		});
 	},
 	update: (url, data) => {
-		patchData(url, data)
-			.then((data) => {
-				return {
-					success: true,
-					data: JSON.stringify(data),
-				};
-			})
-			.catch((e) => {
-				return {
-					success: false,
-					message: e.message,
-				};
-			});
+		return new Promise((resolve, reject) => {
+			patchData(url, data)
+				.then((data) => {
+					resolve({
+						success: true,
+						data: JSON.stringify(data),
+					});
+				})
+				.catch((e) => {
+					reject({
+						success: false,
+						message: e.message,
+					});
+				});
+		});
 	},
 	delete: (url) => {
-		deleteData(url)
-			.then(() => {
-				return {
-					success: true,
-				};
-			})
-			.catch((e) => {
-				return {
-					success: false,
-					message: e.message,
-				};
-			});
+		return new Promise((resolve, reject) => {
+			deleteData(url)
+				.then((data) => {
+					resolve({
+						success: true,
+						data: JSON.stringify(data),
+					});
+				})
+				.catch((e) => {
+					reject({
+						success: false,
+						message: e.message,
+					});
+				});
+		});
 	},
 };
