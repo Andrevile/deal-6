@@ -40,15 +40,14 @@ export default class LocationPage {
 	}
 
 	initiallizeData() {
-		// api 안되면 new Promise()
-		api.get('/blah').then((res) => {
-			if (res.success) {
-				// this.state = ?
-				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
-			} else {
-				alert(res.message);
-			}
-		});
+		api.get('/')
+			.then((res) => {
+				this.state.allMyLocation = res.data;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
