@@ -56,21 +56,23 @@ export default class MenuPage {
 		setTimeout(() => {
 			this.$parent.classList.add('active');
 		}, 0);
-		// this.initiallizeData();
+		this.initiallizeData();
 	}
 
 	initiallizeData() {
 		/*
 			api 호출 (자신의 판매목록)
 		*/
-		api.get('/blah').then((res) => {
-			if (res.success) {
-				// this.state = ?
-				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
-			} else {
-				alert(res.message);
-			}
-		});
+
+		api.get('/')
+			.then((res) => {
+				this.state.products = res.data;
+
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
@@ -94,18 +96,34 @@ export default class MenuPage {
 			/*
 				api 호출 (자신의 판매목록)
 			*/
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 			this.setState();
 		} else if (idx === '2' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '2';
-			/*
-				api 호출 (자신의 판매목록)
-			*/
+
 			this.setState();
 		} else if (idx === '3' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '3';
 			/*
-				api 호출 (자신의 판매목록)
+				api 호출 (자신의 관심목록)
 			*/
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 			this.setState();
 		}
 	}
@@ -113,7 +131,8 @@ export default class MenuPage {
 
 const sampleData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -123,7 +142,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -133,7 +153,8 @@ const sampleData = [
 		likeCount: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -143,7 +164,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -153,7 +175,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -166,7 +189,8 @@ const sampleData = [
 
 const sampleChatData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content:
 			'It is content,t is contentt is contentt is contentt is contentt is contentt is content',
@@ -174,35 +198,40 @@ const sampleChatData = [
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content: 'It is content',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content: 'It is content',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content: 'It is content',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content: 'It is content',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		content: 'It is content',
 		time: '2시간 전',
