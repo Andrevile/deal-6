@@ -4,17 +4,17 @@ const error = require('../constants/error');
 const promiseHandler = require('../utils/promiseHandler');
 
 const selectQueryExecutor = async (query) => {
+	console.log(query);
 	const connection = await pool.getConnection();
 	const [result, err] = await promiseHandler(connection.query(query));
-
-	connection.release();
-
 	if (err) {
 		// DB connection 에서 error 가 생기면 발생하는 경우
+		connection.release();
 		throw new CustomError(error.DATABASE_ERROR);
 	}
 
 	const [selectData] = result;
+	connection.release();
 	return selectData;
 };
 
@@ -22,22 +22,20 @@ const insertQueryExecutor = async (query) => {
 	const connection = await pool.getConnection();
 	const [result, err] = await promiseHandler(connection.query(query));
 
-	connection.release();
-
 	if (err) {
 		// DB connection 에서 error 가 생기면 발생하는 경우
+		connection.release();
 		throw new CustomError(error.DATABASE_ERROR);
 	}
 
-	const [insertData] = result;
-	return insertData;
+	const [{ insertId }] = result;
+	connection.release();
+	return insertId;
 };
 
 const updateQueryExecutor = async (query) => {
 	const connection = await pool.getConnection();
 	const [result, err] = await promiseHandler(connection.query(query));
-
-	connection.release();
 
 	if (err) {
 		// DB connection 에서 error 가 생기면 발생하는 경우
@@ -45,6 +43,7 @@ const updateQueryExecutor = async (query) => {
 	}
 
 	const [{ affectedRows }] = result;
+	connection.release();
 	return affectedRows;
 };
 
