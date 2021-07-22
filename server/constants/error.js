@@ -52,4 +52,16 @@ module.exports = {
 		errorMessage: '요청한 물건이 없습니다.',
 		serverMessage: 'There is no product have such pk',
 	},
+
+	UPDATE_ERROR: {
+		code: 400,
+		errorMessage: '업데이트에 실패 했습니다.',
+		serverMessage: 'Update Fail',
+	},
+
+	DELETE_ERROR: {
+		code: 400,
+		errorMessage: '삭제에 실패 했습니다.',
+		serverMessage: 'Delete Fail',
+	},
 };
