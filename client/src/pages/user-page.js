@@ -3,8 +3,13 @@ import Section from '../components/user-page/section/section';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import './user-page.css';
 import { navigateTo } from '../router';
+import { api } from '../api/api';
+
 export default class UserPage {
-	state = '';
+	state = {
+		mode: '로그인',
+		user: '',
+	};
 
 	// 오직 id만 받아오면 된다!
 	constructor($parent) {
@@ -13,7 +18,7 @@ export default class UserPage {
 
 		this.$appBar = new AppBar({
 			$parent: this.$parent,
-			initialState: this.isUserLogin() ? '내 계정' : '로그인',
+			initialState: this.mode,
 			onClick: (e) => {
 				if (e.target.className === 'nav__prev') {
 					this.$parent.classList.remove('active');
@@ -23,7 +28,7 @@ export default class UserPage {
 
 		this.$section = new Section({
 			$parent: this.$parent,
-			initialState: this.isUserLogin() ? this.state : '',
+			initialState: this.state,
 			onClick: (e, inputValue) => {
 				if (this.isUserLogin()) {
 					// logout api 호출 (쿠키 제거)만 하면 끝
@@ -40,6 +45,7 @@ export default class UserPage {
 						// login api 호출
 						// 성공시 : (쿠키 삽입)만 하면 끝 + navigateTo('/');
 						// 실패시 : 경고문구 || 길이가 0이거나
+						// 내 계정
 					}
 				}
 			},
@@ -48,11 +54,26 @@ export default class UserPage {
 		setTimeout(() => {
 			this.$parent.classList.add('active');
 		}, 0);
+
+		// this.initiallizeData();
+	}
+
+	initiallizeData() {
+		// api 안되면 new Promise()
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.state.mode = '내 계정'
+				// this.state.user = '@@@@@'
+				// this.setState(); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
+		});
 	}
 
 	setState() {
-		this.$appBar.setState(this.state);
-		this.$section.setState(this.state);
+		this.$appBar.setState(this.state.mode);
+		this.$section.setState(this.state.user);
 	}
 
 	isUserLogin() {

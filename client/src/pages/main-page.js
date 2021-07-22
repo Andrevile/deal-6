@@ -9,7 +9,7 @@ import { api } from '../api/api';
 export default class MainPage {
 	state = {
 		products: sampleData,
-		locationName: ['역삼동', '인창동'],
+		locationName: ['역삼동', '인창동'], // default로 하나는 갖고 있어야 한다!
 		index: 0,
 	};
 

@@ -4,12 +4,12 @@ import ProductLists from '../components/base/product-list/product-list.js';
 import ChatLists from '../components/base/chat-list/chat-list';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import './menu-page.css';
+import { api } from '../api/api';
 
 const mode = '메뉴';
 export default class MenuPage {
 	state = {
 		products: sampleData,
-		locationName: '역삼동',
 		navigatorIndex: '1',
 		chats: sampleChatData,
 	};
@@ -56,6 +56,21 @@ export default class MenuPage {
 		setTimeout(() => {
 			this.$parent.classList.add('active');
 		}, 0);
+		// this.initiallizeData();
+	}
+
+	initiallizeData() {
+		/*
+			api 호출 (자신의 판매목록)
+		*/
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.state = ?
+				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
+		});
 	}
 
 	setState() {
@@ -63,29 +78,34 @@ export default class MenuPage {
 		this.mainNavbar.setState(this.state.navigatorIndex);
 		if (this.state.navigatorIndex === '2') {
 			this.productLists.close();
+			this.chatLists.setState(this.state.chats);
 			this.chatLists.open();
-			this.chatLists.setState(this.state.chats); // 수정 할 부분(api로 newData 필요)
 		} else {
 			this.chatLists.close();
+			this.productLists.setState(this.state.products);
 			this.productLists.open();
-			this.productLists.setState(this.state.products); // 수정 할 부분(api로 newData 필요) 분기처리 후에!
 		}
-
-		/*
-			bindMainNavbarEvent 에서 api 처리해줘도 될듯! (이게 더 맞는듯)
-		*/
 	}
 
 	// bindMainNavbarEvent : 현재 nav idx와 다르다면 처리
 	bindMainNavbarEvent(idx) {
 		if (idx === '1' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '1';
+			/*
+				api 호출 (자신의 판매목록)
+			*/
 			this.setState();
 		} else if (idx === '2' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '2';
+			/*
+				api 호출 (자신의 판매목록)
+			*/
 			this.setState();
 		} else if (idx === '3' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '3';
+			/*
+				api 호출 (자신의 판매목록)
+			*/
 			this.setState();
 		}
 	}

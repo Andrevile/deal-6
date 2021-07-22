@@ -34,9 +34,12 @@ export default class NavigationBar {
 	}
 
 	setState(nextState) {
-		// 글쓰기 모드에서만 사용
-		if (nextState) this.activeDoneIcon = true;
-		else this.activeDoneIcon = false;
+		if (this.state === '글쓰기') {
+			if (nextState) this.activeDoneIcon = true;
+			else this.activeDoneIcon = false;
+		} else {
+			this.state = nextState;
+		}
 		this.render();
 	}
 

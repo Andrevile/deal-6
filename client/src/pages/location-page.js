@@ -2,6 +2,7 @@ import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
 import Modal from '../components/location-page/location-modal/location-modal';
 import Alert from '../components/base/alert/alert';
+import { api } from '../api/api';
 
 const mode = '내 동네 설정하기';
 export default class LocationPage {
@@ -33,6 +34,20 @@ export default class LocationPage {
 			onClick: (e) => {
 				this.bindAlertClickEvent(e);
 			},
+		});
+
+		// this.initiallizeData();
+	}
+
+	initiallizeData() {
+		// api 안되면 new Promise()
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.state = ?
+				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
 		});
 	}
 
