@@ -5,23 +5,24 @@ import Footer from '../components/detail-page/footer/footer';
 import ProductModal from '../components/base/product-modal/product-modal';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import { navigateTo } from '../router';
+import { api } from '../api/api';
 
 export default class DetailPage {
 	state = {
 		// TEST CASE
 		user: '남영우', // pk값을 들고있을지, 이름을 들고 있을지 고민입니다.
-		seller: '남영',
+		seller: '남영우',
 		price: '₩35,000',
 		title: '빈티지 롤러 스케이트!',
-		description: `어린시절 추억의 향수를 불러 일으키는 롤러 스케이트입니다. 빈티지 특성상 사용감 있지만 전체적으로 깨끗한 상태입니다. 촬영용 소품이나, 거실에 장식용으로 추천해 드립니다. 단품 입고 되었습니다.<br>
+		content: `어린시절 추억의 향수를 불러 일으키는 롤러 스케이트입니다. 빈티지 특성상 사용감 있지만 전체적으로 깨끗한 상태입니다. 촬영용 소품이나, 거실에 장식용으로 추천해 드립니다. 단품 입고 되었습니다.<br>
 			새 제품으로 보존된 제품으로 전용박스까지 보내드립니다.사이즈는 235 입니다.`,
-		status: 0,
+		status: 2,
 		location: '문래동',
 		category: '기타 중고물품',
 		imgPath: [
-			'/imgs/shoes-1.jpg',
-			'/imgs/shoes-1.jpg',
-			'/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/shoes-1.jpg',
 		],
 		createdAt: '3분전',
 		chatCount: 3,
@@ -33,6 +34,7 @@ export default class DetailPage {
 		this.haveHistoryState();
 		console.log(history.state);
 		this.$target = createDOMWithSelector('div', '.detail-page');
+		$parent.appendChild(this.$target);
 
 		this.toolBar = new ToolBar({
 			$parent: this.$target,
@@ -63,6 +65,7 @@ export default class DetailPage {
 		this.productModal = new ProductModal({
 			$parent: this.$target,
 			onClick: (e) => {
+				console.log(e.target.className);
 				if (e.target.className === 'productModal__overlay') {
 					this.productModal.close();
 				} else if (e.target.className === 'productModal__update') {
@@ -76,12 +79,32 @@ export default class DetailPage {
 			},
 		});
 
-		$parent.appendChild(this.$target);
+		this.state.user.length === 0 && this.initiallizeData();
 	}
 
-	setState() {}
+	initiallizeData() {
+		// api 안되면 new Promise()
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
+		});
+	}
 
-	render() {}
+	setState() {
+		this.toolBar.setState({
+			user: this.state.user,
+			seller: this.state.seller,
+		});
+		this.section.setState(this.state);
+		this.footer.setState({
+			price: this.state.price,
+			user: this.state.user,
+			seller: this.state.seller,
+		});
+	}
 
 	haveHistoryState() {
 		if (history.state) {

@@ -12,6 +12,7 @@ export default class NavigationBar {
 	constructor({ $parent, initialState, onClick, isModal = false }) {
 		this.isModal = isModal;
 		this.state = initialState;
+		console.log(this.state);
 		this.setTarget(initialState);
 
 		$parent.appendChild(this.$target);
@@ -34,15 +35,18 @@ export default class NavigationBar {
 	}
 
 	setState(nextState) {
-		// 글쓰기 모드에서만 사용
-		if (nextState) this.activeDoneIcon = true;
-		else this.activeDoneIcon = false;
+		if (this.state === '글쓰기') {
+			if (nextState) this.activeDoneIcon = true;
+			else this.activeDoneIcon = false;
+		} else {
+			this.state = nextState;
+		}
 		this.render();
 	}
 
 	render() {
 		this.$target.innerHTML = `
-            <img class='nav__prev' src='/icons/arrow_back_black.svg'/>
+            <img class='nav__prev' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/arrow_back_black.svg'/>
             <span>
                 ${this.state}
             </span>
@@ -61,7 +65,6 @@ export default class NavigationBar {
 			case '내 계정':
 			case '메뉴':
 			case '카테고리':
-			case '-':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
 			case '글쓰기':
@@ -78,15 +81,15 @@ export default class NavigationBar {
 	createDoneIcon() {
 		if (this.doneIcon) {
 			if (this.activeDoneIcon)
-				return `<img class='nav__doneActive' src="/icons/done_active.svg" />`;
-			return `<img class='nav__done' src="/icons/done.svg" />`;
+				return `<img class='nav__doneActive' src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/done_active.svg" />`;
+			return `<img class='nav__done' src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/done.svg" />`;
 		}
 		return ``;
 	}
 
 	createExitIcon() {
 		if (this.isUser)
-			return `<img class='nav__exit' src="/icons/exit.svg" />`;
+			return `<img class='nav__exit' src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/exit.svg" />`;
 		return ``;
 	}
 

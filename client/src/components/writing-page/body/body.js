@@ -26,7 +26,7 @@ export default class Body {
             <hr>
             <input class='post__price' type='text' placeholder="₩ 가격(선택사항)" value=${this.state.price}>
             <hr>
-            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.description}</textarea>
+            <textarea class='post__content' placeholder="게시글 내용을 작성해주세요.">${this.state.content}</textarea>
         `;
 
 		this.$container = document.querySelector('.post__container');
@@ -75,31 +75,37 @@ export default class Body {
 
 		this.$input = document.querySelector('#image');
 		this.$input.onchange = (e) => {
-			console.log(e.target.files);
-			/*
-				let files = e.target.files;
-
-				api 호출 후 파일경로 받아옴 -> setState -> chcekValueAndRefreshState() 호출
-				
-				let formData = new FormData();
-				const config = {
-					header: { 'content-type': 'multipart/fomr-data' }
-				}
-				formData.append("file", files)
-
-				아래처럼 로직 (가상)
-				axios.post('/api/board/image', formData, config)
-					.then(response => {
-						if (response.data.success) {
-							setImages([...Images, response.data.filePath])
-							props.refreshFunction([...Images, response.data.filePath])
-							setShow(true)
-						} else {
-							alert('파일을 저장하는데 실패했습니다.')
-						}
-					})
-			*/
+			this.onChangeFileEvent(e);
 		};
+	}
+
+	onChangeFileEvent(e) {
+		console.log(e.target.files);
+
+		let files = e.target.files;
+
+		//api 호출 후 파일경로 받아옴 -> setState -> chcekValueAndRefreshState() 호출
+
+		let formData = new FormData();
+
+		formData.append('file', files);
+
+		fetch('/api/?', {
+			method: 'POST',
+			body: formData,
+		})
+			.then((res) => {
+				if (!res.ok) throw new Error('Http Error...');
+				return res.json();
+			})
+			.then((data) => {
+				this.state.imgPath = [
+					...this.state.imgPath,
+					...JSON.stringify(data),
+				];
+				this.chcekValueAndRefreshState();
+			})
+			.catch((e) => alert(e.toString()));
 	}
 
 	renderImage() {
@@ -128,7 +134,7 @@ export default class Body {
 	renderImageForm() {
 		return `<form action='/' method="post" enctype="multipart/form-data" class='post__imgContainer'>
 					<input  id='image' type='file' accept=".jpg, .jpeg, .png" multiple>
-					<img src='/icons/image.svg' alt='image'>
+					<img src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/image.svg' alt='image'>
 					<div>
 						<span>${this.state.imgPath.length}/10</span>
 					</div> 
@@ -160,7 +166,7 @@ export default class Body {
 		// 가격제외 모든 값 있는지 확인
 		if (
 			this.state.title.length > 0 &&
-			this.state.description.length > 0 &&
+			this.state.content.length > 0 &&
 			this.state.imgPath.length > 0 &&
 			this.state.category.length > 0
 		) {
@@ -191,7 +197,7 @@ export default class Body {
 	bindContentEvent(e) {
 		// textarea 높이 가변조절
 		this.$content.style.height = this.$content.scrollHeight + 'px';
-		this.state.description = e.target.value;
+		this.state.content = e.target.value;
 		this.chcekValueAndRefreshState();
 	}
 

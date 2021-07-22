@@ -60,7 +60,7 @@ module.exports = {
   ],
   devtool: "inline-source-map", // webpack-dev-server에만 쓰는 것은 아님. 더 알아보세요!
   devServer: {
-    contentBase: "./assets", // dev 서버에
+    contentBase: "./dist", // dev 서버에
     port: 9000,
     hot: true,
   },

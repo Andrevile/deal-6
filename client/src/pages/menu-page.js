@@ -4,12 +4,12 @@ import ProductLists from '../components/base/product-list/product-list.js';
 import ChatLists from '../components/base/chat-list/chat-list';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import './menu-page.css';
+import { api } from '../api/api';
 
 const mode = '메뉴';
 export default class MenuPage {
 	state = {
 		products: sampleData,
-		locationName: '역삼동',
 		navigatorIndex: '1',
 		chats: sampleChatData,
 	};
@@ -56,6 +56,23 @@ export default class MenuPage {
 		setTimeout(() => {
 			this.$parent.classList.add('active');
 		}, 0);
+		this.initiallizeData();
+	}
+
+	initiallizeData() {
+		/*
+			api 호출 (자신의 판매목록)
+		*/
+
+		api.get('/')
+			.then((res) => {
+				this.state.products = res.data;
+
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
@@ -63,29 +80,50 @@ export default class MenuPage {
 		this.mainNavbar.setState(this.state.navigatorIndex);
 		if (this.state.navigatorIndex === '2') {
 			this.productLists.close();
+			this.chatLists.setState(this.state.chats);
 			this.chatLists.open();
-			this.chatLists.setState(this.state.chats); // 수정 할 부분(api로 newData 필요)
 		} else {
 			this.chatLists.close();
+			this.productLists.setState(this.state.products);
 			this.productLists.open();
-			this.productLists.setState(this.state.products); // 수정 할 부분(api로 newData 필요) 분기처리 후에!
 		}
-
-		/*
-			bindMainNavbarEvent 에서 api 처리해줘도 될듯! (이게 더 맞는듯)
-		*/
 	}
 
 	// bindMainNavbarEvent : 현재 nav idx와 다르다면 처리
 	bindMainNavbarEvent(idx) {
 		if (idx === '1' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '1';
+			/*
+				api 호출 (자신의 판매목록)
+			*/
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 			this.setState();
 		} else if (idx === '2' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '2';
+
 			this.setState();
 		} else if (idx === '3' && this.state.navigatorIndex !== idx) {
 			this.state.navigatorIndex = '3';
+			/*
+				api 호출 (자신의 관심목록)
+			*/
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 			this.setState();
 		}
 	}
@@ -93,7 +131,8 @@ export default class MenuPage {
 
 const sampleData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -103,7 +142,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -113,7 +153,8 @@ const sampleData = [
 		likeCount: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -123,7 +164,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -133,7 +175,8 @@ const sampleData = [
 		likeCount: 3,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -146,45 +189,51 @@ const sampleData = [
 
 const sampleChatData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description:
-			'It is description,t is descriptiont is descriptiont is descriptiont is descriptiont is descriptiont is description',
+		content:
+			'It is content,t is contentt is contentt is contentt is contentt is contentt is content',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description: 'It is description',
+		content: 'It is content',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description: 'It is description',
+		content: 'It is content',
 		time: '2시간 전',
 		count: 0,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description: 'It is description',
+		content: 'It is content',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description: 'It is description',
+		content: 'It is content',
 		time: '2시간 전',
 		count: 5,
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
-		description: 'It is description',
+		content: 'It is content',
 		time: '2시간 전',
 		count: 5,
 	},

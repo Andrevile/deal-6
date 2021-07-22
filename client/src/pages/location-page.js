@@ -2,6 +2,7 @@ import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
 import Modal from '../components/location-page/location-modal/location-modal';
 import Alert from '../components/base/alert/alert';
+import { api } from '../api/api';
 
 const mode = '내 동네 설정하기';
 export default class LocationPage {
@@ -34,6 +35,19 @@ export default class LocationPage {
 				this.bindAlertClickEvent(e);
 			},
 		});
+
+		// this.initiallizeData();
+	}
+
+	initiallizeData() {
+		api.get('/')
+			.then((res) => {
+				this.state.allMyLocation = res.data;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {

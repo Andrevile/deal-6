@@ -77,13 +77,17 @@ export default class ImgContainer {
 		this.$buttonContainer.appendChild(this.$nextButton);
 
 		$parent.appendChild(this.$buttonContainer);
-
-		this.$imgContainer.innerHTML = `
-			${this.state.map((src) => createImgTemplate(src, '.gradient')).join('\n')}	
-		`;
-
 		this.render();
 	}
 
-	render() {}
+	setState(nextState) {
+		this.state = nextState;
+		this.render();
+	}
+
+	render() {
+		this.$imgContainer.innerHTML = `
+			${this.state.map((src) => createImgTemplate(src, '.gradient')).join('\n')}	
+		`;
+	}
 }

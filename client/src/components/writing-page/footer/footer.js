@@ -10,7 +10,7 @@ export default class Footer {
 		$parent.appendChild(this.$target);
 
 		this.$target.innerHTML = `
-            <img src='/icons/location_white.svg'  alt='location'>
+            <img src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/location_white.svg'  alt='location'>
             <span>${this.state}</span>
         `;
 	}

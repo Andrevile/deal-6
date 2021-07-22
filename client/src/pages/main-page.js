@@ -4,10 +4,12 @@ import PostButton from '../components/main-page/write-post-button/write-post-but
 import Category from '../components/main-page/category/category.js';
 import { CATEGORY_LIST } from '../constants/category-list';
 import LocationMiniModal from '../components/main-page/location-mini-modal/location-mini-modal';
+import { api } from '../api/api';
+
 export default class MainPage {
 	state = {
 		products: sampleData,
-		locationName: ['역삼동', '인창동'],
+		locationName: ['역삼동'], // default로 하나는 갖고 있어야 한다!
 		index: 0,
 	};
 
@@ -45,16 +47,31 @@ export default class MainPage {
 				this.bindLocationModalClickEvent(e, idx);
 			},
 		});
+
+		// this.initiallizeData();
+	}
+
+	// 위에 주석 있음..!
+	initiallizeData() {
+		/*
+			api 호출 (자신 동네들, 프로덕트)
+		*/
+
+		api.get('/')
+			.then((res) => {
+				this.state.products = res.data;
+				this.state.locationName = res.data;
+				this.setState();
+			})
+			.catch((e) => {
+				alert(e.message);
+			});
 	}
 
 	setState() {
 		//리렌더링파트
 		this.navbar.setState(this.state.locationName[this.state.index]);
 		this.ProductLists.setState(this.state.products);
-	}
-
-	render() {
-		//렌더링파트
 	}
 
 	bindNavBarClickEvent(e) {
@@ -82,6 +99,18 @@ export default class MainPage {
 			this.category.close();
 			this.ProductLists.open();
 			console.log(CATEGORY_LIST[idx]); // api 인자로 물건들 호출
+			/*
+				api 호출 (자신 동네들, 프로덕트)
+			*/
+
+			api.get('/')
+				.then((res) => {
+					this.state.products = res.data;
+					this.setState();
+				})
+				.catch((e) => {
+					alert(e.message);
+				});
 		}
 		/*
 			CATEGORY_LIST[idx];
@@ -100,13 +129,20 @@ export default class MainPage {
 			// 동네 클릭 시 발생
 			this.locationMiniModal.close();
 			if (this.state.index !== idx) {
-				this.state.index = idx;
-				//api 요청 후 product state도 변경 (비동기제어)
-				this.$parent.scrollTo({
-					top: 0,
-					behavior: 'smooth',
-				});
-				this.setState();
+				//this.state.locationName[this.state.index]
+				api.get('/')
+					.then((res) => {
+						this.state.index = idx;
+						this.state.products = res.data;
+						this.$parent.scrollTo({
+							top: 0,
+							behavior: 'smooth',
+						});
+						this.setState();
+					})
+					.catch((e) => {
+						alert(e.message);
+					});
 			}
 		}
 	}
@@ -114,7 +150,8 @@ export default class MainPage {
 
 const sampleData = [
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -126,7 +163,8 @@ const sampleData = [
 		seller: '남영우',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -138,7 +176,8 @@ const sampleData = [
 		seller: '문지호',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -150,7 +189,8 @@ const sampleData = [
 		seller: '문지호',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',
@@ -162,7 +202,8 @@ const sampleData = [
 		seller: '남영우',
 	},
 	{
-		imgPath: '/imgs/photo.jpeg',
+		imgPath:
+			'https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/imgs/photo.jpeg',
 		name: '문지호',
 		location: '인창동',
 		time: '2시간 전',

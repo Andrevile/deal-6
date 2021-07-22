@@ -16,8 +16,9 @@ export default class ProductModal {
 			</div>
               `;
 
+		this.onClick = onClick;
 		this.$target.addEventListener('click', (e) => {
-			onClick(e);
+			this.onClick(e);
 		});
 	}
 

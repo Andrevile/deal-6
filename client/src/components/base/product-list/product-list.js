@@ -80,28 +80,28 @@ export default class ProductLists {
 	}
 
 	createOptionButton() {
-		return `<img class="product__option" src="/icons/more_vert_grey.svg" />`;
+		return `<img class="product__option" src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/more_vert_grey.svg" />`;
 	}
 
 	createLikeButton(like) {
 		return like === 'T'
-			? `<img class="product__like" src="/icons/favorite.svg" />`
+			? `<img class="product__like" src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/favorite.svg" />`
 			: `<img
 					class="product__like"
-					src="/icons/favorite_border_mini.svg"
+					src="https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/favorite_border_mini.svg"
 				/>`;
 	}
 
 	createChatCount(count) {
 		return count > 0
-			? `<img class='rightBottom__chat' src='/icons/chat_bubble_mini.svg' />
+			? `<img class='rightBottom__chat' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/chat_bubble_mini.svg' />
 						<span>${count}</span>`
 			: ``;
 	}
 
 	createLikeCount(count) {
 		return count > 0
-			? `<img class='rightBottom__like' src='/icons/favorite_border_mini.svg' />
+			? `<img class='rightBottom__like' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/favorite_border_mini.svg' />
 						<span>${count}</span>`
 			: ``;
 	}
@@ -115,7 +115,7 @@ export default class ProductLists {
 						observer.unobserve(entry.target);
 
 						// endTag.classList.add('spinner');
-						// endTag.innerHTML = `<img class='rightBottom__like' src='/icons/loading-loader-svgrepo-com.svg' />`;
+						// endTag.innerHTML = `<img class='rightBottom__like' src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/loading-loader-svgrepo-com.svg' />`;
 
 						// const data = await api.randomCats();
 						// if (data.success) {
