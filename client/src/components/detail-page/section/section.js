@@ -34,10 +34,10 @@ export default class DetailSection {
 		this.$section.appendChild(this.$imgContainerWrapper);
 		this.$section.appendChild(this.$infoContainerWrapper);
 		$parent.appendChild(this.$section);
-
-		this.render();
 	}
-	setState() {}
-
-	render() {}
+	setState(nextState) {
+		this.state = nextState;
+		this.$imgContainer.setState(this.state.imgPath);
+		this.$infoContainer.setState(this.state);
+	}
 }

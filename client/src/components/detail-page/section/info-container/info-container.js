@@ -14,6 +14,11 @@ export default class InfoContainer {
 		this.render();
 	}
 
+	setState(nextState) {
+		this.state = nextState;
+		this.render();
+	}
+
 	render() {
 		const createStatusSelectButtonTemplate = ({ status, seller, user }) => {
 			status = Math.min(status, 2);

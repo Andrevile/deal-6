@@ -28,6 +28,15 @@ export default class Footer {
 
 		$parent.appendChild(this.$footer);
 
+		this.render();
+	}
+
+	setState(nextState) {
+		this.state = nextState;
+		this.render();
+	}
+
+	render() {
 		this.$footer.innerHTML = `
             <div class="inner">
                 <div class='wish'>
@@ -39,10 +48,6 @@ export default class Footer {
             ${this.createOptionButtonTemplate()}
         `;
 	}
-
-	setState() {}
-
-	render() {}
 
 	createWishImgButtonTemplate() {
 		return this.wishIconOn

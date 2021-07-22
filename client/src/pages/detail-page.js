@@ -5,6 +5,7 @@ import Footer from '../components/detail-page/footer/footer';
 import ProductModal from '../components/base/product-modal/product-modal';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import { navigateTo } from '../router';
+import { api } from '../api/api';
 
 export default class DetailPage {
 	state = {
@@ -33,6 +34,7 @@ export default class DetailPage {
 		this.haveHistoryState();
 		console.log(history.state);
 		this.$target = createDOMWithSelector('div', '.detail-page');
+		$parent.appendChild(this.$target);
 
 		this.toolBar = new ToolBar({
 			$parent: this.$target,
@@ -77,12 +79,32 @@ export default class DetailPage {
 			},
 		});
 
-		$parent.appendChild(this.$target);
+		this.state.user.length === 0 && this.initiallizeData();
 	}
 
-	setState() {}
+	initiallizeData() {
+		// api 안되면 new Promise()
+		api.get('/blah').then((res) => {
+			if (res.success) {
+				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
+			} else {
+				alert(res.message);
+			}
+		});
+	}
 
-	render() {}
+	setState() {
+		this.toolBar.setState({
+			user: this.state.user,
+			seller: this.state.seller,
+		});
+		this.section.setState(this.state);
+		this.footer.setState({
+			price: this.state.price,
+			user: this.state.user,
+			seller: this.state.seller,
+		});
+	}
 
 	haveHistoryState() {
 		if (history.state) {
