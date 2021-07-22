@@ -5,7 +5,7 @@ const {
 	deleteProduct,
 	changeProductStatus,
 } = require('../services/product-service');
-const { wishProduct } = require('../services/wish-service');
+const { changeWishState } = require('../services/wish-service');
 
 const router = express.Router();
 
@@ -15,6 +15,6 @@ router.post('/product/:pk', decodeJWT, changeProductStatus);
 
 router.delete('/product/:pk', decodeJWT, deleteProduct);
 
-router.post('/wish/:pk', decodeJWT, wishProduct);
+router.post('/wish/:pk', decodeJWT, changeWishState);
 
 module.exports = router;
