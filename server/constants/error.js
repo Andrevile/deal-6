@@ -34,4 +34,10 @@ module.exports = {
 		errorMessage: '검증되지 않은 token 입니다.',
 		serverMessage: 'Wrong JWT token access error',
 	},
+
+	EXIST_USER_ID_ERROR: {
+		code: 400,
+		errorMessage: '이미 존재하는 ID 입니다.',
+		serverMessage: 'Already ',
+	},
 };
