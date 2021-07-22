@@ -1,4 +1,3 @@
-const { userRepo } = require('../repository/user-repository');
 const { productRepo } = require('../repository/product-repository');
 const {
 	productImgPathRepo,
@@ -59,7 +58,7 @@ const getProductByPk = async (req, res, next) => {
 // TODO
 const updateProduct = async (req, res, next) => {
 	try {
-		const body = req.body;
+		// const body = req.body;
 		//S3MULTER 이용
 
 		const user = req.user;
