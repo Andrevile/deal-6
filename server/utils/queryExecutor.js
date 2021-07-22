@@ -14,8 +14,61 @@ const selectQueryExecutor = async (query) => {
 		throw new CustomError(error.DATABASE_ERROR);
 	}
 
-	const [users] = result;
-	return users;
+	const [selectData] = result;
+	return selectData;
 };
 
-module.exports = { selectQueryExecutor };
+const insertQueryExecutor = async (query) => {
+	const connection = await pool.getConnection();
+	const [result, err] = await promiseHandler(connection.query(query));
+
+	connection.release();
+
+	if (err) {
+		// DB connection 에서 error 가 생기면 발생하는 경우
+		throw new CustomError(error.DATABASE_ERROR);
+	}
+
+	const [insertData] = result;
+	return insertData;
+};
+
+const updateQueryExecutor = async (query) => {
+	const connection = await pool.getConnection();
+	const [result, err] = await promiseHandler(connection.query(query));
+
+	connection.release();
+
+	if (err) {
+		// DB connection 에서 error 가 생기면 발생하는 경우
+		throw new CustomError(error.DATABASE_ERROR);
+	}
+
+	const [{ affectedRows }] = result;
+	return affectedRows;
+};
+
+const deleteQueryExecutor = updateQueryExecutor;
+
+const transactionQueryExecutor = async (...queries) => {
+	const conn = await pool.getConnection();
+	try {
+		conn.beginTransaction();
+		for (const query of queries) {
+			await promiseHandler(query);
+		}
+		conn.commit();
+		return true;
+	} catch (e) {
+		conn.rollback();
+		return false;
+	}
+};
+
+module.exports = {
+	selectQueryExecutor,
+	updateQueryExecutor,
+	insertQueryExecutor,
+	deleteQueryExecutor,
+	transactionQueryExecutor,
+};
