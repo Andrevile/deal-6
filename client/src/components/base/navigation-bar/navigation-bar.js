@@ -67,6 +67,9 @@ export default class NavigationBar {
 			case '카테고리':
 				this.$target = createDOMWithSelector('nav', '.nav--grey');
 				break;
+			case '채팅하기':
+				this.$target = createDOMWithSelector('nav', '.nav--white');
+				break;
 			case '글쓰기':
 				this.$target = createDOMWithSelector('nav', '.nav--white');
 				this.doneIcon = true;
