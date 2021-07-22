@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
+const config = require('./config/config');
 const errorHandler = require('./middlewares/error-handler');
 const router = require('./routes');
 
@@ -26,7 +27,8 @@ app.get('/*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
 });
 
-const port = process.env.PORT || 3000;
+const env = process.env.NODE_ENV || 'local';
+const port = config.server[env].port;
 
 app.listen(port, () => {
 	console.log(`Server Listening on ${port}`);
