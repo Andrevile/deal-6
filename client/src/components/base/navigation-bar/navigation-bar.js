@@ -12,8 +12,12 @@ export default class NavigationBar {
 	constructor({ $parent, initialState, onClick, isModal = false }) {
 		this.isModal = isModal;
 		this.state = initialState;
-		console.log(this.state);
-		this.setTarget(initialState);
+		if (this.state[0] === '글쓰기') {
+			this.state[1] === true ? (this.activeDoneIcon = true) : '';
+			this.state = this.state[0];
+		}
+
+		this.setTarget(this.state);
 
 		$parent.appendChild(this.$target);
 
