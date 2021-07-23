@@ -27,7 +27,7 @@ export default class WritingPage {
 	// haveAllValue : 모든 값이 있어야 Navbar doneIcon 활성화 가능!
 	constructor($parent) {
 		this.haveHistoryState();
-		console.log(this.state);
+
 		this.navigationBar = new NavigationBar({
 			$parent,
 			initialState: [mode, this.state.haveAllValue],

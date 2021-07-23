@@ -4,7 +4,6 @@ const error = require('../constants/error');
 const promiseHandler = require('../utils/promiseHandler');
 
 const selectQueryExecutor = async (query) => {
-	console.log(query);
 	const connection = await pool.getConnection();
 	const [result, err] = await promiseHandler(connection.query(query));
 	if (err) {

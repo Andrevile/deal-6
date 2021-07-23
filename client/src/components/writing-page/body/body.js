@@ -80,8 +80,6 @@ export default class Body {
 	}
 
 	onChangeFileEvent(e) {
-		console.log(e.target.files);
-
 		let files = e.target.files;
 
 		//api 호출 후 파일경로 받아옴 -> setState -> chcekValueAndRefreshState() 호출
@@ -99,7 +97,6 @@ export default class Body {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
 				this.state.imgPath = [...this.state.imgPath, data.filePath];
 				this.chcekValueAndRefreshState();
 			})

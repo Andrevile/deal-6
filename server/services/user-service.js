@@ -38,7 +38,7 @@ const signIn = async (req, res, next) => {
 const signUp = async (req, res, next) => {
 	try {
 		const { id, location } = req.body;
-		console.log(req.body);
+
 		let [user] = await userRepository.findOne(id);
 
 		if (user) {

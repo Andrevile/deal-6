@@ -8,7 +8,6 @@ export default class ToolBar {
 	constructor({ $parent, initialState, onClick }) {
 		this.state = initialState;
 
-		console.log(this.state);
 		this.$target = createDOMWithSelector('nav', '.detail__nav');
 
 		$parent.appendChild(this.$target);

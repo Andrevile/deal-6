@@ -59,7 +59,6 @@ export default class ImgContainer {
 
 		window.addEventListener('keydown', function (e) {
 			const keyCode = e.keyCode;
-			console.log('pushed key ' + e.key);
 
 			if (keyCode == 37) {
 				// left key
