@@ -2,7 +2,8 @@ import Navbar from '../components/base/navigation-bar/navigation-bar';
 import Body from '../components/location-page/body/body';
 import Modal from '../components/location-page/location-modal/location-modal';
 import Alert from '../components/base/alert/alert';
-import { api } from '../api/api';
+// import { api } from '../api/api';
+// import { navigateTo } from '../router';
 
 const mode = '내 동네 설정하기';
 export default class LocationPage {
@@ -39,16 +40,24 @@ export default class LocationPage {
 		// this.initiallizeData();
 	}
 
-	initiallizeData() {
-		api.get('/')
-			.then((res) => {
-				this.state.allMyLocation = res.data;
-				this.setState();
-			})
-			.catch((e) => {
-				alert(e.message);
-			});
-	}
+	// initiallizeData() {
+	// 	api.get('/')
+	// 		.then((res) => {
+	// 			if (res.data.SubLocaiton) {
+	// 				this.state.allMyLocation = [
+	// 					res.data.MainLocaiton,
+	// 					res.data.SubLocaiton,
+	// 				];
+	// 			} else {
+	// 				this.state.allMyLocation = [res.data.MainLocaiton];
+	// 			}
+
+	// 			this.setState();
+	// 		})
+	// 		.catch(() => {
+	// 			navigateTo('/notlogin');
+	// 		});
+	// }
 
 	setState() {
 		this.body.setState(this.state.allMyLocation);
@@ -62,45 +71,33 @@ export default class LocationPage {
 		) {
 			this.modal.close();
 		} else if (e.target.className === 'modal__confirm active') {
-			api.post('/', { location: value })
-				.then(() => {
-					// 확인 클릭 시 발생
-					// api로 동네 추가
-					this.state.allMyLocation = [
-						...this.state.allMyLocation,
-						value,
-					];
-					this.modal.close();
-					this.modal.$input = ''; // input 초기화
-					this.setState();
-				})
-				.catch((e) => {
-					alert(e.message);
-				});
+			// api.post('/', { location: value })
+			// 	.then(() => {
+			// 확인 클릭 시 발생
+			// api로 동네 추가
+			this.state.allMyLocation = [...this.state.allMyLocation, value];
+			this.modal.close();
+			this.modal.$input = ''; // input 초기화
+			this.setState();
+			// })
+			// .catch((e) => {
+			// 	alert(e.message);
+			// });
 		}
 	}
 
 	bindRemoveLocationEvent(idx) {
-		api.delete('/?location')
-			.then(() => {
-				let LocationArray = [...this.state.allMyLocation];
-				LocationArray.splice(idx, 1);
-				this.state.allMyLocation = LocationArray;
-				this.setState();
-			})
-			.catch((e) => {
-				alert(e.message);
-			});
+		// api.put('/?location')
+		// 	.then(() => {
+		let LocationArray = [...this.state.allMyLocation];
+		LocationArray.splice(idx, 1);
+		this.state.allMyLocation = LocationArray;
+		this.setState();
 
-		/* 
-			--추후 예정-- (백에서 처리해야 할듯)
-			삭제 시(각각 api 요청 동반 예상)
-			2개일때 :
-				idx 0 삭제 -> idx 1을 메인동네로
-				idx 1 삭제 -> 그대로
-			1개일때 :
-				메인 삭제
-		*/
+		// })
+		// .catch((e) => {
+		// 	alert(e.message);
+		// });
 	}
 
 	bindButtonClickEvent(e, idx) {
@@ -115,7 +112,13 @@ export default class LocationPage {
 			this.alert.open();
 			this.state.currentIndex = idx;
 		} else if (e.target.className === 'location__normalBtn') {
-			console.log('MuYaHo');
+			if (idx === 0) {
+				this.state.allMyLocation = [
+					this.state.allMyLocation[1],
+					this.state.allMyLocation[0],
+				];
+				this.setState();
+			}
 			/* 
 			--추후 예정--
 			일반 동네 click event ( 메인 동네로 change )
@@ -134,6 +137,7 @@ export default class LocationPage {
 		} else if (e.target.className === 'alert__confirm') {
 			// 나가기 클릭 시 발생
 			this.alert.close();
+
 			this.bindRemoveLocationEvent(this.state.currentIndex);
 		}
 	}
