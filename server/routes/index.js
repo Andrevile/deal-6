@@ -5,7 +5,7 @@ const express = require('express');
 // const postRouter = require('./post-router');
 // const myLocationRouter = require('./my-location-router');
 const UserRouter = require('./user-router');
-
+const UploadRouter = require('./upload');
 const router = express.Router();
 
 // router.use('/detail', detailRouter);
@@ -13,5 +13,6 @@ const router = express.Router();
 // router.use('/post', postRouter);
 // router.use('/my-location', myLocationRouter);
 router.use('/user', UserRouter);
+router.use('/upload', UploadRouter);
 
 module.exports = router;
