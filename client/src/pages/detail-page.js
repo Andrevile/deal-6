@@ -5,7 +5,7 @@ import Footer from '../components/detail-page/footer/footer';
 import ProductModal from '../components/base/product-modal/product-modal';
 import { createDOMWithSelector } from '../util/createDOMWithSelector';
 import { navigateTo } from '../router';
-import { api } from '../api/api';
+// import { api } from '../api/api';
 
 export default class DetailPage {
 	state = {
@@ -33,6 +33,7 @@ export default class DetailPage {
 	constructor($parent) {
 		this.haveHistoryState();
 		console.log(history.state);
+
 		this.$target = createDOMWithSelector('div', '.detail-page');
 		$parent.appendChild(this.$target);
 
@@ -71,27 +72,34 @@ export default class DetailPage {
 				} else if (e.target.className === 'productModal__update') {
 					navigateTo('/writing', this.state);
 				} else if (e.target.className === 'productModal__delete') {
-					/* 
-						api 요청으로 삭제
-					*/
+					// api.delete('/?location')
+					// 	.then(() => {
 					navigateTo('/');
+					// })
+					// .catch((e) => {
+					// 	alert(e.message);
+					// });
 				}
 			},
 		});
 
-		this.state.user.length === 0 && this.initiallizeData();
+		// history.state ? '' : this.initiallizeData();
 	}
 
-	initiallizeData() {
-		// api 안되면 new Promise()
-		api.get('/blah').then((res) => {
-			if (res.success) {
-				// this.setState(res.data); 어떤식의 데이터가 오는지 확인!
-			} else {
-				alert(res.message);
-			}
-		});
-	}
+	// 위에 주석 있음..!
+	// initiallizeData() {
+	/*
+			api 호출 ( 프로덕트)
+		*/
+	// 	api.get(location.pathname)
+	// 		.then((res) => {
+	// 			this.state = res.data; // 미정
+	// 			this.setState();
+	// 		})
+	// 		.catch(() => {
+	// 			navigateTo('/notlogin');
+	// 		});
+	// }
 
 	setState() {
 		this.toolBar.setState({
