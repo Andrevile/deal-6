@@ -1,17 +1,19 @@
 # deal-6
-6조 - 남영우와 문지호의 우아한 반란
+6조 - 남영우와 문지호
 
 <h1 align="center">Welcome to DEAL-6 :웃음:</h1>
 
 ## 프로젝트 개발내용
 FE - 
 
-> 
+> 메인에서 interSection Obsever API를 이용한 lazy loading, infinite scrolling 구현
 >
-> 
+> React 컴포넌트 형식으로 코드 작성
 >
+> SPA, Webpack 직접 설정하여 사용 (SPA는 history.pushState 기법 사용)
+>
+> 예외처리를 하려고 노력함...
 > 
-
 BE -  
 
 > API 정의서를 작성하여, 만들어야 할 API 에 대해 기술
@@ -34,4 +36,12 @@ BE -
 ## Author
 :상반신_그림자: **문지호** **남영우**
 ---
+
+Left           | Middle | Right
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/50862052/126736036-2fb8370d-2fde-40b4-8810-8eb4c5340bd2.png)  |  ![](https://user-images.githubusercontent.com/50862052/126736038-0ff89721-66c0-496b-b43d-950c2c761585.png) |  ![](https://user-images.githubusercontent.com/50862052/126736039-264329b1-2954-4650-b240-f631047674ac.png)
+Left           | Middle | Right
+![](https://user-images.githubusercontent.com/50862052/126736039-264329b1-2954-4650-b240-f631047674ac.png)  |  ![](https://user-images.githubusercontent.com/50862052/126736043-e28ed1bc-fca1-44f1-89d7-1edbb10a7198.png) |  ![](https://user-images.githubusercontent.com/50862052/126736044-828a9e35-b757-4f92-8f68-c601c885b831.png)
+Left           | Middle | Right
+![](https://user-images.githubusercontent.com/50862052/126736045-93448e7d-b9bf-440d-9504-ae765e9163df.png)  |  ![](https://user-images.githubusercontent.com/50862052/126736048-87992b15-033d-4d59-b32e-47f04c8b27b4.png) |  ![](https://user-images.githubusercontent.com/50862052/126736049-4fb7026b-2877-4809-9d14-3fe40a830d85.png)
 
