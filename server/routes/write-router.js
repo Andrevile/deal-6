@@ -1,9 +1,12 @@
 const express = require('express');
 const decodeJWT = require('../middlewares/decode-jwt');
-const { getAllProducts } = require('../services/product-service');
+
+const { editProduct, createProduct } = require('../services/product-service');
 
 const router = express.Router();
 
-router.get('/', decodeJWT, getAllProducts);
+router.post('/:pk', editProduct);
+
+router.post('/', createProduct);
 
 module.exports = router;
