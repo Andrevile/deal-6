@@ -88,9 +88,9 @@ export default class Body {
 
 		let formData = new FormData();
 
-		formData.append('file', files);
+		formData.append('file', files[0]);
 
-		fetch('/api/?', {
+		fetch('/api/upload', {
 			method: 'POST',
 			body: formData,
 		})
@@ -99,10 +99,8 @@ export default class Body {
 				return res.json();
 			})
 			.then((data) => {
-				this.state.imgPath = [
-					...this.state.imgPath,
-					...JSON.stringify(data),
-				];
+				console.log(data);
+				this.state.imgPath = [...this.state.imgPath, data.filePath];
 				this.chcekValueAndRefreshState();
 			})
 			.catch((e) => alert(e.toString()));
@@ -133,7 +131,7 @@ export default class Body {
 
 	renderImageForm() {
 		return `<form action='/' method="post" enctype="multipart/form-data" class='post__imgContainer'>
-					<input  id='image' type='file' accept=".jpg, .jpeg, .png" multiple>
+					<input  id='image' type='file' accept=".jpg, .jpeg, .png">
 					<img src='https://deal-6.s3.ap-northeast-2.amazonaws.com/storeImages/icons/image.svg' alt='image'>
 					<div>
 						<span>${this.state.imgPath.length}/10</span>
