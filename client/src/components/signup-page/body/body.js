@@ -2,7 +2,7 @@ import './body.css';
 import { createDOMWithSelector } from '../../../util/createDOMWithSelector';
 import Button from '../../../components/base/large-button/large-button';
 import WelcomeModal from '../modal/modal';
-import { api } from '../../../api/api';
+// import { api } from '../../../api/api';
 
 const mode = '회원가입';
 
@@ -36,16 +36,16 @@ export default class BodyPart {
 			onClick: (e) => {
 				e.preventDefault();
 				if (e.target.className === 'largeButton') {
-					api.post('/user/sign-up', {
-						id: this.$id.value,
-						location: this.$location.value,
-					})
-						.then(() => {
-							this.welcomeModal.open();
-						})
-						.catch((e) => {
-							alert(e.message);
-						});
+					// api.post('/user/sign-up', {
+					// 	id: this.$id.value,
+					// 	location: this.$location.value,
+					// })
+					// 	.then(() => {
+					this.welcomeModal.open();
+					// })
+					// .catch((e) => {
+					// 	alert(e.message);
+					// });
 				}
 			},
 		});
