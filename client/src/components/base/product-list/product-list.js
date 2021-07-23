@@ -38,15 +38,25 @@ export default class ProductLists {
 					return `
 			<article class='product'>
 				
-				<img class='product__imgs' src=${product.imgPath} data-link='/detail'>
+				<img class='product__imgs' src=${product.imgPath} data-link='/detail/${
+						product.pk
+					}'>
 			
 				<div class='product__info'>
-					<span class='product__name' data-link='/detail'>${product.name}</span>
+					<span class='product__name' data-link='/detail/${product.pk}'>${
+						product.name
+					}</span>
 					<div>
-						<span class='product__location' data-link='/detail'>${product.location} ∙</span>
-						<span class='product__time' data-link='/detail'>${product.time}</span>
+						<span class='product__location' data-link='/detail/${product.pk}'>${
+						product.location
+					} ∙</span>
+						<span class='product__time' data-link='/detail/${product.pk}'>${
+						product.time
+					}</span>
 					</div>
-					<span class='product__price' data-link='/detail'>${product.price}</span>
+					<span class='product__price' data-link='/detail/${product.pk}'>${
+						product.price
+					}</span>
 				</div>
 				
 				${
