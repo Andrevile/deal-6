@@ -1,6 +1,7 @@
 .section {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .img-container-wrapper {
@@ -10,7 +11,8 @@
 }
 
 .info-container-wrapper {
-    width: calc(100%-2rem);
+    width: 310px;
+    padding: 20px;
     flex-grow: 1;
     margin-left: 1rem;
     margin-right: 1rem;

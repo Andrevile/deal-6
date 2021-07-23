@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.chat__name {
+    color: var(--color-error)
+}
+
 .chat__info {
     display: flex;
     flex-direction: column;
@@ -61,8 +65,8 @@
 } 
 
 .chat__imgs {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 1px solid var(--color-light-grey);
     margin-left: 16px;
     border-radius: 6px;

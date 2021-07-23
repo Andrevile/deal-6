@@ -28,7 +28,7 @@ const signIn = async (req, res, next) => {
 		res.cookie('JWT', createJWT(user));
 		const { code, message } = success.LOGIN;
 
-		res.status(code).json({ user, message });
+		res.status(code).json({ user, success: true, message });
 		return;
 	} catch (err) {
 		next(err);
@@ -54,7 +54,12 @@ const signUp = async (req, res, next) => {
 
 		const { code, message } = success.SIGNUP;
 
-		res.status(code).json({ user, message, location: newLocation });
+		res.status(code).json({
+			user,
+			success: true,
+			message,
+			location: newLocation,
+		});
 	} catch (err) {
 		next(err);
 	}
