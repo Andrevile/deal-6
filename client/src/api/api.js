@@ -2,7 +2,6 @@ const API_ENDPOINT = '/api';
 
 const getData = (url) => {
 	return fetch(`${API_ENDPOINT}` + `${url}`).then((res) => {
-		if (!res.ok) throw new Error('Http Error...');
 		return res.json();
 	});
 };
@@ -15,20 +14,18 @@ const postData = (url, data) => {
 			'Content-Type': 'application/json',
 		},
 	}).then((res) => {
-		if (!res.ok) throw new Error('Http Error...');
 		return res.json();
 	});
 };
 
-const patchData = (url, data) => {
+const putData = (url, data) => {
 	return fetch(`${API_ENDPOINT}` + `${url}`, {
-		method: 'PATCH',
+		method: 'PUT',
 		body: JSON.stringify(data),
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	}).then((res) => {
-		if (!res.ok) throw new Error('Http Error...');
 		return res.json();
 	});
 };
@@ -37,7 +34,6 @@ const deleteData = (url) => {
 	return fetch(`${API_ENDPOINT}` + `${url}`, {
 		method: 'DELETE',
 	}).then((res) => {
-		if (!res.ok) throw new Error('Http Error...');
 		return res.json();
 	});
 };
@@ -45,71 +41,71 @@ const deleteData = (url) => {
 export const api = {
 	get: (url) => {
 		return new Promise((resolve, reject) => {
-			getData(url)
-				.then((data) => {
+			getData(url).then((data) => {
+				if (data.success) {
 					resolve({
 						success: true,
-						data: JSON.stringify(data),
+						data: data,
 					});
-				})
-				.catch((e) => {
+				} else {
 					reject({
 						success: false,
-						message: e.message,
+						message: data.message,
 					});
-				});
+				}
+			});
 		});
 	},
 
 	post: (url, data) => {
 		return new Promise((resolve, reject) => {
-			postData(url, data)
-				.then((data) => {
+			postData(url, data).then((data) => {
+				if (data.success) {
 					resolve({
 						success: true,
-						data: JSON.stringify(data),
+						data: data,
 					});
-				})
-				.catch((e) => {
+				} else {
 					reject({
 						success: false,
-						message: e.message,
+						message: data.message,
 					});
-				});
+				}
+			});
 		});
 	},
 	update: (url, data) => {
 		return new Promise((resolve, reject) => {
-			patchData(url, data)
-				.then((data) => {
+			putData(url, data).then((data) => {
+				if (data.success) {
 					resolve({
 						success: true,
-						data: JSON.stringify(data),
+						data: data,
 					});
-				})
-				.catch((e) => {
+				} else {
 					reject({
 						success: false,
-						message: e.message,
+						message: data.message,
 					});
-				});
+				}
+			});
 		});
 	},
 	delete: (url) => {
 		return new Promise((resolve, reject) => {
-			deleteData(url)
-				.then((data) => {
+			deleteData(url).then((data) => {
+				if (data.success) {
 					resolve({
 						success: true,
-						data: JSON.stringify(data),
+						data: data,
 					});
-				})
-				.catch((e) => {
+				} else {
 					reject({
 						success: false,
-						message: e.message,
+						message: data.message,
 					});
-				});
+				}
+			});
 		});
 	},
 };
