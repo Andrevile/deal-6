@@ -16,7 +16,7 @@ export default class DetailPage {
 		title: '빈티지 롤러 스케이트!',
 		content: `어린시절 추억의 향수를 불러 일으키는 롤러 스케이트입니다. 빈티지 특성상 사용감 있지만 전체적으로 깨끗한 상태입니다. 촬영용 소품이나, 거실에 장식용으로 추천해 드립니다. 단품 입고 되었습니다.<br>
 			새 제품으로 보존된 제품으로 전용박스까지 보내드립니다.사이즈는 235 입니다.`,
-		status: 2,
+		status: 0,
 		location: '문래동',
 		category: '기타 중고물품',
 		imgPath: [
@@ -32,8 +32,9 @@ export default class DetailPage {
 
 	constructor($parent) {
 		this.haveHistoryState();
-		console.log(history.state);
-
+		if (!history.state && location.pathname === '/detail/1') {
+			this.state = secondData;
+		}
 		this.$target = createDOMWithSelector('div', '.detail-page');
 		$parent.appendChild(this.$target);
 
@@ -66,7 +67,6 @@ export default class DetailPage {
 		this.productModal = new ProductModal({
 			$parent: this.$target,
 			onClick: (e) => {
-				console.log(e.target.className);
 				if (e.target.className === 'productModal__overlay') {
 					this.productModal.close();
 				} else if (e.target.className === 'productModal__update') {
@@ -120,3 +120,28 @@ export default class DetailPage {
 		}
 	}
 }
+
+const secondData = {
+	//4
+	user: '남영우', // pk값을 들고있을지, 이름을 들고 있을지 고민입니다.
+	seller: '문지호',
+	price: '₩50,000',
+	title: '갤럭시A5',
+	content: `갤럭시 A5 판매합니다. 
+	16GB 무잔상에 생활기스 약간 있습니다.
+	직거래 답십리역 아니면 장한평역에서 합니다.`,
+	status: 0,
+	location: '문래동',
+	category: '기타 중고물품',
+	imgPath: [
+		'https://picsum.photos/300/300',
+		'https://picsum.photos/300/300',
+		'https://picsum.photos/300/300',
+		'https://picsum.photos/300/300',
+		'https://picsum.photos/300/300',
+	],
+	createdAt: '7분전',
+	chatCount: 5,
+	wishCount: 2,
+	visitCount: 6,
+};
