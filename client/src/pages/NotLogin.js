@@ -4,7 +4,7 @@ import { navigateTo } from '../router';
 export default class NotLogin {
 	state = {
 		link: '/',
-		message: '2초 후 홈으로 이동❗',
+		message: '메인으로 이동❗',
 		status: '',
 		content: 'This service requires login',
 	};
