@@ -59,11 +59,7 @@ export default class Footer {
 		return `
 		<button 
 				class="option-button"
-				data-link="${
-					isUserOwnProduct(this.state.seller, this.state.user)
-						? '/chat'
-						: '/chat/10'
-				}
+				data-link="${'/chat'}
 			">
 			${
 				isUserOwnProduct(this.state.seller, this.state.user)
