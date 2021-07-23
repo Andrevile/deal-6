@@ -16,6 +16,7 @@ module.exports = async (req, res, next) => {
 			req.user = user;
 			next();
 		} catch (err) {
+			console.log('err jwt');
 			next(err);
 		}
 	} else {

@@ -2,13 +2,19 @@ const express = require('express');
 const decodeJWT = require('../middlewares/decode-jwt');
 const {
 	getProductByPk,
-	deleteProductByPk,
+	deleteProduct,
+	changeProductStatus,
 } = require('../services/product-service');
+const { changeWishState } = require('../services/wish-service');
 
 const router = express.Router();
 
-router.get('/product/:ProductPk', decodeJWT, getProductByPk);
+router.get('/product/:pk', decodeJWT, getProductByPk);
 
-router.delete('/product/:ProductPk', decodeJWT, deleteProductByPk);
+router.post('/product/:pk', decodeJWT, changeProductStatus);
+
+router.delete('/product/:pk', decodeJWT, deleteProduct);
+
+router.post('/wish/:pk', decodeJWT, changeWishState);
 
 module.exports = router;

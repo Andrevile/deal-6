@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { sampleRepository } = require('../repository/sample-repository');
+const { sampleRepo } = require('../repository/sample-repository');
 const CustomError = require('../errors/custom-error');
 const error = require('../constants/error');
 
@@ -14,7 +14,7 @@ const sampleServiceFn = async (req, res, next) => {
         Repository 함수가 리턴한 결과를 적합한 statusCode 를 사용하여, json 으로 보내준다.
     */
 	try {
-		const samples = await sampleRepository.findAll();
+		const samples = await sampleRepo.findAll();
 
 		/* 함수로 빼두면 좀 더 보기는 좋을 것 같지만, 굳이 안해도 됩니다. */
 		if (customErrorCheck(samples)) {

@@ -38,6 +38,30 @@ module.exports = {
 	EXIST_USER_ID_ERROR: {
 		code: 400,
 		errorMessage: '이미 존재하는 ID 입니다.',
-		serverMessage: 'Already ',
+		serverMessage: 'Already exist ID',
+	},
+
+	CREATE_ERROR: {
+		code: 400,
+		errorMessage: '비정상적으로 생성이 취소되었습니다.',
+		serverMessage: 'DB Create SQL query error',
+	},
+
+	NO_PRODUCT_ERROR: {
+		code: 400,
+		errorMessage: '요청한 물건이 없습니다.',
+		serverMessage: 'There is no product have such pk',
+	},
+
+	UPDATE_ERROR: {
+		code: 400,
+		errorMessage: '업데이트에 실패 했습니다.',
+		serverMessage: 'Update Fail',
+	},
+
+	DELETE_ERROR: {
+		code: 400,
+		errorMessage: '삭제에 실패 했습니다.',
+		serverMessage: 'Delete Fail',
 	},
 };

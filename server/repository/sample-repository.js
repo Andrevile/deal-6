@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { selectQueryExecutor } = require('../utils/queryExecutor');
 
-const sampleRepository = {
+const sampleRepo = {
 	findAll: async () => {
 		/* DB 에 요청할 query 문을 작성합니다. */
 		const query = `query 를 작성해서 넣으면 됩니다. 끝에 세미콜론 잊지마세요!`;
@@ -12,4 +12,4 @@ const sampleRepository = {
 	},
 };
 
-module.exports = { sampleRepository };
+module.exports = { sampleRepo };

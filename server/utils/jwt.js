@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const error = require('../constants/error');
 const CustomError = require('../errors/custom-error');
-const { userRepository } = require('../repository/user-repository');
+const { userRepo } = require('../repository/user-repository');
 
 /**
  *
@@ -23,12 +23,12 @@ const verifyJWT = async (token) => {
 	const decodeToken = jwt.verify(token, config.jwt.secretKey);
 
 	if (!decodeToken) {
-		return new CustomError(error.JWT_TOKEN_INVALID_ERROR);
+		throw new CustomError(error.JWT_TOKEN_INVALID_ERROR);
 	}
 
-	const user = await userRepository.findOne(decodeToken.id);
+	const [user] = await userRepo.findOne(decodeToken.id);
 
-	if (isExistedId(user) || isInvalidPayLoad(decodeToken, user)) {
+	if (!user || isInvalidPayLoad(decodeToken, user)) {
 		throw new CustomError(error.JWT_TOKEN_INVALID_ERROR);
 	}
 
