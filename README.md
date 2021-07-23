@@ -26,7 +26,7 @@ BE -
 로그인 및 일부 기능 테스트까지는 진행하며, API 검증을 완료했지만, 데모 당일까지 FE와 BE 연동 작업이 다 되지않아, 클라이언트에서 더미 데이터로 동작하게 변경하였습니다. 데모가 끝난 이후, FE와 BE 연동 작업을 마무리 지을 예정입니다.
 
 ## 최종 결과물
-🏠 (http://ec2-3-36-116-171.ap-northeast-2.compute.amazonaws.com/)
+[🏠](http://ec2-3-36-116-171.ap-northeast-2.compute.amazonaws.com/)
 
 ## WIKI
 ### 1. [홈 📏](https://github.com/woowa-techcamp-2021/deal-6/wiki)
